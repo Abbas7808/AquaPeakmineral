@@ -1,4 +1,11 @@
 {
   "outputDirectory": ".",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/api/admin/orders/:path*", "destination": "/api/admin/orders.js" },
+    { "source": "/api/admin/expenses/:path*", "destination": "/api/admin/expenses.js" },
+    { "source": "/api/admin/contacts/:path*", "destination": "/api/admin/contacts.js" },
+    { "source": "/api/admin/products/:path*", "destination": "/api/admin/products.js" },
+    { "source": "/api/admin/lab-data/:path*", "destination": "/api/admin/lab-data.js" }
+  ]
 }
