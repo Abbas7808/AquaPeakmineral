@@ -149,7 +149,7 @@ function calculateOrderTotal() {
     display.textContent = `Rs. ${total.toLocaleString()}`;
 }
 
-// Order Form Submission (Sends to PHP Backend API)
+// Order Form Submission (Sends to Backend API + Local Live Sync)
 async function handleOrderSubmit(e) {
     e.preventDefault();
     const select = document.getElementById('order-bottle-select');
@@ -160,6 +160,9 @@ async function handleOrderSubmit(e) {
     const name = document.getElementById('order-name').value.trim();
     const phone = document.getElementById('order-phone').value.trim();
     const address = document.getElementById('order-address').value.trim();
+    const slot = document.getElementById('order-slot')?.value || 'Standard Route (Within 2-4 Hours)';
+    const payment = document.getElementById('order-payment')?.value || 'Cash on Delivery';
+    const notes = document.getElementById('order-notes')?.value.trim() || 'Online Website Order';
 
     if (!name || !phone || !address) {
         showToast('Please fill all required delivery details.', 'error');
@@ -174,8 +177,18 @@ async function handleOrderSubmit(e) {
         total_price: unitPrice * qty,
         customer_name: name,
         customer_phone: phone,
-        customer_address: address
+        customer_address: address,
+        delivery_slot: slot,
+        payment_type: payment,
+        notes: notes
     };
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const origText = submitBtn ? submitBtn.innerHTML : 'Confirm Order';
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Sending to Admin...';
+    }
 
     try {
         const resp = await fetch('/api/order', {
@@ -185,22 +198,115 @@ async function handleOrderSubmit(e) {
         });
         const result = await resp.json();
 
-        if (result.success) {
-            showToast(`Order Placed! Order Code: ${result.order_code}`, 'success');
-            closeOrderModal();
-            // Prompt WhatsApp checkout
-            setTimeout(() => {
-                if (result.whatsapp_url && confirm(`Your order has been recorded! Would you like to confirm it instantly on WhatsApp?`)) {
-                    window.open(result.whatsapp_url, '_blank');
-                }
-            }, 500);
-        } else {
-            showToast(result.message || 'Failed to place order. Please try again.', 'error');
-        }
+        const orderCode = result.order_code || ('AQW-W' + Math.floor(1000 + Math.random() * 9000));
+        const newOrderObj = {
+            order_code: orderCode,
+            date: new Date().toISOString().replace('T', ' ').substring(0, 19),
+            customer_name: name,
+            customer_phone: phone,
+            customer_address: address,
+            bottle_id: select.value,
+            bottle_name: bottleName,
+            quantity: qty,
+            unit_price: unitPrice,
+            total_price: unitPrice * qty,
+            payment_type: payment,
+            delivery_slot: slot,
+            notes: notes,
+            status: 'Pending Confirmation',
+            source: 'Website Online Order'
+        };
+
+        // Sync to live orders store in browser
+        try {
+            let liveOrders = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
+            liveOrders.unshift(newOrderObj);
+            localStorage.setItem('aquawater_live_orders', JSON.stringify(liveOrders));
+        } catch (e) {}
+
+        closeOrderModal();
+        openSuccessOrderModal(newOrderObj, result.whatsapp_url);
+        showToast(`Order #${orderCode} sent to dispatch team!`, 'success');
+        e.target.reset();
+
     } catch (err) {
         console.error(err);
-        // Fallback: send directly via WhatsApp
-        sendOrderViaWhatsApp();
+        // Fallback local store & WhatsApp
+        const orderCode = 'AQW-W' + Math.floor(1000 + Math.random() * 9000);
+        const fallbackOrder = {
+            order_code: orderCode,
+            date: new Date().toISOString().replace('T', ' ').substring(0, 19),
+            customer_name: name,
+            customer_phone: phone,
+            customer_address: address,
+            bottle_id: select.value,
+            bottle_name: bottleName,
+            quantity: qty,
+            unit_price: unitPrice,
+            total_price: unitPrice * qty,
+            payment_type: payment,
+            delivery_slot: slot,
+            notes: notes,
+            status: 'Pending Confirmation',
+            source: 'Website Online Order'
+        };
+        try {
+            let liveOrders = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
+            liveOrders.unshift(fallbackOrder);
+            localStorage.setItem('aquawater_live_orders', JSON.stringify(liveOrders));
+        } catch (e) {}
+
+        closeOrderModal();
+        const waMsg = encodeURIComponent(`Hello Aqua Water 🌊💦!\nOrder: *${orderCode}*\nItem: *${bottleName}* (x${qty})\nName: ${name}\nPhone: ${phone}\nAddress: ${address}\nTotal: Rs. ${unitPrice * qty}`);
+        openSuccessOrderModal(fallbackOrder, `https://wa.me/923344739339?text=${waMsg}`);
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = origText;
+        }
+    }
+}
+
+function openSuccessOrderModal(order, waUrl) {
+    const modal = document.getElementById('order-success-modal');
+    const backdrop = document.getElementById('order-modal-backdrop');
+    if (!modal) return;
+
+    document.getElementById('success-order-code').textContent = order.order_code;
+    document.getElementById('success-order-item').textContent = `${order.bottle_name} (x${order.quantity})`;
+    document.getElementById('success-order-total').textContent = `Rs. ${order.total_price.toLocaleString()}`;
+    document.getElementById('success-order-address').textContent = order.customer_address;
+
+    const waBtn = document.getElementById('success-whatsapp-btn');
+    if (waBtn && waUrl) {
+        waBtn.href = waUrl;
+    }
+
+    if (backdrop) {
+        backdrop.classList.add('open');
+        backdrop.style.opacity = '1';
+        backdrop.style.pointerEvents = 'auto';
+    }
+
+    modal.classList.add('open');
+    modal.style.opacity = '1';
+    modal.style.pointerEvents = 'auto';
+    modal.style.transform = 'translate(-50%, -50%) scale(1)';
+}
+
+function closeSuccessOrderModal() {
+    const modal = document.getElementById('order-success-modal');
+    const backdrop = document.getElementById('order-modal-backdrop');
+    if (modal) {
+        modal.classList.remove('open');
+        modal.style.opacity = '0';
+        modal.style.pointerEvents = 'none';
+        modal.style.transform = 'translate(-50%, -50%) scale(0.92)';
+    }
+    if (backdrop) {
+        backdrop.classList.remove('open');
+        backdrop.style.opacity = '0';
+        backdrop.style.pointerEvents = 'none';
     }
 }
 

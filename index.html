@@ -1321,7 +1321,7 @@
 </a>
 
 <!-- Quick Order Modal -->
-<div id="order-modal-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" style="opacity: 0; pointer-events: none;" onclick="closeOrderModal()"></div></div>
+<div id="order-modal-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" style="opacity: 0; pointer-events: none;" onclick="closeOrderModal(); closeSuccessOrderModal();"></div>
 <div id="order-modal" class="fixed inset-x-4 top-[50%] z-50 mx-auto max-w-lg -translate-y-[50%] scale-95 opacity-0 pointer-events-none rounded-[2rem] border border-white/20 bg-white p-6 shadow-2xl transition-all duration-300 sm:p-8" style="opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0.92);" aria-hidden="true">
     <div class="flex items-center justify-between border-b border-slate-100 pb-4">
         <div class="flex items-center gap-3">
@@ -1333,15 +1333,15 @@
         </div>
         <button onclick="closeOrderModal()" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100" aria-label="Close modal"><i class="fa-solid fa-xmark text-lg"></i></button>
     </div>
-    <form id="quick-order-form" onsubmit="handleOrderSubmit(event)" class="mt-5 space-y-4">
+    <form id="quick-order-form" onsubmit="handleOrderSubmit(event)" class="mt-5 space-y-3.5">
         <div>
             <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Select Bottle Size</label>
             <select id="order-bottle-select" onchange="calculateOrderTotal()" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:border-[#01386A] focus:bg-white focus:outline-none">
-                <option value="500ml" data-price="50" data-name="500ml Bottle">500ml Bottle - On-the-go (Rs. 50)</option>
-                <option value="1500ml" data-price="90" data-name="1500ml Bottle">1500ml Bottle - Daily hydration (Rs. 90)</option>
-                <option value="6l" data-price="220" data-name="6L Compact Bottle">6L Compact Bottle - Light usage (Rs. 220)</option>
+                <option value="19l" data-price="280" data-name="19L Returnable Bottle" selected>19L Returnable Bottle - High volume dispenser (Rs. 280)</option>
                 <option value="12l" data-price="320" data-name="12L Mid-Size Bottle">12L Mid-Size Bottle - Family scale (Rs. 320)</option>
-                <option value="19l" data-price="280" data-name="19L Returnable Bottle">19L Returnable Bottle - High volume dispenser (Rs. 280)</option>
+                <option value="6l" data-price="220" data-name="6L Compact Bottle">6L Compact Bottle - Light usage (Rs. 220)</option>
+                <option value="1500ml" data-price="90" data-name="1500ml Bottle">1500ml Bottle - Daily hydration (Rs. 90)</option>
+                <option value="500ml" data-price="50" data-name="500ml Bottle">500ml Bottle - On-the-go (Rs. 50)</option>
             </select>
         </div>
         <div class="grid grid-cols-2 gap-3">
@@ -1349,32 +1349,98 @@
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Quantity</label>
                 <div class="flex items-center rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
                     <button type="button" onclick="stepQuantity(-1)" class="px-3 py-2 text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-minus text-xs"></i></button>
-                    <input type="number" id="order-quantity" value="1" min="1" max="100" onchange="calculateOrderTotal()" class="w-full text-center bg-transparent py-2 text-sm font-bold text-slate-800 focus:outline-none">
+                    <input type="number" id="order-quantity" value="2" min="1" max="100" onchange="calculateOrderTotal()" class="w-full text-center bg-transparent py-2 text-sm font-bold text-slate-800 focus:outline-none">
                     <button type="button" onclick="stepQuantity(1)" class="px-3 py-2 text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-plus text-xs"></i></button>
                 </div>
             </div>
             <div>
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Estimated Total</label>
-                <div class="flex h-10 items-center justify-center rounded-xl bg-cyan-50 px-3 text-sm font-black text-[#01386A]" id="order-total-display">Rs. 50</div>
+                <div class="flex h-10 items-center justify-center rounded-xl bg-cyan-50 px-3 text-sm font-black text-[#01386A]" id="order-total-display">Rs. 560</div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Full Name *</label>
+                <input type="text" id="order-name" required placeholder="Your Name or Business" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Phone / WhatsApp *</label>
+                <input type="tel" id="order-phone" required placeholder="03xx xxxxxxx" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
             </div>
         </div>
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Full Name</label>
-            <input type="text" id="order-name" required placeholder="Your Name or Business" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Delivery Address & Sector *</label>
+            <input type="text" id="order-address" required placeholder="House / Office #, Street, Sector / Area" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Preferred Timing</label>
+                <select id="order-slot" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-medium text-slate-800 focus:border-[#01386A] focus:outline-none">
+                    <option value="Standard Route (Within 2-4 Hours)">Standard Route (Within 2-4 Hours)</option>
+                    <option value="Morning Route (9 AM - 12 PM)">Morning Route (9 AM - 12 PM)</option>
+                    <option value="Afternoon Route (1 PM - 4 PM)">Afternoon Route (1 PM - 4 PM)</option>
+                    <option value="Evening Route (5 PM - 8 PM)">Evening Route (5 PM - 8 PM)</option>
+                    <option value="Urgent Dispatch">Urgent Dispatch (Priority)</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Payment Method</label>
+                <select id="order-payment" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-medium text-slate-800 focus:border-[#01386A] focus:outline-none">
+                    <option value="Cash on Delivery">Cash on Delivery (Cash)</option>
+                    <option value="JazzCash / EasyPaisa">JazzCash / EasyPaisa</option>
+                    <option value="Bank Transfer">Bank Transfer / Online</option>
+                </select>
+            </div>
         </div>
         <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Phone / WhatsApp Number</label>
-            <input type="tel" id="order-phone" required placeholder="03xx xxxxxxx" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
-        </div>
-        <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Delivery Address & Area</label>
-            <input type="text" id="order-address" required placeholder="Street / Sector, Rawalpindi / Islamabad" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Delivery Notes / Landmark (Optional)</label>
+            <input type="text" id="order-notes" placeholder="e.g. Ring bell 2, deliver to reception, 3 empty bottles ready" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-800 focus:border-[#01386A] focus:outline-none">
         </div>
         <div class="pt-2 flex flex-col sm:flex-row gap-2.5">
-            <button type="submit" class="flex-1 rounded-xl bg-[#01386A] py-3 text-sm font-bold text-white shadow-lg hover:bg-[#0b4c86]"><i class="fa-solid fa-truck-ramp-box mr-1.5"></i> Confirm Order</button>
-            <button type="button" onclick="sendOrderViaWhatsApp()" class="rounded-xl border border-emerald-500/30 bg-emerald-50 py-3 px-4 text-sm font-bold text-emerald-700 hover:bg-emerald-100 flex items-center justify-center gap-1.5"><i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp</button>
+            <button type="submit" class="flex-1 rounded-xl bg-[#01386A] py-3 text-sm font-bold text-white shadow-lg hover:bg-[#0b4c86] transition active:scale-95"><i class="fa-solid fa-truck-ramp-box mr-1.5"></i> Confirm Order</button>
+            <button type="button" onclick="sendOrderViaWhatsApp()" class="rounded-xl border border-emerald-500/30 bg-emerald-50 py-3 px-4 text-sm font-bold text-emerald-700 hover:bg-emerald-100 flex items-center justify-center gap-1.5 transition"><i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp</button>
         </div>
     </form>
+</div>
+
+<!-- Order Confirmation Success Modal -->
+<div id="order-success-modal" class="fixed inset-x-4 top-[50%] z-50 mx-auto max-w-md -translate-y-[50%] scale-95 opacity-0 pointer-events-none rounded-[2rem] border border-emerald-400/30 bg-white p-6 shadow-2xl transition-all duration-300 sm:p-8 text-center" style="opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0.92);" aria-hidden="true">
+    <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-600 shadow-sm border border-emerald-200">
+        <i class="fa-solid fa-circle-check text-3xl"></i>
+    </div>
+    <div class="mt-4">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-amber-100 text-amber-900 px-3 py-1 text-xs font-bold uppercase tracking-wider">
+            <span class="h-2 w-2 rounded-full bg-amber-500 animate-pulse"></span> Sent to Admin for Reception
+        </span>
+        <h3 class="mt-3 text-2xl font-black text-[#071C33] font-heading">Order Received!</h3>
+        <p class="mt-1 text-xs text-slate-500">Your order has been queued in our dispatch system</p>
+    </div>
+    <div class="mt-5 rounded-2xl bg-slate-50 p-4 border border-slate-100 text-left text-xs space-y-2">
+        <div class="flex justify-between border-b border-slate-200/60 pb-1.5">
+            <span class="text-slate-500 font-semibold">Order Reference:</span>
+            <strong id="success-order-code" class="font-mono text-[#01386A] text-sm">AQW-XXXX</strong>
+        </div>
+        <div class="flex justify-between">
+            <span class="text-slate-500">Item & Volume:</span>
+            <span id="success-order-item" class="font-bold text-slate-800">19L Bottle (x2)</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="text-slate-500">Total Payable:</span>
+            <span id="success-order-total" class="font-black text-emerald-700 font-mono text-sm">Rs. 560</span>
+        </div>
+        <div class="flex justify-between">
+            <span class="text-slate-500">Deliver To:</span>
+            <span id="success-order-address" class="font-medium text-slate-700 truncate max-w-[200px]">Islamabad</span>
+        </div>
+    </div>
+    <div class="mt-6 flex flex-col gap-2.5">
+        <a id="success-whatsapp-btn" href="#" target="_blank" class="w-full rounded-xl bg-emerald-600 hover:bg-emerald-700 py-3 text-sm font-bold text-white shadow-md flex items-center justify-center gap-2 transition active:scale-95">
+            <i class="fa-brands fa-whatsapp text-lg"></i> Confirm Instantly on WhatsApp
+        </a>
+        <button onclick="closeSuccessOrderModal()" class="w-full rounded-xl border border-slate-200 bg-white hover:bg-slate-50 py-2.5 text-xs font-bold text-slate-700 transition">
+            Close & Continue Browsing
+        </button>
+    </div>
 </div>
 <div id="toast-container" class="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 <script src="public/js/main.js"></script>

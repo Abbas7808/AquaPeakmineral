@@ -228,6 +228,16 @@
             </div>
 
             <div class="flex items-center flex-wrap gap-2 w-full sm:w-auto justify-end">
+                <!-- Live Order Reception Alert Button -->
+                <button onclick="switchTab('orders'); filterOrders('Pending Confirmation')" id="header-incoming-orders-btn" class="inline-flex items-center gap-1.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 px-3.5 py-2 text-xs font-black shadow-xs hover:bg-amber-100 transition active:scale-95" title="Click to view and receive pending customer orders">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                    </span>
+                    <i class="fa-solid fa-inbox text-xs text-amber-600"></i>
+                    <span>Receive Orders (<span id="header-incoming-count">0</span>)</span>
+                </button>
+
                 <!-- Action: Quick Add Order -->
                 <button onclick="openNewOrderModal()" class="inline-flex items-center gap-1.5 rounded-xl bg-[#01386A] px-3.5 py-2 text-xs font-bold text-white shadow-sm hover:bg-[#0b4c86] transition active:scale-95">
                     <i class="fa-solid fa-plus text-xs"></i>
@@ -263,6 +273,33 @@
             <!-- TAB 1: EXECUTIVE DASHBOARD OVERVIEW -->
             <!-- ======================================================== -->
             <section id="tab-dashboard" class="space-y-6">
+
+                <!-- LIVE INCOMING WEBSITE ORDERS BANNER -->
+                <div id="incoming-orders-banner-dashboard" class="hidden p-4.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/10 to-cyan-500/10 border-2 border-amber-400/70 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 transition animate-fade-in">
+                    <div class="flex items-center gap-3.5">
+                        <span class="relative flex h-11 w-11 shrink-0">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-11 w-11 bg-amber-500 text-white items-center justify-center font-black text-lg shadow-sm">
+                                <i class="fa-solid fa-bell"></i>
+                            </span>
+                        </span>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-sm font-black text-[#071C33] font-heading">Incoming Customer Orders Received from Website!</h3>
+                                <span id="dash-incoming-badge" class="px-2.5 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-black uppercase">1 New</span>
+                            </div>
+                            <p class="text-xs text-slate-600 mt-0.5">Website customers placed orders awaiting admin reception, route scheduling, and WhatsApp dispatch confirmation.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        <button onclick="switchTab('orders'); filterOrders('Pending Confirmation')" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-[#01386A] hover:bg-[#0b4c86] text-white text-xs font-bold shadow-sm transition flex items-center justify-center gap-1.5 active:scale-95">
+                            <i class="fa-solid fa-clipboard-check"></i> <span>Review & Receive Orders</span>
+                        </button>
+                        <button onclick="receiveAllPendingOrders()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition flex items-center justify-center gap-1.5 active:scale-95">
+                            <i class="fa-solid fa-check-double text-xs"></i> <span>✓ Receive All Pending</span>
+                        </button>
+                    </div>
+                </div>
 
                 <!-- Period Quick Switcher & Summary Bar -->
                 <div class="glass-card rounded-2xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 shadow-xs">
@@ -804,12 +841,41 @@
             <!-- TAB: ORDERS MANAGEMENT -->
             <!-- ======================================================== -->
             <section id="tab-orders" class="hidden space-y-6">
+
+                <!-- LIVE INCOMING ORDERS QUEUE BANNER -->
+                <div id="incoming-orders-banner-orders" class="hidden p-4.5 rounded-2xl bg-gradient-to-r from-amber-500/15 via-emerald-500/10 to-cyan-500/10 border-2 border-amber-400/70 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4 transition animate-fade-in">
+                    <div class="flex items-center gap-3.5">
+                        <span class="relative flex h-11 w-11 shrink-0">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-11 w-11 bg-amber-500 text-white items-center justify-center font-black text-lg shadow-sm">
+                                <i class="fa-solid fa-bell"></i>
+                            </span>
+                        </span>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-sm font-black text-[#071C33] font-heading">Incoming Customer Orders Received!</h3>
+                                <span class="pending-count-label px-2.5 py-0.5 rounded-full bg-amber-500 text-white text-[10px] font-black uppercase">1 New</span>
+                            </div>
+                            <p class="text-xs text-slate-600 mt-0.5">Click <strong>"Receive Order"</strong> on any pending order below to confirm, assign delivery van, and notify customer via WhatsApp.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        <button onclick="receiveAllPendingOrders()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition flex items-center justify-center gap-1.5 active:scale-95">
+                            <i class="fa-solid fa-check-double text-xs"></i> <span>✓ Receive All Pending</span>
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Filters & Controls Bar -->
                 <div class="glass-card rounded-2xl p-5 shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
                     <!-- Status Filter Tabs -->
                     <div class="flex flex-wrap items-center gap-1.5" id="order-filter-buttons">
                         <button onclick="filterOrders('All')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white">All Orders</button>
-                        <button onclick="filterOrders('Pending Confirmation')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Pending</button>
+                        <button onclick="filterOrders('Pending Confirmation')" id="filter-btn-pending" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-50 text-amber-800 border border-amber-300 hover:bg-amber-100 flex items-center gap-1.5">
+                            <span class="h-2 w-2 rounded-full bg-amber-500 animate-pulse"></span>
+                            <span>Pending Reception</span>
+                            <span id="filter-pending-count" class="px-1.5 py-0.2 rounded-full bg-amber-500 text-white text-[10px] font-black">0</span>
+                        </button>
                         <button onclick="filterOrders('Confirmed')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Confirmed</button>
                         <button onclick="filterOrders('Out for Delivery')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Out for Delivery</button>
                         <button onclick="filterOrders('Delivered')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Delivered</button>
@@ -1060,6 +1126,113 @@
                     <button type="button" onclick="closeNewOrderModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">Cancel</button>
                     <button type="submit" class="px-5 py-2 rounded-xl bg-[#01386A] text-white font-bold hover:bg-[#0b4c86] shadow-sm">
                         Confirm & Record Order
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL: RECEIVE INCOMING CUSTOMER ORDER -->
+    <!-- ======================================================== -->
+    <div id="receive-order-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="w-full max-w-lg rounded-[2rem] bg-white p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="h-10 w-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-lg shadow-xs">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-[#071C33] font-heading flex items-center gap-2">
+                            <span>Receive Customer Order</span>
+                            <span id="rcv-code-badge" class="px-2 py-0.5 rounded-full bg-cyan-100 text-[#01386A] text-xs font-mono font-bold">AQW-XXXX</span>
+                        </h3>
+                        <p class="text-xs text-slate-500">Confirm order reception, assign delivery van & notify customer</p>
+                    </div>
+                </div>
+                <button onclick="closeReceiveOrderModal()" class="h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Customer & Order Summary Card -->
+            <div class="rounded-2xl bg-slate-50 border border-slate-200/80 p-4 space-y-2.5 text-xs">
+                <div class="flex justify-between items-start border-b border-slate-200/60 pb-2">
+                    <div>
+                        <span class="text-slate-400 font-bold uppercase text-[10px] tracking-wider block">Customer</span>
+                        <strong id="rcv-name" class="text-sm font-bold text-slate-900">Customer Name</strong>
+                        <div class="text-slate-500 font-mono mt-0.5" id="rcv-phone">03xx xxxxxxx</div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-slate-400 font-bold uppercase text-[10px] tracking-wider block">Payable Total</span>
+                        <span id="rcv-total" class="text-base font-black text-emerald-700 font-mono">Rs. 560</span>
+                        <div id="rcv-payment-badge" class="text-[10px] font-bold text-slate-600 bg-slate-200/60 px-2 py-0.5 rounded mt-0.5 inline-block">Cash on Delivery</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2 pt-1">
+                    <div>
+                        <span class="text-slate-400 font-bold uppercase text-[10px] tracking-wider block">Item & Quantity</span>
+                        <span id="rcv-bottle" class="font-bold text-slate-800">19L Bottle (x2)</span>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 font-bold uppercase text-[10px] tracking-wider block">Requested Timing</span>
+                        <span id="rcv-timing" class="font-semibold text-slate-700">Standard Delivery</span>
+                    </div>
+                </div>
+
+                <div class="pt-1">
+                    <span class="text-slate-400 font-bold uppercase text-[10px] tracking-wider block">Delivery Address</span>
+                    <p id="rcv-address" class="text-slate-800 font-medium">House #, Street #, Sector / Area</p>
+                </div>
+
+                <div id="rcv-notes-container" class="pt-1 border-t border-slate-200/60">
+                    <span class="text-slate-400 font-bold uppercase text-[10px] tracking-wider block">Customer Instructions</span>
+                    <p id="rcv-notes" class="text-slate-600 italic">None provided</p>
+                </div>
+            </div>
+
+            <!-- Reception Controls Form -->
+            <form id="receive-order-form" onsubmit="confirmReceiveOrder(event)" class="mt-4 space-y-3.5 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Assign Route Dispatch / Van *</label>
+                        <select id="rcv-van-select" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-medium">
+                            <option value="Van 1 - Islamabad Routes (Blue Area, F & G Sectors)">Van 1 - Islamabad Routes (Blue Area, F & G Sectors)</option>
+                            <option value="Van 2 - Rawalpindi Routes (Saddar, Satellite Town)">Van 2 - Rawalpindi Routes (Saddar, Satellite Town)</option>
+                            <option value="Van 3 - Express Route (Bahria Town & DHA)">Van 3 - Express Route (Bahria Town & DHA)</option>
+                            <option value="Plant Counter Pickup">Plant Counter Pickup</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Scheduled Delivery Time *</label>
+                        <select id="rcv-timeslot-select" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-medium">
+                            <option value="Within 2 Hours (Standard Route)">Within 2 Hours (Standard Route)</option>
+                            <option value="Morning Delivery (9:00 AM - 12:00 PM)">Morning Delivery (9:00 AM - 12:00 PM)</option>
+                            <option value="Afternoon Delivery (1:00 PM - 4:00 PM)">Afternoon Delivery (1:00 PM - 4:00 PM)</option>
+                            <option value="Evening Delivery (5:00 PM - 8:00 PM)">Evening Delivery (5:00 PM - 8:00 PM)</option>
+                            <option value="Immediate Urgent Dispatch">Immediate Urgent Dispatch</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Acknowledgement Checkbox -->
+                <div class="rounded-xl border border-emerald-200 bg-emerald-50/70 p-3">
+                    <label class="flex items-start gap-2.5 cursor-pointer">
+                        <input type="checkbox" id="rcv-whatsapp-check" checked class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500">
+                        <div>
+                            <span class="font-bold text-emerald-950 block">Send WhatsApp Reception Confirmation to Customer</span>
+                            <span class="text-[11px] text-emerald-800 block mt-0.5">Automatically notifies customer that their water supply order has been received, confirmed, and assigned to a delivery van.</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2.5">
+                    <button type="button" onclick="closeReceiveOrderModal()" class="px-4 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-semibold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-md transition flex items-center gap-1.5 active:scale-95">
+                        <i class="fa-solid fa-circle-check"></i> <span>✓ Confirm & Receive Order</span>
                     </button>
                 </div>
             </form>
@@ -1534,23 +1707,133 @@
             renderExpenses();
         }
 
+        let previousPendingCount = -1;
+
+        function playOrderChime() {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (!AudioCtx) return;
+                const ctx = new AudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+                gain.gain.setValueAtTime(0.18, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.35);
+            } catch(e) {}
+        }
+
         async function fetchOrders() {
+            let fetchedList = [];
             try {
                 const res = await fetch('/api/admin/orders');
                 if (res.ok) {
-                    ordersData = await res.json();
+                    fetchedList = await res.json();
                 } else {
                     const fRes = await fetch('/data/orders.json');
-                    ordersData = await fRes.json();
+                    fetchedList = await fRes.json();
                 }
             } catch (err) {
                 try {
                     const fRes = await fetch('/data/orders.json');
-                    ordersData = await fRes.json();
+                    fetchedList = await fRes.json();
                 } catch (e) {}
             }
+
+            // Sync and merge with client browser orders stored in localStorage
+            let localOrders = [];
+            try {
+                localOrders = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
+            } catch (e) {}
+
+            const mergedMap = new Map();
+            // First load local storage orders
+            localOrders.forEach(o => {
+                if (o && o.order_code) mergedMap.set(o.order_code, o);
+            });
+            // Then overlay server orders
+            fetchedList.forEach(o => {
+                if (o && o.order_code) {
+                    if (mergedMap.has(o.order_code)) {
+                        const local = mergedMap.get(o.order_code);
+                        if (local.status === 'Confirmed' || local.status === 'Out for Delivery' || local.status === 'Delivered') {
+                            mergedMap.set(o.order_code, { ...o, status: local.status, assigned_van: local.assigned_van || o.assigned_van, delivery_slot: local.delivery_slot || o.delivery_slot });
+                        } else {
+                            mergedMap.set(o.order_code, o);
+                        }
+                    } else {
+                        mergedMap.set(o.order_code, o);
+                    }
+                }
+            });
+
+            ordersData = Array.from(mergedMap.values());
+            
+            // Render orders UI and pipeline
             renderOrders();
             renderDashboardPipeline();
+            checkIncomingOrdersAlert();
+        }
+
+        function checkIncomingOrdersAlert() {
+            const pendingOrders = ordersData.filter(o => o.status === 'Pending Confirmation' || o.status === 'Pending');
+            const count = pendingOrders.length;
+
+            // Header button badge
+            const headerCount = document.getElementById('header-incoming-count');
+            if (headerCount) headerCount.textContent = count;
+
+            const headerBtn = document.getElementById('header-incoming-orders-btn');
+            if (headerBtn) {
+                if (count > 0) {
+                    headerBtn.classList.remove('opacity-60');
+                    headerBtn.classList.add('ring-2', 'ring-amber-400');
+                } else {
+                    headerBtn.classList.add('opacity-60');
+                    headerBtn.classList.remove('ring-2', 'ring-amber-400');
+                }
+            }
+
+            // Dashboard banner
+            const dashBanner = document.getElementById('incoming-orders-banner-dashboard');
+            const dashBadge = document.getElementById('dash-incoming-badge');
+            if (dashBanner) {
+                if (count > 0) {
+                    dashBanner.classList.remove('hidden');
+                    if (dashBadge) dashBadge.textContent = `${count} New`;
+                } else {
+                    dashBanner.classList.add('hidden');
+                }
+            }
+
+            // Orders tab banner
+            const ordersBanner = document.getElementById('incoming-orders-banner-orders');
+            if (ordersBanner) {
+                if (count > 0) {
+                    ordersBanner.classList.remove('hidden');
+                } else {
+                    ordersBanner.classList.add('hidden');
+                }
+            }
+            document.querySelectorAll('.pending-count-label').forEach(el => {
+                el.textContent = `${count} New`;
+            });
+
+            // Filter button badge
+            const filterCount = document.getElementById('filter-pending-count');
+            if (filterCount) filterCount.textContent = count;
+
+            // Audio & Toast alert on new incoming order
+            if (previousPendingCount !== -1 && count > previousPendingCount) {
+                playOrderChime();
+                showToast(`🔔 ${count - previousPendingCount} New Customer Water Order received from website!`, 'warning');
+            }
+            previousPendingCount = count;
         }
 
         async function fetchContacts() {
@@ -2364,45 +2647,67 @@
         // ========================================================
         // ORDERS MANAGEMENT
         // ========================================================
+        let currentReceivingOrderCode = null;
+
         function renderDashboardPipeline() {
-            const pendingOrders = ordersData.filter(o => o.status === 'Pending Confirmation').length;
+            const pendingOrders = ordersData.filter(o => o.status === 'Pending Confirmation' || o.status === 'Pending').length;
             const confirmedOrders = ordersData.filter(o => o.status === 'Confirmed').length;
             const transitOrders = ordersData.filter(o => o.status === 'Out for Delivery').length;
             const deliveredOrders = ordersData.filter(o => o.status === 'Delivered').length;
 
-            document.getElementById('badge-pending-orders').textContent = pendingOrders;
-            document.getElementById('pipeline-pending').textContent = pendingOrders;
-            document.getElementById('pipeline-confirmed').textContent = confirmedOrders;
-            document.getElementById('pipeline-transit').textContent = transitOrders;
-            document.getElementById('pipeline-delivered').textContent = deliveredOrders;
+            const badgePending = document.getElementById('badge-pending-orders');
+            if (badgePending) badgePending.textContent = pendingOrders;
+            const pipePending = document.getElementById('pipeline-pending');
+            if (pipePending) pipePending.textContent = pendingOrders;
+            const pipeConf = document.getElementById('pipeline-confirmed');
+            if (pipeConf) pipeConf.textContent = confirmedOrders;
+            const pipeTrans = document.getElementById('pipeline-transit');
+            if (pipeTrans) pipeTrans.textContent = transitOrders;
+            const pipeDel = document.getElementById('pipeline-delivered');
+            if (pipeDel) pipeDel.textContent = deliveredOrders;
 
             // Render Recent Orders in Dashboard
-            const recentOrders = ordersData.slice(-5).reverse();
+            const recentOrders = ordersData.slice(-6).reverse();
             const dashBody = document.getElementById('dashboard-recent-orders-body');
-            if (recentOrders.length === 0) {
-                dashBody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-slate-400">No recent orders recorded.</td></tr>';
-            } else {
-                dashBody.innerHTML = recentOrders.map(o => `
-                    <tr class="hover:bg-slate-50/80 transition">
-                        <td class="py-2.5 font-bold text-[#01386A]">${o.order_code}</td>
-                        <td class="py-2.5 font-semibold text-slate-800">${escapeHtml(o.customer_name)}</td>
-                        <td class="py-2.5">${escapeHtml(o.bottle_name || o.bottle_id)} (x${o.quantity})</td>
-                        <td class="py-2.5 font-bold text-slate-900 font-mono">Rs. ${o.total_price}</td>
-                        <td class="py-2.5">${getStatusBadge(o.status)}</td>
-                        <td class="py-2.5 text-right">
-                            <button onclick="switchTab('orders')" class="text-cyan-700 hover:text-cyan-900 font-bold">Details</button>
-                        </td>
-                    </tr>
-                `).join('');
+            if (dashBody) {
+                if (recentOrders.length === 0) {
+                    dashBody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-slate-400">No recent orders recorded.</td></tr>';
+                } else {
+                    dashBody.innerHTML = recentOrders.map(o => {
+                        const isPending = (o.status === 'Pending Confirmation' || o.status === 'Pending');
+                        return `
+                            <tr class="hover:bg-slate-50/80 transition ${isPending ? 'bg-amber-50/50' : ''}">
+                                <td class="py-2.5 font-bold text-[#01386A]">${o.order_code}</td>
+                                <td class="py-2.5 font-semibold text-slate-800">${escapeHtml(o.customer_name)}</td>
+                                <td class="py-2.5">${escapeHtml(o.bottle_name || o.bottle_id)} (x${o.quantity})</td>
+                                <td class="py-2.5 font-bold text-slate-900 font-mono">Rs. ${o.total_price}</td>
+                                <td class="py-2.5">${getStatusBadge(o.status)}</td>
+                                <td class="py-2.5 text-right whitespace-nowrap">
+                                    ${isPending ? `
+                                        <button onclick="openReceiveOrderModal('${o.order_code}')" class="px-2.5 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs inline-flex items-center gap-1 shadow-xs transition active:scale-95 mr-1.5">
+                                            <i class="fa-solid fa-check"></i> Receive
+                                        </button>
+                                    ` : ''}
+                                    <button onclick="switchTab('orders')" class="text-cyan-700 hover:text-cyan-900 font-bold text-xs">Details</button>
+                                </td>
+                            </tr>
+                        `;
+                    }).join('');
+                }
             }
         }
 
         function renderOrders() {
             const tbody = document.getElementById('orders-table-body');
+            if (!tbody) return;
             let list = [...ordersData];
 
             if (currentFilter !== 'All') {
-                list = list.filter(o => o.status === currentFilter);
+                if (currentFilter === 'Pending Confirmation' || currentFilter === 'Pending') {
+                    list = list.filter(o => o.status === 'Pending Confirmation' || o.status === 'Pending');
+                } else {
+                    list = list.filter(o => o.status === currentFilter);
+                }
             }
             list.reverse();
 
@@ -2412,15 +2717,20 @@
             }
 
             tbody.innerHTML = list.map(o => {
+                const isPending = (o.status === 'Pending Confirmation' || o.status === 'Pending');
                 const dateStr = o.date ? o.date : 'N/A';
                 const waCustomerMsg = `Hello ${o.customer_name}, this is Aqua Water 🌊💦 regarding your order ${o.order_code} (${o.bottle_name || o.bottle_id} x${o.quantity}).`;
                 const waUrl = `https://wa.me/${cleanPhone(o.customer_phone)}?text=${encodeURIComponent(waCustomerMsg)}`;
 
                 return `
-                    <tr class="hover:bg-slate-50/80 transition" id="row-${o.order_code}">
+                    <tr class="transition ${isPending ? 'bg-amber-50/70 border-l-4 border-amber-500 hover:bg-amber-50' : 'hover:bg-slate-50/80'}" id="row-${o.order_code}">
                         <td class="py-3 px-4 font-mono font-bold text-[#01386A]">
-                            <div>${o.order_code}</div>
+                            <div class="flex items-center gap-1.5">
+                                <span>${o.order_code}</span>
+                                ${isPending ? '<span class="h-2 w-2 rounded-full bg-amber-500 animate-pulse" title="Awaiting Admin Reception"></span>' : ''}
+                            </div>
                             <span class="text-[10px] font-normal text-slate-400">${dateStr}</span>
+                            ${o.assigned_van ? `<div class="text-[10px] font-semibold text-emerald-800 font-sans mt-0.5"><i class="fa-solid fa-truck text-[9px] text-emerald-600"></i> ${escapeHtml(o.assigned_van.split(' - ')[0])}</div>` : ''}
                         </td>
                         <td class="py-3 px-4">
                             <div class="font-bold text-slate-800">${escapeHtml(o.customer_name)}</div>
@@ -2431,8 +2741,9 @@
                                 </a>
                             </div>
                         </td>
-                        <td class="py-3 px-4 text-slate-600 max-w-[200px] truncate" title="${escapeHtml(o.customer_address)}">
-                            ${escapeHtml(o.customer_address)}
+                        <td class="py-3 px-4 text-slate-600 max-w-[200px]" title="${escapeHtml(o.customer_address)}">
+                            <div class="truncate font-medium">${escapeHtml(o.customer_address)}</div>
+                            ${o.delivery_slot ? `<div class="text-[10px] text-cyan-800 font-bold mt-0.5"><i class="fa-regular fa-clock text-[9px]"></i> ${escapeHtml(o.delivery_slot)}</div>` : ''}
                         </td>
                         <td class="py-3 px-4">
                             <span class="font-semibold text-slate-800">${escapeHtml(o.bottle_name || o.bottle_id)}</span>
@@ -2448,14 +2759,22 @@
                         </td>
                         <td class="py-3 px-4">
                             <select onchange="updateOrderStatus('${o.order_code}', this.value)" class="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-bold ${getStatusSelectColor(o.status)} focus:outline-none focus:ring-1 focus:ring-[#01386A]">
-                                <option value="Pending Confirmation" ${o.status === 'Pending Confirmation' ? 'selected' : ''}>Pending Confirmation</option>
+                                <option value="Pending Confirmation" ${isPending ? 'selected' : ''}>Pending Confirmation</option>
                                 <option value="Confirmed" ${o.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
                                 <option value="Out for Delivery" ${o.status === 'Out for Delivery' ? 'selected' : ''}>Out for Delivery</option>
                                 <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
                                 <option value="Cancelled" ${o.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
                             </select>
                         </td>
-                        <td class="py-3 px-4 text-right space-x-1 whitespace-nowrap">
+                        <td class="py-3 px-4 text-right space-x-1.5 whitespace-nowrap">
+                            ${isPending ? `
+                                <button onclick="openReceiveOrderModal('${o.order_code}')" title="Review, Assign Van & Receive Order" class="px-2.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs inline-flex items-center gap-1 shadow-sm transition active:scale-95">
+                                    <i class="fa-solid fa-clipboard-check"></i> Receive
+                                </button>
+                                <button onclick="quickReceiveOrder('${o.order_code}')" title="1-Click Fast Accept" class="h-7 w-7 rounded-lg bg-emerald-100 text-emerald-800 hover:bg-emerald-200 transition inline-flex items-center justify-center font-bold text-xs">
+                                    <i class="fa-solid fa-bolt"></i>
+                                </button>
+                            ` : ''}
                             <button onclick="sendDispatchWhatsApp('${o.order_code}')" title="Send WhatsApp Route Notification" class="h-7 w-7 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition inline-flex items-center justify-center">
                                 <i class="fa-brands fa-whatsapp text-xs"></i>
                             </button>
@@ -2468,6 +2787,209 @@
             }).join('');
         }
 
+        // ========================================================
+        // ORDER RECEPTION CONTROLS (ADMIN MODAL & ACTIONS)
+        // ========================================================
+        function openReceiveOrderModal(orderCode) {
+            currentReceivingOrderCode = orderCode;
+            const o = ordersData.find(x => x.order_code === orderCode);
+            if (!o) return;
+
+            const codeBadge = document.getElementById('rcv-code-badge');
+            if (codeBadge) codeBadge.textContent = o.order_code;
+            const nameEl = document.getElementById('rcv-name');
+            if (nameEl) nameEl.textContent = o.customer_name || 'Valued Customer';
+            const phoneEl = document.getElementById('rcv-phone');
+            if (phoneEl) phoneEl.textContent = o.customer_phone || 'N/A';
+            const totalEl = document.getElementById('rcv-total');
+            if (totalEl) totalEl.textContent = 'Rs. ' + (o.total_price || 0).toLocaleString();
+            const payEl = document.getElementById('rcv-payment-badge');
+            if (payEl) payEl.textContent = o.payment_type || 'Cash on Delivery';
+            const btlEl = document.getElementById('rcv-bottle');
+            if (btlEl) btlEl.textContent = (o.bottle_name || o.bottle_id || 'Aqua Water') + ' (x' + (o.quantity || 1) + ')';
+            const timingEl = document.getElementById('rcv-timing');
+            if (timingEl) timingEl.textContent = o.delivery_slot || o.timing || 'Within 2 Hours (Standard Route)';
+            const addrEl = document.getElementById('rcv-address');
+            if (addrEl) addrEl.textContent = o.customer_address || 'Address not specified';
+
+            const notesEl = document.getElementById('rcv-notes');
+            if (notesEl) {
+                notesEl.textContent = o.notes ? o.notes : 'None provided';
+            }
+
+            const vanSelect = document.getElementById('rcv-van-select');
+            if (vanSelect && o.assigned_van) {
+                vanSelect.value = o.assigned_van;
+            }
+
+            const slotSelect = document.getElementById('rcv-timeslot-select');
+            if (slotSelect && (o.delivery_slot || o.timing)) {
+                for (let opt of slotSelect.options) {
+                    if (opt.value.includes(o.delivery_slot || o.timing)) {
+                        slotSelect.value = opt.value;
+                        break;
+                    }
+                }
+            }
+
+            document.getElementById('receive-order-modal').classList.remove('hidden');
+        }
+
+        function closeReceiveOrderModal() {
+            document.getElementById('receive-order-modal').classList.add('hidden');
+            currentReceivingOrderCode = null;
+        }
+
+        async function confirmReceiveOrder(event) {
+            event.preventDefault();
+            if (!currentReceivingOrderCode) return;
+
+            const orderCode = currentReceivingOrderCode;
+            const o = ordersData.find(x => x.order_code === orderCode);
+            if (!o) return;
+
+            const assignedVan = document.getElementById('rcv-van-select').value;
+            const deliverySlot = document.getElementById('rcv-timeslot-select').value;
+            const sendWa = document.getElementById('rcv-whatsapp-check').checked;
+
+            o.status = 'Confirmed';
+            o.assigned_van = assignedVan;
+            o.delivery_slot = deliverySlot;
+            o.received_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
+
+            // Sync to backend API
+            try {
+                await fetch('/api/admin/orders/update-status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        order_code: orderCode,
+                        status: 'Confirmed',
+                        assigned_van: assignedVan,
+                        delivery_slot: deliverySlot
+                    })
+                });
+            } catch (err) {
+                console.warn('API status update error:', err);
+            }
+
+            // Sync to localStorage
+            try {
+                let local = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
+                const idx = local.findIndex(x => x.order_code === orderCode);
+                if (idx !== -1) {
+                    local[idx].status = 'Confirmed';
+                    local[idx].assigned_van = assignedVan;
+                    local[idx].delivery_slot = deliverySlot;
+                    local[idx].received_at = o.received_at;
+                } else {
+                    local.unshift(o);
+                }
+                localStorage.setItem('aquawater_live_orders', JSON.stringify(local));
+            } catch (e) {}
+
+            closeReceiveOrderModal();
+            renderOrders();
+            renderDashboardPipeline();
+            checkIncomingOrdersAlert();
+            showToast(`Order ${orderCode} Received & Confirmed! (${assignedVan.split(' - ')[0]})`, 'success');
+
+            // Send WhatsApp confirmation to customer if checked
+            if (sendWa) {
+                const msg = `Aqua Water 🌊💦 Order Confirmed!\n\nOrder Code: ${o.order_code}\nRecipient: ${o.customer_name}\nItem: ${o.bottle_name || o.bottle_id} x${o.quantity}\nTotal: Rs. ${o.total_price}\nDelivery Van: ${assignedVan}\nTime Window: ${deliverySlot}\n\nOur delivery team has received your order and is preparing dispatch. For queries, contact us at 03344739339.`;
+                const phone = cleanPhone(o.customer_phone);
+                window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+            }
+        }
+
+        async function quickReceiveOrder(orderCode) {
+            const o = ordersData.find(x => x.order_code === orderCode);
+            if (!o) return;
+
+            const van = 'Van 1 - Islamabad Routes (Blue Area, F & G Sectors)';
+            const slot = o.delivery_slot || 'Within 2 Hours (Standard Route)';
+
+            o.status = 'Confirmed';
+            o.assigned_van = van;
+            o.delivery_slot = slot;
+            o.received_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
+
+            try {
+                await fetch('/api/admin/orders/update-status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        order_code: orderCode,
+                        status: 'Confirmed',
+                        assigned_van: van,
+                        delivery_slot: slot
+                    })
+                });
+            } catch (e) {}
+
+            try {
+                let local = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
+                const idx = local.findIndex(x => x.order_code === orderCode);
+                if (idx !== -1) {
+                    local[idx].status = 'Confirmed';
+                    local[idx].assigned_van = van;
+                    local[idx].delivery_slot = slot;
+                } else {
+                    local.unshift(o);
+                }
+                localStorage.setItem('aquawater_live_orders', JSON.stringify(local));
+            } catch (e) {}
+
+            renderOrders();
+            renderDashboardPipeline();
+            checkIncomingOrdersAlert();
+            showToast(`Order ${orderCode} Fast-Received & Confirmed!`, 'success');
+        }
+
+        async function receiveAllPendingOrders() {
+            const pendings = ordersData.filter(o => o.status === 'Pending Confirmation' || o.status === 'Pending');
+            if (pendings.length === 0) {
+                showToast('No pending customer orders to receive at this time.', 'info');
+                return;
+            }
+
+            if (!confirm(`Receive and confirm all ${pendings.length} incoming customer orders?`)) return;
+
+            for (let o of pendings) {
+                o.status = 'Confirmed';
+                if (!o.assigned_van) o.assigned_van = 'Van 1 - Islamabad Routes (Blue Area, F & G Sectors)';
+                o.received_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
+
+                try {
+                    fetch('/api/admin/orders/update-status', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            order_code: o.order_code,
+                            status: 'Confirmed',
+                            assigned_van: o.assigned_van
+                        })
+                    }).catch(()=>{});
+                } catch(e) {}
+            }
+
+            try {
+                let local = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
+                local.forEach(lo => {
+                    if (lo.status === 'Pending Confirmation' || lo.status === 'Pending') {
+                        lo.status = 'Confirmed';
+                        if (!lo.assigned_van) lo.assigned_van = 'Van 1 - Islamabad Routes (Blue Area, F & G Sectors)';
+                    }
+                });
+                localStorage.setItem('aquawater_live_orders', JSON.stringify(local));
+            } catch(e) {}
+
+            renderOrders();
+            renderDashboardPipeline();
+            checkIncomingOrdersAlert();
+            showToast(`All ${pendings.length} incoming orders received & confirmed successfully!`, 'success');
+        }
+
         async function updateOrderStatus(orderCode, newStatus) {
             try {
                 const res = await fetch('/api/admin/orders/update-status', {
@@ -2478,18 +3000,29 @@
                 const data = await res.json();
                 if (data.success) {
                     showToast(`Order ${orderCode} status updated to: ${newStatus}`, 'success');
-                    const o = ordersData.find(x => x.order_code === orderCode);
-                    if (o) o.status = newStatus;
-                    renderDashboardPipeline();
                 } else {
                     showToast(data.message || 'Failed to update order.', 'error');
                 }
             } catch (err) {
-                const o = ordersData.find(x => x.order_code === orderCode);
-                if (o) o.status = newStatus;
                 showToast(`Order ${orderCode} marked as ${newStatus}`, 'success');
-                renderDashboardPipeline();
             }
+
+            const o = ordersData.find(x => x.order_code === orderCode);
+            if (o) o.status = newStatus;
+
+            // Sync localStorage
+            try {
+                let local = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
+                const idx = local.findIndex(x => x.order_code === orderCode);
+                if (idx !== -1) {
+                    local[idx].status = newStatus;
+                    localStorage.setItem('aquawater_live_orders', JSON.stringify(local));
+                }
+            } catch (e) {}
+
+            renderOrders();
+            renderDashboardPipeline();
+            checkIncomingOrdersAlert();
         }
 
         async function deleteOrder(orderCode) {
@@ -2503,8 +3036,17 @@
             } catch (e) {}
 
             ordersData = ordersData.filter(o => o.order_code !== orderCode);
+
+            // Sync localStorage
+            try {
+                let local = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
+                local = local.filter(x => x.order_code !== orderCode);
+                localStorage.setItem('aquawater_live_orders', JSON.stringify(local));
+            } catch (e) {}
+
             renderOrders();
             renderDashboardPipeline();
+            checkIncomingOrdersAlert();
             showToast(`Order ${orderCode} deleted.`, 'info');
         }
 
@@ -2513,7 +3055,13 @@
             document.querySelectorAll('.order-filter-btn').forEach(btn => {
                 btn.className = 'order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200';
             });
-            event.target.className = 'order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white';
+            const activeBtn = event ? (event.currentTarget || event.target) : null;
+            if (activeBtn && activeBtn.classList && activeBtn.classList.contains('order-filter-btn')) {
+                activeBtn.className = 'order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white';
+            } else if (status === 'Pending Confirmation' || status === 'Pending') {
+                const b = document.getElementById('filter-btn-pending');
+                if (b) b.className = 'order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-amber-500 text-white';
+            }
             renderOrders();
         }
 
@@ -2870,6 +3418,13 @@
             startRealtimeClock();
             if (checkAuth()) {
                 refreshAllData();
+
+                // Periodic auto-sync every 5 seconds for live website customer orders
+                setInterval(() => {
+                    if (localStorage.getItem('aqua_admin_token')) {
+                        fetchOrders();
+                    }
+                }, 5000);
             }
         });
     </script>

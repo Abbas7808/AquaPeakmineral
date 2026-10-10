@@ -232,12 +232,19 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
         name = data.get("customer_name", "Customer")
         phone = data.get("customer_phone", "")
         address = data.get("customer_address", "")
-        bottle = data.get("bottle_name", "500ml Bottle")
-        qty = data.get("quantity", 1)
-        total = data.get("total_price", 50)
+        bottle = data.get("bottle_name", "19L Returnable Bottle")
+        bottle_id = data.get("bottle_id", "19l")
+        qty = int(data.get("quantity", 1))
+        unit_price = float(data.get("unit_price", 280))
+        total = float(data.get("total_price", unit_price * qty))
+        payment_type = data.get("payment_type", "Cash")
+        delivery_slot = data.get("delivery_slot", "Standard Delivery (Within 2-4 Hours)")
+        notes = data.get("notes", "Website Online Order")
         
-        order_code = f"AQW-{datetime.now().strftime('%M%S')}"
-        msg = f"Hello Aqua Water 🌊💦!%0AOrder: *{order_code}*%0AItem: *{bottle}* (x{qty})%0AName: {name}%0AAddress: {address}%0ATotal: Rs. {total}"
+        order_code = f"AQW-W{datetime.now().strftime('%M%S')}"
+        now_str = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+        msg = f"Hello Aqua Water 🌊💦!%0AOrder: *{order_code}*%0AItem: *{bottle}* (x{qty})%0AName: {name}%0APhone: {phone}%0AAddress: {address}%0ATotal: Rs. {total}%0APlease confirm delivery timing."
         wa_url = f"https://wa.me/923344739339?text={msg}"
 
         # Save to data/orders.json
@@ -246,19 +253,28 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
         orders = []
         if os.path.exists(orders_file):
             try:
-                with open(orders_file) as fp: orders = json.load(fp)
+                with open(orders_file, "r", encoding="utf-8") as fp: orders = json.load(fp)
             except Exception: pass
-        orders.append({
+
+        new_order = {
             "order_code": order_code,
-            "date": datetime.now().isoformat(),
+            "date": now_str,
             "customer_name": name,
             "customer_phone": phone,
             "customer_address": address,
+            "bottle_id": bottle_id,
             "bottle_name": bottle,
             "quantity": qty,
-            "total": total
-        })
-        with open(orders_file, "w") as fp:
+            "unit_price": unit_price,
+            "total_price": total,
+            "payment_type": payment_type,
+            "delivery_slot": delivery_slot,
+            "status": "Pending Confirmation",
+            "notes": notes,
+            "source": "Website Online Order"
+        }
+        orders.insert(0, new_order)
+        with open(orders_file, "w", encoding="utf-8") as fp:
             json.dump(orders, fp, indent=2)
 
         self.send_response(200)
@@ -267,8 +283,9 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
         self.wfile.write(json.dumps({
             "success": True,
             "order_code": order_code,
+            "order": new_order,
             "whatsapp_url": wa_url,
-            "message": "Order created successfully!"
+            "message": "Order successfully placed and awaiting admin reception!"
         }).encode('utf-8'))
 
     def handle_contact_api(self, body):
@@ -350,13 +367,17 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
         for o in orders:
             if o.get("order_code") == code:
                 o["status"] = status
+                if "assigned_van" in data: o["assigned_van"] = data["assigned_van"]
+                if "delivery_slot" in data: o["delivery_slot"] = data["delivery_slot"]
+                if "notes" in data and data["notes"]: o["notes"] = data["notes"]
+                o["received_at"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 found = True
                 break
 
         if found:
             with open(orders_file, "w", encoding="utf-8") as fp:
                 json.dump(orders, fp, indent=2)
-            self.send_json({"success": True, "message": f"Order status updated to {status}"})
+            self.send_json({"success": True, "message": f"Order {code} marked as {status} and received successfully!"})
         else:
             self.send_json({"success": False, "message": "Order not found"}, status=404)
 
