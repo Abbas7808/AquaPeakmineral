@@ -102,6 +102,8 @@ function openOrderModal(bottleId = null) {
     calculateOrderTotal();
 
     modal.classList.add('open');
+    modal.style.left = '50%';
+    modal.style.top = '50%';
     modal.style.opacity = '1';
     modal.style.pointerEvents = 'auto';
     modal.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -190,6 +192,7 @@ async function handleOrderSubmit(e) {
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Sending to Admin...';
     }
 
+    try {
         let resp;
         try {
             resp = await fetch('/api/orders', {
@@ -298,6 +301,8 @@ function openSuccessOrderModal(order, waUrl) {
     }
 
     modal.classList.add('open');
+    modal.style.left = '50%';
+    modal.style.top = '50%';
     modal.style.opacity = '1';
     modal.style.pointerEvents = 'auto';
     modal.style.transform = 'translate(-50%, -50%) scale(1)';
