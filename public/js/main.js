@@ -4,39 +4,127 @@
  */
 
 // Mobile Navigation Toggle
-function toggleMobileMenu() {
+function toggleMobileMenu(forceOpen) {
+    ensureMobileDrawerExists();
     const drawer = document.getElementById('mobile-drawer');
     const backdrop = document.getElementById('mobile-drawer-backdrop');
     const icon = document.getElementById('hamburger-icon');
     
-    if (!drawer || !backdrop) return;
+    if (!drawer) return;
     
-    const isClosed = drawer.style.transform === 'translateX(100%)' || drawer.classList.contains('translate-x-full') || !drawer.classList.contains('open');
-    if (!isClosed) {
-        // Close it
-        drawer.classList.remove('open');
-        drawer.classList.add('translate-x-full');
-        drawer.style.transform = 'translateX(100%)';
-        backdrop.classList.remove('open');
-        backdrop.style.opacity = '0';
-        backdrop.style.pointerEvents = 'none';
-        if (icon) {
-            icon.classList.remove('fa-xmark');
-            icon.classList.add('fa-bars');
-        }
-    } else {
-        // Open it
+    const isOpen = drawer.classList.contains('open');
+    const shouldOpen = (typeof forceOpen === 'boolean') ? forceOpen : !isOpen;
+
+    if (shouldOpen) {
+        // Open drawer
         drawer.classList.add('open');
         drawer.classList.remove('translate-x-full');
         drawer.style.transform = 'translateX(0)';
-        backdrop.classList.add('open');
-        backdrop.style.opacity = '1';
-        backdrop.style.pointerEvents = 'auto';
+        if (backdrop) {
+            backdrop.classList.add('open');
+            backdrop.style.opacity = '1';
+            backdrop.style.pointerEvents = 'auto';
+        }
+        document.body.classList.add('overflow-hidden');
         if (icon) {
             icon.classList.remove('fa-bars');
             icon.classList.add('fa-xmark');
         }
+    } else {
+        // Close drawer
+        drawer.classList.remove('open');
+        drawer.classList.add('translate-x-full');
+        drawer.style.transform = 'translateX(100%)';
+        if (backdrop) {
+            backdrop.classList.remove('open');
+            backdrop.style.opacity = '0';
+            backdrop.style.pointerEvents = 'none';
+        }
+        document.body.classList.remove('overflow-hidden');
+        if (icon) {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
     }
+}
+
+function closeMobileMenu() {
+    toggleMobileMenu(false);
+}
+
+function ensureMobileDrawerExists() {
+    if (document.getElementById('mobile-drawer')) return;
+    
+    const backdrop = document.createElement('div');
+    backdrop.id = 'mobile-drawer-backdrop';
+    backdrop.onclick = () => closeMobileMenu();
+    backdrop.className = 'fixed inset-0 z-[9998] bg-black/65 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden';
+    
+    const drawer = document.createElement('aside');
+    drawer.id = 'mobile-drawer';
+    drawer.className = 'fixed top-0 bottom-0 right-0 z-[9999] flex w-[85vw] max-w-[340px] flex-col bg-[#02182b] text-white shadow-2xl transition-transform duration-300 ease-out translate-x-full lg:hidden border-l border-white/10';
+    drawer.setAttribute('aria-label', 'Mobile navigation');
+    drawer.innerHTML = `
+        <div class="flex items-center justify-between border-b border-white/10 px-5 py-4 bg-[#031e36]">
+            <a href="index.html" class="flex items-center gap-2.5" onclick="closeMobileMenu()">
+                <img src="public/images/aqua_water_logo.svg" alt="Aqua Water" class="h-9 w-9 rounded-xl border border-white/20 bg-white/95 p-1 object-contain">
+                <div>
+                    <p class="text-xs font-bold tracking-wider text-[#cfe4f5] uppercase flex items-center gap-1">Aqua Water <span>🌊</span></p>
+                    <p class="text-[11px] text-slate-300 font-medium">Pure Water Supply</p>
+                </div>
+            </a>
+            <button type="button" onclick="closeMobileMenu()" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-300 hover:text-white hover:bg-white/15 transition active:scale-95" aria-label="Close navigation menu">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+        <nav class="flex-1 overflow-y-auto px-4 py-5 space-y-1.5 text-sm font-medium">
+            <a href="index.html" class="nav-item-mobile flex items-center gap-3 rounded-xl px-3.5 py-3 transition hover:bg-white/10 text-slate-200 hover:text-white" data-page="index">
+                <i class="fa-solid fa-house w-5 text-cyan-400 text-center text-base"></i>
+                <span>Home</span>
+            </a>
+            <a href="products.html" class="nav-item-mobile flex items-center gap-3 rounded-xl px-3.5 py-3 transition hover:bg-white/10 text-slate-200 hover:text-white" data-page="products">
+                <i class="fa-solid fa-bottle-water w-5 text-cyan-400 text-center text-base"></i>
+                <span>Products</span>
+            </a>
+            <a href="purification-process.html" class="nav-item-mobile flex items-center gap-3 rounded-xl px-3.5 py-3 transition hover:bg-white/10 text-slate-200 hover:text-white" data-page="purification">
+                <i class="fa-solid fa-filter-circle-dollar w-5 text-cyan-400 text-center text-base"></i>
+                <span>Purification Process</span>
+            </a>
+            <a href="about-us.html" class="nav-item-mobile flex items-center gap-3 rounded-xl px-3.5 py-3 transition hover:bg-white/10 text-slate-200 hover:text-white" data-page="about">
+                <i class="fa-solid fa-circle-info w-5 text-cyan-400 text-center text-base"></i>
+                <span>About Us</span>
+            </a>
+            <a href="lab-report.html" class="nav-item-mobile flex items-center gap-3 rounded-xl px-3.5 py-3 transition hover:bg-white/10 text-slate-200 hover:text-white" data-page="lab-report">
+                <i class="fa-solid fa-flask-vial w-5 text-cyan-400 text-center text-base"></i>
+                <span>Lab Reports</span>
+            </a>
+            <a href="contact-us.html" class="nav-item-mobile flex items-center gap-3 rounded-xl px-3.5 py-3 transition hover:bg-white/10 text-slate-200 hover:text-white" data-page="contact">
+                <i class="fa-solid fa-envelope w-5 text-cyan-400 text-center text-base"></i>
+                <span>Contact Us</span>
+            </a>
+            <div class="my-4 border-t border-white/10"></div>
+            <a href="login.html" class="nav-item-mobile flex items-center gap-3 rounded-xl px-3.5 py-2.5 transition hover:bg-white/10 text-slate-300 hover:text-white text-xs" data-page="login">
+                <i class="fa-solid fa-lock w-5 text-slate-400 text-center"></i>
+                <span>Staff / Admin Login</span>
+            </a>
+        </nav>
+        <div class="border-t border-white/10 p-4 space-y-2.5 bg-[#021323]">
+            <button type="button" onclick="closeMobileMenu(); openOrderModal();" class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-[#0284c7] px-4 py-3 text-xs font-bold text-white shadow-md shadow-cyan-950/50 hover:brightness-110 active:scale-98 transition">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Quick Order</span>
+            </button>
+            <a href="https://wa.me/923344739339?text=Hello%20Aqua%20Water%2C%20I%20want%20to%20order" target="_blank" rel="noopener noreferrer" class="flex w-full items-center justify-center gap-2 rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-2.5 text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+                <span>WhatsApp Support</span>
+            </a>
+            <div class="text-center pt-1 text-[11px] text-slate-400">
+                <span>Call: </span><a href="tel:03344739339" class="text-cyan-300 font-semibold hover:underline">0334-4739339</a>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(backdrop);
+    document.body.appendChild(drawer);
+    highlightActiveNavLinks();
 }
 
 // 3D Perspective Tilt on Product Cards (Exact match to source CSS)
@@ -413,9 +501,36 @@ function showToast(message, type = 'info') {
     }, 4000);
 }
 
+// Highlight active navigation links based on URL
+function highlightActiveNavLinks() {
+    const currentPath = (window.location.pathname || '').toLowerCase();
+    const isHomePage = currentPath === '' || currentPath.endsWith('/') || currentPath.endsWith('/index.html') || currentPath.endsWith('index');
+    
+    document.querySelectorAll('.nav-item-mobile').forEach(link => {
+        const href = (link.getAttribute('href') || '').toLowerCase();
+        let isActive = false;
+        
+        if (isHomePage && (href === 'index.html' || href === './' || href === '/')) {
+            isActive = true;
+        } else if (!isHomePage && href && !href.startsWith('#') && !href.startsWith('http')) {
+            const pageName = href.replace('.html', '').replace('./', '').replace('/', '');
+            if (currentPath.includes(pageName)) {
+                isActive = true;
+            }
+        }
+        
+        if (isActive) {
+            link.classList.add('bg-cyan-500/15', 'text-cyan-300', 'font-bold', 'border-l-4', 'border-cyan-400');
+            link.classList.remove('text-slate-200');
+        }
+    });
+}
+
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
     initProductTilt();
+    ensureMobileDrawerExists();
+    highlightActiveNavLinks();
 
     // Ensure drawer and modal start fully closed
     const drawer = document.getElementById('mobile-drawer');
@@ -443,4 +558,20 @@ document.addEventListener('DOMContentLoaded', () => {
         modalBackdrop.style.pointerEvents = 'none';
         modalBackdrop.classList.remove('open');
     }
+
+    // Close mobile drawer and modals on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMobileMenu();
+            closeOrderModal();
+        }
+    });
+
+    // Close mobile drawer when resizing back to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) {
+            closeMobileMenu();
+        }
+    });
 });
+
