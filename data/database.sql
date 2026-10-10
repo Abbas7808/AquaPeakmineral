@@ -60,7 +60,7 @@ CREATE TABLE `orders` (
 
 -- Seed Sample Orders
 INSERT INTO `orders` (`order_code`, `customer_name`, `customer_phone`, `customer_address`, `bottle_id`, `bottle_name`, `quantity`, `unit_price`, `total_price`, `status`, `notes`) VALUES
-('AQW-C8660E', 'Test Customer', '03104797444', 'F-7, Islamabad', '19l', '19L Returnable Bottle', 2, 280.00, 560.00, 'Pending Confirmation', 'Deliver in the morning schedule.'),
+('AQW-C8660E', 'Test Customer', '03344739339', 'F-7, Islamabad', '19l', '19L Returnable Bottle', 2, 280.00, 560.00, 'Pending Confirmation', 'Deliver in the morning schedule.'),
 ('AQW-9B417A', 'Corporate Tech Hub', '03001234567', 'Blue Area, Islamabad', '19l', '19L Returnable Bottle', 10, 280.00, 2800.00, 'Confirmed', 'Weekly replenishment for 3rd floor.');
 
 -- ---------------------------------------------------------------------

@@ -10,7 +10,7 @@ module.exports = (req, res) => {
 
   const order_code = 'AQW-' + Math.floor(1000 + Math.random() * 9000);
   const msg = encodeURIComponent(`Hello Aqua Water 🌊💦!\nOrder: *${order_code}*\nItem: *${bottle}* (x${qty})\nName: ${name}\nAddress: ${address}\nTotal: Rs. ${total}`);
-  const wa_url = `https://wa.me/923104797444?text=${msg}`;
+  const wa_url = `https://wa.me/923344739339?text=${msg}`;
 
   res.status(200).json({
     success: true,

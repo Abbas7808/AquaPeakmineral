@@ -238,7 +238,7 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
         
         order_code = f"AQW-{datetime.now().strftime('%M%S')}"
         msg = f"Hello Aqua Water 🌊💦!%0AOrder: *{order_code}*%0AItem: *{bottle}* (x{qty})%0AName: {name}%0AAddress: {address}%0ATotal: Rs. {total}"
-        wa_url = f"https://wa.me/923104797444?text={msg}"
+        wa_url = f"https://wa.me/923344739339?text={msg}"
 
         # Save to data/orders.json
         orders_file = os.path.join(BASE_DIR, "data", "orders.json")

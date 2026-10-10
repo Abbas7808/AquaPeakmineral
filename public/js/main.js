@@ -220,7 +220,7 @@ function sendOrderViaWhatsApp() {
                 `*Address:* ${encodeURIComponent(address)}%0A%0A` +
                 `Please confirm delivery timing and pricing.`;
 
-    window.open(`https://wa.me/923104797444?text=${msg}`, '_blank');
+    window.open(`https://wa.me/923344739339?text=${msg}`, '_blank');
     closeOrderModal();
 }
 
