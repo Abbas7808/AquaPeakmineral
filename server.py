@@ -109,6 +109,19 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
         elif path == "/api/admin/orders/create":
             self.handle_order_create(body)
             return
+        elif path == "/api/admin/orders":
+            try:
+                p_data = json.loads(body.decode('utf-8'))
+            except Exception:
+                p_data = {}
+            act = p_data.get("action", "")
+            if act == "delete":
+                self.handle_order_delete(body)
+            elif act == "update-status" or "status" in p_data:
+                self.handle_order_status_update(body)
+            else:
+                self.handle_order_create(body)
+            return
         elif path == "/api/admin/products/update":
             self.handle_product_update(body)
             return

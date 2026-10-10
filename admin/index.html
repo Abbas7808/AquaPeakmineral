@@ -2859,10 +2859,11 @@
 
             // Sync to backend API
             try {
-                await fetch('/api/admin/orders/update-status', {
+                await fetch('/api/admin/orders', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
+                        action: 'update-status',
                         order_code: orderCode,
                         status: 'Confirmed',
                         assigned_van: assignedVan,
@@ -2915,10 +2916,11 @@
             o.received_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
             try {
-                await fetch('/api/admin/orders/update-status', {
+                await fetch('/api/admin/orders', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
+                        action: 'update-status',
                         order_code: orderCode,
                         status: 'Confirmed',
                         assigned_van: van,
@@ -2961,10 +2963,11 @@
                 o.received_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
                 try {
-                    fetch('/api/admin/orders/update-status', {
+                    fetch('/api/admin/orders', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
+                            action: 'update-status',
                             order_code: o.order_code,
                             status: 'Confirmed',
                             assigned_van: o.assigned_van
@@ -2992,10 +2995,10 @@
 
         async function updateOrderStatus(orderCode, newStatus) {
             try {
-                const res = await fetch('/api/admin/orders/update-status', {
+                const res = await fetch('/api/admin/orders', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ order_code: orderCode, status: newStatus })
+                    body: JSON.stringify({ action: 'update-status', order_code: orderCode, status: newStatus })
                 });
                 const data = await res.json();
                 if (data.success) {
@@ -3028,10 +3031,10 @@
         async function deleteOrder(orderCode) {
             if (!confirm(`Delete order ${orderCode}?`)) return;
             try {
-                await fetch('/api/admin/orders/delete', {
+                await fetch('/api/admin/orders', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ order_code: orderCode })
+                    body: JSON.stringify({ action: 'delete', order_code: orderCode })
                 });
             } catch (e) {}
 
