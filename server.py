@@ -37,8 +37,8 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
         if path in ("/admin", "/admin/"):
             path = "/admin/index.html"
 
-        # Admin GET APIs
-        if path == "/api/admin/orders":
+        # Admin & Public Orders GET APIs
+        if path in ("/api/admin/orders", "/api/orders"):
             self.send_json_file("data/orders.json", default=[])
             return
         elif path == "/api/admin/contacts":
@@ -92,6 +92,21 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
         if path in ("/api/order", "/api/order.php"):
             self.handle_order_api(body)
             return
+        elif path in ("/api/orders", "/api/admin/orders"):
+            try:
+                p_data = json.loads(body.decode('utf-8'))
+            except Exception:
+                p_data = {}
+            act = p_data.get("action", "")
+            if act == "delete":
+                self.handle_order_delete(body)
+            elif act == "update-status" or ("status" in p_data and "order_code" in p_data and act != "create"):
+                self.handle_order_status_update(body)
+            elif act == "create":
+                self.handle_order_create(body)
+            else:
+                self.handle_order_api(body)
+            return
         elif path in ("/api/contact", "/api/contact.php"):
             self.handle_contact_api(body)
             return
@@ -108,19 +123,6 @@ class AquaWaterHandler(http.server.SimpleHTTPRequestHandler):
             return
         elif path == "/api/admin/orders/create":
             self.handle_order_create(body)
-            return
-        elif path == "/api/admin/orders":
-            try:
-                p_data = json.loads(body.decode('utf-8'))
-            except Exception:
-                p_data = {}
-            act = p_data.get("action", "")
-            if act == "delete":
-                self.handle_order_delete(body)
-            elif act == "update-status" or "status" in p_data:
-                self.handle_order_status_update(body)
-            else:
-                self.handle_order_create(body)
             return
         elif path == "/api/admin/products/update":
             self.handle_product_update(body)

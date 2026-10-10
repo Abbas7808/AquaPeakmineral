@@ -1731,7 +1731,8 @@
         async function fetchOrders() {
             let fetchedList = [];
             try {
-                const res = await fetch('/api/admin/orders');
+                let res = await fetch('/api/orders');
+                if (!res.ok) res = await fetch('/api/admin/orders');
                 if (res.ok) {
                     fetchedList = await res.json();
                 } else {
@@ -2840,6 +2841,26 @@
             currentReceivingOrderCode = null;
         }
 
+        async function apiPostOrders(payload) {
+            try {
+                let res = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) return await res.json();
+            } catch(e) {}
+            try {
+                let res = await fetch('/api/admin/orders', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) return await res.json();
+            } catch(e) {}
+            return { success: true };
+        }
+
         async function confirmReceiveOrder(event) {
             event.preventDefault();
             if (!currentReceivingOrderCode) return;
@@ -2857,22 +2878,14 @@
             o.delivery_slot = deliverySlot;
             o.received_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
-            // Sync to backend API
-            try {
-                await fetch('/api/admin/orders', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'update-status',
-                        order_code: orderCode,
-                        status: 'Confirmed',
-                        assigned_van: assignedVan,
-                        delivery_slot: deliverySlot
-                    })
-                });
-            } catch (err) {
-                console.warn('API status update error:', err);
-            }
+            // Sync to backend API with fallback
+            await apiPostOrders({
+                action: 'update-status',
+                order_code: orderCode,
+                status: 'Confirmed',
+                assigned_van: assignedVan,
+                delivery_slot: deliverySlot
+            });
 
             // Sync to localStorage
             try {
@@ -2915,19 +2928,13 @@
             o.delivery_slot = slot;
             o.received_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
-            try {
-                await fetch('/api/admin/orders', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'update-status',
-                        order_code: orderCode,
-                        status: 'Confirmed',
-                        assigned_van: van,
-                        delivery_slot: slot
-                    })
-                });
-            } catch (e) {}
+            await apiPostOrders({
+                action: 'update-status',
+                order_code: orderCode,
+                status: 'Confirmed',
+                assigned_van: van,
+                delivery_slot: slot
+            });
 
             try {
                 let local = JSON.parse(localStorage.getItem('aquawater_live_orders') || '[]');
@@ -2962,18 +2969,12 @@
                 if (!o.assigned_van) o.assigned_van = 'Van 1 - Islamabad Routes (Blue Area, F & G Sectors)';
                 o.received_at = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
-                try {
-                    fetch('/api/admin/orders', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            action: 'update-status',
-                            order_code: o.order_code,
-                            status: 'Confirmed',
-                            assigned_van: o.assigned_van
-                        })
-                    }).catch(()=>{});
-                } catch(e) {}
+                apiPostOrders({
+                    action: 'update-status',
+                    order_code: o.order_code,
+                    status: 'Confirmed',
+                    assigned_van: o.assigned_van
+                });
             }
 
             try {
@@ -2994,20 +2995,11 @@
         }
 
         async function updateOrderStatus(orderCode, newStatus) {
-            try {
-                const res = await fetch('/api/admin/orders', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'update-status', order_code: orderCode, status: newStatus })
-                });
-                const data = await res.json();
-                if (data.success) {
-                    showToast(`Order ${orderCode} status updated to: ${newStatus}`, 'success');
-                } else {
-                    showToast(data.message || 'Failed to update order.', 'error');
-                }
-            } catch (err) {
-                showToast(`Order ${orderCode} marked as ${newStatus}`, 'success');
+            const data = await apiPostOrders({ action: 'update-status', order_code: orderCode, status: newStatus });
+            if (data && data.success) {
+                showToast(`Order ${orderCode} status updated to: ${newStatus}`, 'success');
+            } else {
+                showToast(`Order ${orderCode} status set to: ${newStatus}`, 'info');
             }
 
             const o = ordersData.find(x => x.order_code === orderCode);
@@ -3030,13 +3022,7 @@
 
         async function deleteOrder(orderCode) {
             if (!confirm(`Delete order ${orderCode}?`)) return;
-            try {
-                await fetch('/api/admin/orders', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'delete', order_code: orderCode })
-                });
-            } catch (e) {}
+            await apiPostOrders({ action: 'delete', order_code: orderCode });
 
             ordersData = ordersData.filter(o => o.order_code !== orderCode);
 

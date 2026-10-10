@@ -190,12 +190,21 @@ async function handleOrderSubmit(e) {
         submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Sending to Admin...';
     }
 
-    try {
-        const resp = await fetch('/api/order', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+        let resp;
+        try {
+            resp = await fetch('/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!resp.ok) throw new Error('Primary endpoint error');
+        } catch(apiErr) {
+            resp = await fetch('/api/order', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+        }
         const result = await resp.json();
 
         const orderCode = result.order_code || ('AQW-W' + Math.floor(1000 + Math.random() * 9000));
