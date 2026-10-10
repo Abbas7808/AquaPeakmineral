@@ -1,0 +1,9 @@
+# Ignore all PHP files from Vercel deployment
+*.php
+api/*.php
+admin/*.php
+includes/
+config.php
+server.py
+__pycache__/
+*.py[cod]

@@ -17,6 +17,5 @@ module.exports = (req, res) => {
     return res.status(200).json(prods);
   }
 
-  // POST update
   return res.status(200).json({ success: true, message: 'Product updated' });
 };

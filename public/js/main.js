@@ -178,7 +178,7 @@ async function handleOrderSubmit(e) {
     };
 
     try {
-        const resp = await fetch('/api/order.php', {
+        const resp = await fetch('/api/order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -239,7 +239,7 @@ async function handleContactSubmit(e) {
     }
 
     try {
-        const resp = await fetch('/api/contact.php', {
+        const resp = await fetch('/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

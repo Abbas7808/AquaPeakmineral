@@ -21,7 +21,6 @@ module.exports = (req, res) => {
   const url = req.url || '';
 
   if (url.includes('delete') || body.action === 'delete') {
-    const code = body.order_code;
     return res.status(200).json({ success: true, message: 'Order deleted' });
   }
 
