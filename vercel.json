@@ -2,7 +2,9 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/admin/orders/:path*", "destination": "/api/admin/orders.js" },
+    { "source": "/api/order", "destination": "/api/orders.js" },
+    { "source": "/api/admin/orders", "destination": "/api/orders.js" },
+    { "source": "/api/admin/orders/:path*", "destination": "/api/orders.js" },
     { "source": "/api/admin/expenses/:path*", "destination": "/api/admin/expenses.js" },
     { "source": "/api/admin/contacts/:path*", "destination": "/api/admin/contacts.js" },
     { "source": "/api/admin/products/:path*", "destination": "/api/admin/products.js" },
