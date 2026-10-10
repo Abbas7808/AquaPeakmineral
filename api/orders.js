@@ -3,6 +3,7 @@ const path = require('path');
 
 const tmpFile = '/tmp/orders.json';
 const dataFile = path.join(process.cwd(), 'data', 'orders.json');
+const altDataFile = path.join(__dirname, '..', 'data', 'orders.json');
 
 // In-memory cache shared across invocations in warm lambda container
 if (!global.__aquaOrdersCache) {
@@ -10,7 +11,7 @@ if (!global.__aquaOrdersCache) {
 }
 
 function loadOrders() {
-  if (global.__aquaOrdersCache && Array.isArray(global.__aquaOrdersCache)) {
+  if (global.__aquaOrdersCache && Array.isArray(global.__aquaOrdersCache) && global.__aquaOrdersCache.length > 0) {
     return global.__aquaOrdersCache;
   }
 
@@ -18,8 +19,12 @@ function loadOrders() {
   try {
     if (fs.existsSync(tmpFile)) {
       list = JSON.parse(fs.readFileSync(tmpFile, 'utf8'));
-    } else if (fs.existsSync(dataFile)) {
+    }
+    if ((!list || list.length === 0) && fs.existsSync(dataFile)) {
       list = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
+    }
+    if ((!list || list.length === 0) && fs.existsSync(altDataFile)) {
+      list = JSON.parse(fs.readFileSync(altDataFile, 'utf8'));
     }
   } catch (e) {
     list = [];

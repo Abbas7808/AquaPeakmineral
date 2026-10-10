@@ -3,9 +3,18 @@ const path = require('path');
 
 function readJson(filename, def) {
   try {
-    const f = path.join(process.cwd(), 'data', filename);
-    if (fs.existsSync(f)) {
-      return JSON.parse(fs.readFileSync(f, 'utf8'));
+    const fTmp = path.join('/tmp', filename);
+    if (fs.existsSync(fTmp)) {
+      const data = JSON.parse(fs.readFileSync(fTmp, 'utf8'));
+      if (Array.isArray(data) && data.length > 0) return data;
+    }
+    const f1 = path.join(process.cwd(), 'data', filename);
+    if (fs.existsSync(f1)) {
+      return JSON.parse(fs.readFileSync(f1, 'utf8'));
+    }
+    const f2 = path.join(__dirname, '..', '..', 'data', filename);
+    if (fs.existsSync(f2)) {
+      return JSON.parse(fs.readFileSync(f2, 'utf8'));
     }
   } catch (e) {}
   return def;
