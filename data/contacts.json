@@ -1,0 +1,22 @@
+[
+  {
+    "id": "msg_652781a9f1",
+    "date": "2026-10-09 10:25:00",
+    "name": "Hassan Khan",
+    "phone": "03219876543",
+    "email": "hassan@example.com",
+    "subject": "B2B Custom Labeling Inquiry",
+    "message": "We would like to order custom branded 500ml bottles for our corporate conference in Islamabad next month. Please share quotation for 1,000 units.",
+    "status": "New"
+  },
+  {
+    "id": "msg_9921bca233",
+    "date": "2026-10-08 11:40:00",
+    "name": "Sarah Ahmed",
+    "phone": "03028881234",
+    "email": "sarah.a@hospitalitygroup.pk",
+    "subject": "Office Recurring Route Supply",
+    "message": "Need 19L dispenser refills for 3 branches in Rawalpindi & Islamabad on alternating Tuesdays and Fridays.",
+    "status": "In Progress"
+  }
+]

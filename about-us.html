@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="light scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About Us | Aqua Water 🌊💦</title>
+    <meta name="description" content="Aqua Water provides pure drinking water and premium route delivery for homes, offices, restaurants, and businesses.">
+    <link rel="icon" href="public/images/aqua_water_logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="public/css/style.css">
+    <style>
+        :root { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+        h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-slate-900 selection:bg-[#01386A] selection:text-white">
+
+<header class="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 lg:px-8">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between rounded-[1.6rem] border border-white/12 bg-[rgba(3,31,56,0.92)] px-4 py-3 shadow-[0_24px_52px_-30px_rgba(0,0,0,0.45)] backdrop-blur-md sm:px-6">
+        <a href="index.html" class="flex shrink-0 items-center gap-2.5 sm:gap-3 group">
+            <img src="public/images/aqua_water_logo.svg" alt="Aqua Water" class="h-9 w-9 rounded-xl border border-white/25 bg-white/95 object-contain p-0.5 shadow-sm sm:h-10 sm:w-10 transition duration-300 group-hover:scale-105">
+            <div class="hidden sm:block text-left">
+                <p class="text-[11px] font-bold tracking-[0.22em] text-[#cfe4f5] uppercase flex items-center gap-1.5">
+                    Aqua Water <span class="text-xs">🌊</span>
+                </p>
+                <p class="text-sm font-semibold text-white">Premium Water Supply</p>
+            </div>
+            <div class="block sm:hidden text-left">
+                <p class="text-[13px] font-bold tracking-wide text-white flex items-center gap-1">Aqua Water <span>🌊</span></p>
+            </div>
+        </a>
+        <nav class="hidden items-center gap-1 rounded-full border border-white/10 bg-white/6 px-3 py-1.5 text-sm font-medium text-slate-200/90 lg:flex">
+            <a href="index.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Home</a>
+            <a href="index.html#products" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Products</a>
+            <a href="index.html#process" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Process</a>
+            <a href="purification-process.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Purification</a>
+            <a href="about-us.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">About Us</a>
+            <a href="lab-report.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Lab Reports</a>
+            <a href="contact-us.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Contact</a>
+        </nav>
+        <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+            <button onclick="openOrderModal()" class="hidden items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-[#0284c7] px-3.5 py-2 text-xs font-bold text-white shadow-md shadow-cyan-900/40 transition duration-200 hover:-translate-y-0.5 sm:inline-flex">
+                <i class="fa-solid fa-cart-shopping text-xs"></i><span>Quick Order</span>
+            </button>
+            <a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%2C%20I%20want%20to%20order" target="_blank" class="hidden items-center gap-1.5 rounded-xl border border-white/18 bg-white/8 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-white/14 md:inline-flex">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i><span>WhatsApp</span>
+            </a>
+            <a href="login.html" class="hidden rounded-xl bg-white px-3.5 py-2 text-xs font-bold text-[#01386A] shadow-[0_18px_38px_-24px_rgba(255,255,255,0.45)] transition hover:bg-[#e9f2f9] sm:inline-flex">
+                <span>Login</span>
+            </a>
+            <button type="button" onclick="toggleMobileMenu()" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 lg:hidden" aria-label="Toggle menu">
+                <i id="hamburger-icon" class="fa-solid fa-bars text-base"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="pt-28 pb-20 bg-slate-50">
+    <!-- Header Banner -->
+    <div class="bg-[linear-gradient(180deg,#01386A_0%,#022B52_100%)] text-white py-16">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-1.5 text-xs font-bold tracking-wider text-cyan-300 uppercase">
+                <i class="fa-solid fa-droplet text-xs"></i> Our Mission & Heritage
+            </span>
+            <h1 class="mt-4 text-4xl font-black text-white sm:text-5xl lg:text-6xl font-heading">
+                About Aqua Water 🌊💦
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-sm sm:text-base text-cyan-100/90 leading-relaxed">
+                Dedicated to providing reliable, safe, and mineral-balanced drinking water for families, corporate workplaces, and commercial partners across Rawalpindi and Islamabad.
+            </p>
+        </div>
+    </div>
+
+    <!-- Company Story & Values -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div>
+                <span class="text-xs font-bold tracking-widest uppercase text-[#01386A]">Pure Quality Since Day One</span>
+                <h2 class="mt-2 text-3xl font-black text-[#071C33] sm:text-4xl font-heading">
+                    Setting the Highest Standard for Clean Drinking Water
+                </h2>
+                <p class="mt-4 text-sm leading-relaxed text-[#5f7489]">
+                    Aqua Water was founded on a simple principle: everyone deserves access to completely safe, refreshing, and high-standard drinking water delivered with clockwork punctuality.
+                </p>
+                <p class="mt-3 text-sm leading-relaxed text-[#5f7489]">
+                    Our state-of-the-art bottling facility utilizes 9 distinct stages of purification — including multi-media filtration, activated carbon absorption, industrial Reverse Osmosis membranes, remineralization, and dual ultraviolet/ozone disinfection. Every bottle is washed, sanitized, filled, and sealed automatically in a clean-room environment.
+                </p>
+
+                <div class="mt-8 grid grid-cols-2 gap-4">
+                    <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                        <span class="text-3xl font-black text-[#01386A]">100%</span>
+                        <p class="text-xs font-bold text-slate-700 mt-1">Food-Grade Packaging</p>
+                        <p class="text-[11px] text-slate-500 mt-0.5">BPA-free bottles sanitized before each fill</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                        <span class="text-3xl font-black text-[#01386A]">Daily</span>
+                        <p class="text-xs font-bold text-slate-700 mt-1">Route Delivery</p>
+                        <p class="text-[11px] text-slate-500 mt-0.5">Reliable dispatch across twin cities</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Showcase -->
+            <div class="relative overflow-hidden rounded-[2.2rem] border border-slate-200 bg-white p-4 shadow-xl">
+                <img src="public/images/optimized/hero-desktop.webp" alt="Aqua Water Operations" class="rounded-2xl object-cover w-full h-80 sm:h-96">
+                <div class="mt-4 p-2 text-center">
+                    <p class="text-xs font-bold text-[#01386A]">Rawalpindi & Islamabad Production & Delivery Network</p>
+                    <p class="text-[11px] text-slate-500">Serving residential towers, corporate headquarters, and restaurants.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leadership Team Showcase -->
+        <div class="mt-20">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-widest uppercase text-[#01386A]">Our Leadership</span>
+                <h2 class="mt-2 text-3xl font-black text-[#071C33] sm:text-4xl font-heading">
+                    The People Behind Aqua Water
+                </h2>
+                <p class="mt-2 text-xs sm:text-sm text-slate-500">
+                    Experienced professionals committed to operational excellence, purity standards, and customer happiness.
+                </p>
+            </div>
+
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                
+                <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-md text-center hover:shadow-lg transition">
+                    <div class="mx-auto grid h-20 w-20 place-items-center rounded-2xl bg-[linear-gradient(145deg,#7eb0d8_0%,#1f6fae_42%,#0a2947_100%)] text-white shadow-md">
+                        <span class="text-2xl font-black"></span>
+                    </div>
+                    <span class="inline-block mt-4 rounded-full bg-cyan-50 border border-cyan-200 px-3 py-0.5 text-[10px] font-bold text-cyan-900 uppercase">
+                        
+                    </span>
+                    <h3 class="mt-2 text-lg font-black text-[#071C33]"></h3>
+                    <p class="text-xs font-bold text-cyan-700 uppercase tracking-wide"></p>
+                    <p class="mt-3 text-xs text-slate-500 leading-relaxed"></p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="relative overflow-hidden bg-[linear-gradient(180deg,#012b50_0%,#01172e_100%)] text-white pt-16 pb-12 border-t border-white/10">
+    <div class="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+            <div class="lg:col-span-2 text-left">
+                <div class="flex items-center gap-3">
+                    <img src="public/images/aqua_water_logo.svg" alt="Aqua Water" class="h-10 w-10 rounded-xl bg-white/95 p-1 shadow-sm">
+                    <div>
+                        <p class="text-[11px] font-bold tracking-[0.28em] text-[#cfe4f5] uppercase">Aqua Water 🌊💦</p>
+                        <span class="text-xs text-cyan-300 font-semibold">Premium Bottled Water Delivery</span>
+                    </div>
+                </div>
+                <h3 class="mt-4 text-2xl font-black text-white max-w-md font-heading leading-snug">Pure drinking water, delivered with care.</h3>
+                <p class="mt-3.5 max-w-md text-sm leading-relaxed text-slate-300">We provide reliable bottled water delivery for homes, offices, restaurants, clinics and businesses across Rawalpindi and Islamabad with scheduled route fulfillment.</p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> 9-Stage RO & UV</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"><i class="fa-solid fa-truck-fast text-cyan-400 text-xs"></i> Daily Delivery Routes</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"><i class="fa-solid fa-stamp text-cyan-400 text-xs"></i> B2B Custom Labeling</span>
+                </div>
+            </div>
+            <div class="text-left">
+                <p class="text-[11px] font-bold tracking-[0.22em] text-[#cfe4f5] uppercase">Quick Navigation</p>
+                <ul class="mt-4 space-y-2.5 text-sm text-slate-300 font-medium">
+                    <li><a href="index.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> Home</a></li>
+                    <li><a href="index.html#products" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> Products & Range</a></li>
+                    <li><a href="purification-process.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> 9-Step Purification</a></li>
+                    <li><a href="index.html#process" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> How We Work</a></li>
+                    <li><a href="about-us.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> About Our Company</a></li>
+                    <li><a href="lab-report.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> Water Quality Reports</a></li>
+                    <li><a href="contact-us.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> Contact & Support</a></li>
+                </ul>
+            </div>
+            <div class="text-left">
+                <p class="text-[11px] font-bold tracking-[0.22em] text-[#cfe4f5] uppercase">Direct Contact</p>
+                <div class="mt-4 space-y-3.5 text-sm text-slate-300">
+                    <p class="flex items-center gap-2.5">
+                        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 text-cyan-300"><i class="fa-solid fa-phone text-xs"></i></span>
+                        <span>+92 310 4797444</span>
+                    </p>
+                    <p class="flex items-center gap-2.5">
+                        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400"><i class="fa-brands fa-whatsapp text-sm"></i></span>
+                        <a href="https://wa.me/923104797444" target="_blank" class="hover:text-emerald-300 underline underline-offset-4">WhatsApp Orders</a>
+                    </p>
+                    <p class="flex items-start gap-2.5">
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-cyan-300"><i class="fa-solid fa-location-dot text-xs"></i></span>
+                        <span>Rawalpindi & Islamabad, Pakistan</span>
+                    </p>
+                    <div class="pt-3">
+                        <a href="login.html" class="inline-flex items-center gap-2 rounded-xl border border-white/14 bg-white/6 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-white/12">
+                            <i class="fa-solid fa-lock text-cyan-300"></i><span>Customer Portal Login</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12 border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+            <p>© 2026 Aqua Water 🌊💦. Premium hydration solutions for homes and businesses.</p>
+            <p class="flex items-center gap-4">
+                <span>Rawalpindi & Islamabad Supply</span><span>•</span><a href="contact-us.html" class="hover:text-slate-200">Privacy & Terms</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%2C%20I%20want%20to%20order" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg transition duration-300 hover:scale-110 hover:bg-emerald-600 animate-bounce" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+</a>
+
+<!-- Quick Order Modal -->
+<div id="order-modal-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" style="opacity: 0; pointer-events: none;" onclick="closeOrderModal()"></div></div>
+<div id="order-modal" class="fixed inset-x-4 top-[50%] z-50 mx-auto max-w-lg -translate-y-[50%] scale-95 opacity-0 pointer-events-none rounded-[2rem] border border-white/20 bg-white p-6 shadow-2xl transition-all duration-300 sm:p-8" style="opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0.92);" aria-hidden="true">
+    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600"><i class="fa-solid fa-droplet text-lg"></i></div>
+            <div>
+                <h3 class="text-xl font-black text-[#071C33] font-heading">Place Bottle Order</h3>
+                <p class="text-xs text-slate-500">Fast delivery across Rawalpindi & Islamabad</p>
+            </div>
+        </div>
+        <button onclick="closeOrderModal()" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100" aria-label="Close modal"><i class="fa-solid fa-xmark text-lg"></i></button>
+    </div>
+    <form id="quick-order-form" onsubmit="handleOrderSubmit(event)" class="mt-5 space-y-4">
+        <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Select Bottle Size</label>
+            <select id="order-bottle-select" onchange="calculateOrderTotal()" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:border-[#01386A] focus:bg-white focus:outline-none">
+                <option value="500ml" data-price="50" data-name="500ml Bottle">500ml Bottle - On-the-go (Rs. 50)</option>
+                <option value="1500ml" data-price="90" data-name="1500ml Bottle">1500ml Bottle - Daily hydration (Rs. 90)</option>
+                <option value="6l" data-price="220" data-name="6L Compact Bottle">6L Compact Bottle - Light usage (Rs. 220)</option>
+                <option value="12l" data-price="320" data-name="12L Mid-Size Bottle">12L Mid-Size Bottle - Family scale (Rs. 320)</option>
+                <option value="19l" data-price="280" data-name="19L Returnable Bottle">19L Returnable Bottle - High volume dispenser (Rs. 280)</option>
+            </select>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Quantity</label>
+                <div class="flex items-center rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
+                    <button type="button" onclick="stepQuantity(-1)" class="px-3 py-2 text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <input type="number" id="order-quantity" value="1" min="1" max="100" onchange="calculateOrderTotal()" class="w-full text-center bg-transparent py-2 text-sm font-bold text-slate-800 focus:outline-none">
+                    <button type="button" onclick="stepQuantity(1)" class="px-3 py-2 text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-plus text-xs"></i></button>
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Estimated Total</label>
+                <div class="flex h-10 items-center justify-center rounded-xl bg-cyan-50 px-3 text-sm font-black text-[#01386A]" id="order-total-display">Rs. 50</div>
+            </div>
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Full Name</label>
+            <input type="text" id="order-name" required placeholder="Your Name or Business" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Phone / WhatsApp Number</label>
+            <input type="tel" id="order-phone" required placeholder="03xx xxxxxxx" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Delivery Address & Area</label>
+            <input type="text" id="order-address" required placeholder="Street / Sector, Rawalpindi / Islamabad" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+        </div>
+        <div class="pt-2 flex flex-col sm:flex-row gap-2.5">
+            <button type="submit" class="flex-1 rounded-xl bg-[#01386A] py-3 text-sm font-bold text-white shadow-lg hover:bg-[#0b4c86]"><i class="fa-solid fa-truck-ramp-box mr-1.5"></i> Confirm Order</button>
+            <button type="button" onclick="sendOrderViaWhatsApp()" class="rounded-xl border border-emerald-500/30 bg-emerald-50 py-3 px-4 text-sm font-bold text-emerald-700 hover:bg-emerald-100 flex items-center justify-center gap-1.5"><i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp</button>
+        </div>
+    </form>
+</div>
+<div id="toast-container" class="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+<script src="public/js/main.js"></script>
+
+</body>
+</html>

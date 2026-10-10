@@ -1,0 +1,90 @@
+[
+  {
+    "id": "EXP-301",
+    "date": "2026-10-10",
+    "category": "Fuel & Logistics",
+    "title": "Suzuki Carry Van 1 Diesel Refill (Islamabad Route)",
+    "amount": 4800,
+    "payment_method": "Cash",
+    "paid_to": "PSO Blue Area Station",
+    "receipt_no": "PSO-88912",
+    "notes": "Route coverage: F-6, F-7, F-8, G-9, Blue Area"
+  },
+  {
+    "id": "EXP-302",
+    "date": "2026-10-09",
+    "category": "Fuel & Logistics",
+    "title": "Suzuki Carry Van 2 Diesel Refill (Rawalpindi Route)",
+    "amount": 5200,
+    "payment_method": "Cash",
+    "paid_to": "Attock Petroleum Saddar",
+    "receipt_no": "ATK-44120",
+    "notes": "Route coverage: Saddar, Westridge, Bahria Town"
+  },
+  {
+    "id": "EXP-303",
+    "date": "2026-10-08",
+    "category": "Utilities & Power",
+    "title": "WAPDA Commercial RO Plant Electricity Bill (5000 GPD)",
+    "amount": 38500,
+    "payment_method": "Bank Transfer",
+    "paid_to": "IESCO Electricity Co.",
+    "receipt_no": "IESCO-0926-44",
+    "notes": "Industrial 3-phase connection bill for bottling plant"
+  },
+  {
+    "id": "EXP-304",
+    "date": "2026-10-07",
+    "category": "Packaging & Consumables",
+    "title": "Food-Grade 19L Blue Snap Caps Batch (2,000 pcs)",
+    "amount": 14000,
+    "payment_method": "JazzCash",
+    "paid_to": "Pak Poly Packaging Lahore",
+    "receipt_no": "PPP-7819",
+    "notes": "Tamper-evident hygiene tear-off caps"
+  },
+  {
+    "id": "EXP-305",
+    "date": "2026-10-06",
+    "category": "Quality & Chemicals",
+    "title": "Food-Grade Mineral Balancing Salts (Magnesium & Calcium)",
+    "amount": 9500,
+    "payment_method": "Bank Transfer",
+    "paid_to": "PureChem Scientific Labs",
+    "receipt_no": "PC-11029",
+    "notes": "PSQCA / WHO compliant remineralization batch"
+  },
+  {
+    "id": "EXP-306",
+    "date": "2026-10-05",
+    "category": "Staff & Wages",
+    "title": "Route Drivers & Loaders Weekly Performance Allowance",
+    "amount": 24000,
+    "payment_method": "Cash",
+    "paid_to": "Plant Operators & Route Drivers (4 staff)",
+    "receipt_no": "VOUCH-1005",
+    "notes": "Weekly route distribution and loading incentives"
+  },
+  {
+    "id": "EXP-307",
+    "date": "2026-10-04",
+    "category": "Plant Maintenance",
+    "title": "PP Spun Sediment Cartridge Filter Replacement (5 Micron x 10)",
+    "amount": 7500,
+    "payment_method": "Cash",
+    "paid_to": "Al-Madina Water Tech Rawalpindi",
+    "receipt_no": "AMW-631",
+    "notes": "Pre-filtration stage 2 scheduled maintenance"
+  },
+  {
+    "id": "EXP-308",
+    "date": "2026-10-02",
+    "category": "Fuel & Logistics",
+    "title": "Van 1 Scheduled Brake Pads & Engine Oil Service",
+    "amount": 8200,
+    "payment_method": "Cash",
+    "paid_to": "Saddar Auto Workshop",
+    "receipt_no": "SAW-9921",
+    "notes": "Regular 5,000 km logistics van overhaul"
+  }
+]

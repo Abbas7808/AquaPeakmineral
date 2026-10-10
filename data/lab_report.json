@@ -1,0 +1,14 @@
+{
+  "last_tested": "2026-10-01",
+  "lab_name": "National Water Quality & Standards Laboratory",
+  "batch_no": "AQW-2026-10A",
+  "parameters": [
+    { "name": "pH Level", "value": "7.4", "standard": "6.5 - 8.5", "status": "Optimal" },
+    { "name": "Total Dissolved Solids (TDS)", "value": "138 ppm", "standard": "< 500 ppm", "status": "Optimal" },
+    { "name": "Calcium (Ca)", "value": "24 mg/L", "standard": "< 75 mg/L", "status": "Normal" },
+    { "name": "Magnesium (Mg)", "value": "12 mg/L", "standard": "< 50 mg/L", "status": "Normal" },
+    { "name": "Sodium (Na)", "value": "18 mg/L", "standard": "< 200 mg/L", "status": "Normal" },
+    { "name": "Chloride (Cl)", "value": "22 mg/L", "standard": "< 250 mg/L", "status": "Normal" },
+    { "name": "Microbiological Purity (Coliforms)", "value": "0 CFU / 100ml", "standard": "0 CFU / 100ml", "status": "Pure" }
+  ]
+}

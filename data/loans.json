@@ -1,0 +1,208 @@
+[
+  {
+    "id": "LN-101",
+    "customer_name": "Apex Solutions Ltd",
+    "contact_person": "Kamran Sheikh",
+    "phone": "03008551234",
+    "address": "Floor 3, ISE Towers, Blue Area, Islamabad",
+    "bottles_held": 18,
+    "security_deposit": 15000,
+    "credit_balance": 11200,
+    "credit_limit": 25000,
+    "status": "Normal",
+    "last_payment_date": "2026-10-05",
+    "last_payment_amount": 8400,
+    "notes": "18 dispenser bottles for software development floor. Bi-weekly settlement.",
+    "transactions": [
+      {
+        "id": "TX-1001",
+        "date": "2026-10-01",
+        "type": "Delivery",
+        "amount": 5600,
+        "bottles": 20,
+        "note": "20x 19L refill delivered by Van 1"
+      },
+      {
+        "id": "TX-1002",
+        "date": "2026-10-05",
+        "type": "Payment",
+        "amount": 8400,
+        "method": "Bank Transfer",
+        "note": "Bank Alfalah online transfer Ref #98124"
+      },
+      {
+        "id": "TX-1003",
+        "date": "2026-10-08",
+        "type": "Delivery",
+        "amount": 5600,
+        "bottles": 20,
+        "note": "20x 19L refill delivered on credit"
+      }
+    ]
+  },
+  {
+    "id": "LN-102",
+    "customer_name": "Dr. Usman Family Hospital",
+    "contact_person": "Dr. Usman Qureshi",
+    "phone": "03335129988",
+    "address": "Block B, Satellite Town, Rawalpindi",
+    "bottles_held": 25,
+    "security_deposit": 20000,
+    "credit_balance": 18500,
+    "credit_limit": 30000,
+    "status": "Normal",
+    "last_payment_date": "2026-09-28",
+    "last_payment_amount": 15000,
+    "notes": "Emergency & OPD water supply. Monthly invoice on 1st of every month.",
+    "transactions": [
+      {
+        "id": "TX-1004",
+        "date": "2026-10-02",
+        "type": "Delivery",
+        "amount": 7000,
+        "bottles": 25,
+        "note": "25x 19L refill delivery"
+      },
+      {
+        "id": "TX-1005",
+        "date": "2026-10-07",
+        "type": "Delivery",
+        "amount": 7000,
+        "bottles": 25,
+        "note": "25x 19L refill delivery on account"
+      }
+    ]
+  },
+  {
+    "id": "LN-103",
+    "customer_name": "Chai Shai Cafe & Bistro",
+    "contact_person": "Rizwan Ahmed",
+    "phone": "03125447788",
+    "address": "Shop 14, F-10 Markaz, Islamabad",
+    "bottles_held": 10,
+    "security_deposit": 8000,
+    "credit_balance": 12200.0,
+    "credit_limit": 15000,
+    "status": "Normal",
+    "last_payment_date": "2026-10-10",
+    "last_payment_amount": 2000.0,
+    "notes": "Kitchen & tea station water supply. Reaching credit limit.",
+    "transactions": [
+      {
+        "id": "TX-36F1",
+        "date": "2026-10-10",
+        "type": "Payment",
+        "amount": 2000.0,
+        "method": "Cash",
+        "note": "Test payment"
+      },
+      {
+        "id": "TX-1006",
+        "date": "2026-10-04",
+        "type": "Delivery",
+        "amount": 2800,
+        "bottles": 10,
+        "note": "10x 19L refill"
+      },
+      {
+        "id": "TX-1007",
+        "date": "2026-10-09",
+        "type": "Delivery",
+        "amount": 2800,
+        "bottles": 10,
+        "note": "10x 19L refill on credit"
+      }
+    ]
+  },
+  {
+    "id": "LN-104",
+    "customer_name": "Falcon Logistic Services",
+    "contact_person": "Malik Zafar",
+    "phone": "03015556677",
+    "address": "Plot 89, Sector I-9/2 Industrial Area, Islamabad",
+    "bottles_held": 30,
+    "security_deposit": 25000,
+    "credit_balance": 8400,
+    "credit_limit": 35000,
+    "status": "Normal",
+    "last_payment_date": "2026-10-06",
+    "last_payment_amount": 16800,
+    "notes": "Warehouse & dispatch drivers hydration point.",
+    "transactions": [
+      {
+        "id": "TX-1008",
+        "date": "2026-10-06",
+        "type": "Payment",
+        "amount": 16800,
+        "method": "Cash",
+        "note": "Cash collected by Route Driver Shayan"
+      },
+      {
+        "id": "TX-1009",
+        "date": "2026-10-08",
+        "type": "Delivery",
+        "amount": 8400,
+        "bottles": 30,
+        "note": "30x 19L refill supply"
+      }
+    ]
+  },
+  {
+    "id": "LN-105",
+    "customer_name": "Prime Public School & Academy",
+    "contact_person": "Principal Nusrat",
+    "phone": "03455112233",
+    "address": "Main Peshawar Road, Rawalpindi",
+    "bottles_held": 15,
+    "security_deposit": 12000,
+    "credit_balance": 22100,
+    "credit_limit": 20000,
+    "status": "Overdue",
+    "last_payment_date": "2026-09-15",
+    "last_payment_amount": 5000,
+    "notes": "Exceeded limit by Rs. 2,100. Pending payment recovery reminder.",
+    "transactions": [
+      {
+        "id": "TX-1010",
+        "date": "2026-09-25",
+        "type": "Delivery",
+        "amount": 4200,
+        "bottles": 15,
+        "note": "15x 19L refill"
+      },
+      {
+        "id": "TX-1011",
+        "date": "2026-10-03",
+        "type": "Delivery",
+        "amount": 4200,
+        "bottles": 15,
+        "note": "15x 19L refill on credit"
+      }
+    ]
+  },
+  {
+    "id": "LN-106",
+    "customer_name": "Al-Hadi Executive Offices",
+    "contact_person": "Farhan Baig",
+    "phone": "03215003322",
+    "address": "Civic Center, Bahria Town Phase 7, Rawalpindi",
+    "bottles_held": 8,
+    "security_deposit": 6400,
+    "credit_balance": 0,
+    "credit_limit": 15000,
+    "status": "Clear",
+    "last_payment_date": "2026-10-09",
+    "last_payment_amount": 2240,
+    "notes": "Always pays instantly via JazzCash on delivery.",
+    "transactions": [
+      {
+        "id": "TX-1012",
+        "date": "2026-10-09",
+        "type": "Payment",
+        "amount": 2240,
+        "method": "JazzCash",
+        "note": "Cleared invoice for 8 bottles"
+      }
+    ]
+  }
+]

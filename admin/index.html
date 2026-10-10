@@ -1,0 +1,2877 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aqua Water 🌊💦 | Advanced Operations Portal & Executive ERP</title>
+    <link rel="icon" href="/public/images/aqua_water_logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root { 
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif; 
+        }
+        h1, h2, h3, h4, .font-heading { 
+            font-family: 'Outfit', sans-serif; 
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .sidebar-active {
+            background: linear-gradient(135deg, rgba(0, 192, 250, 0.18) 0%, rgba(1, 56, 106, 0.45) 100%);
+            border-left: 3.5px solid #00C0FA;
+            color: #ffffff;
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.85);
+        }
+        .glow-accent {
+            box-shadow: 0 0 25px -5px rgba(0, 192, 250, 0.35);
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f8fafc; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .tab-btn-active {
+            background: #01386A !important;
+            color: #ffffff !important;
+            box-shadow: 0 4px 12px -2px rgba(1, 56, 106, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-[#f4f7fb] text-slate-800 antialiased min-h-screen flex flex-col lg:flex-row">
+
+    <!-- Mobile Top Header Bar -->
+    <div class="lg:hidden bg-[#011e38] text-white px-4 py-3 flex items-center justify-between border-b border-white/10 sticky top-0 z-50">
+        <div class="flex items-center gap-2.5">
+            <img src="/public/images/aqua_water_logo.svg" alt="Aqua Water" class="h-8 w-8 rounded-lg bg-white p-0.5 shadow-sm">
+            <div>
+                <span class="font-extrabold text-sm text-cyan-300 font-heading tracking-wide">Aqua Water 🌊💦</span>
+                <span class="block text-[10px] text-slate-400">Operations ERP</span>
+            </div>
+        </div>
+        <button onclick="toggleMobileSidebar()" class="p-2 rounded-xl bg-white/10 text-white hover:bg-white/20 transition">
+            <i class="fa-solid fa-bars text-sm"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-[#01162b] text-slate-300 flex flex-col justify-between transition-transform duration-300 -translate-x-full lg:translate-x-0 lg:static lg:min-h-screen border-r border-slate-800/80 shadow-2xl lg:shadow-none">
+        <div class="overflow-y-auto">
+            <!-- Sidebar Header -->
+            <div class="p-5 border-b border-slate-800/80 flex items-center justify-between bg-[#011224]">
+                <a href="/admin/index.html" class="flex items-center gap-3 group">
+                    <div class="relative">
+                        <img src="/public/images/aqua_water_logo.svg" alt="Aqua Water Logo" class="h-10 w-10 rounded-xl bg-white p-1 shadow-md transition duration-300 group-hover:scale-105">
+                        <span class="absolute -bottom-1 -right-1 flex h-3 w-3">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
+                        </span>
+                    </div>
+                    <div>
+                        <div class="text-[10px] font-black tracking-[0.22em] text-cyan-400 uppercase">Aqua Water 🌊💦</div>
+                        <div class="text-sm font-black text-white font-heading">Operations ERP</div>
+                    </div>
+                </a>
+                <button onclick="toggleMobileSidebar()" class="lg:hidden text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Route Delivery Live Status Pill -->
+            <div class="px-3.5 pt-4">
+                <div class="rounded-xl bg-gradient-to-r from-cyan-950/80 to-blue-950/60 border border-cyan-700/40 p-2.5 flex items-center justify-between text-xs text-cyan-200 shadow-inner">
+                    <div class="flex items-center gap-2">
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </span>
+                        <span class="font-bold text-[11px] text-cyan-300">RO Plant: 5,000 GPD Active</span>
+                    </div>
+                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded font-mono font-bold">142 Btl</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="p-3 space-y-1.5 mt-2">
+                <div class="px-2 pb-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Analytics & Sales</div>
+                
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="sidebar-active w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-chart-pie text-cyan-400 w-4 text-center"></i>
+                        <span>Executive Dashboard</span>
+                    </div>
+                </button>
+
+                <button onclick="switchTab('analytics')" id="nav-analytics" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-chart-line text-cyan-400 w-4 text-center"></i>
+                        <span>Sales Velocity Charts</span>
+                    </div>
+                    <span class="bg-cyan-500/20 text-cyan-300 text-[10px] font-bold px-1.5 py-0.5 rounded">Daily/W/M</span>
+                </button>
+
+                <div class="px-2 pt-3 pb-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Financial Ledger</div>
+
+                <button onclick="switchTab('loans')" id="nav-loans" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-file-invoice-dollar text-cyan-400 w-4 text-center"></i>
+                        <span>Customer Loans / Khata</span>
+                    </div>
+                    <span id="badge-loans-receivable" class="bg-amber-500/20 text-amber-300 font-mono font-bold text-[10px] px-2 py-0.5 rounded-full">Rs. 74.4k</span>
+                </button>
+
+                <button onclick="switchTab('expenses')" id="nav-expenses" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-receipt text-cyan-400 w-4 text-center"></i>
+                        <span>Expense & Kharcha</span>
+                    </div>
+                    <span id="badge-expenses-count" class="bg-rose-500/20 text-rose-300 font-mono font-bold text-[10px] px-2 py-0.5 rounded-full">6 Logs</span>
+                </button>
+
+                <div class="px-2 pt-3 pb-1 text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Fulfillment & Supply</div>
+
+                <button onclick="switchTab('orders')" id="nav-orders" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-boxes-packing text-cyan-400 w-4 text-center"></i>
+                        <span>Orders Management</span>
+                    </div>
+                    <span id="badge-pending-orders" class="bg-amber-500 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">0</span>
+                </button>
+
+                <button onclick="switchTab('products')" id="nav-products" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-bottle-water text-cyan-400 w-4 text-center"></i>
+                        <span>Products & Pricing</span>
+                    </div>
+                    <span class="bg-white/10 text-cyan-300 text-[10px] px-1.5 py-0.5 rounded">5 SKUs</span>
+                </button>
+
+                <button onclick="switchTab('inquiries')" id="nav-inquiries" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope-open-text text-cyan-400 w-4 text-center"></i>
+                        <span>Customer Leads</span>
+                    </div>
+                    <span id="badge-inquiries" class="bg-cyan-500 text-slate-950 font-black text-[10px] px-2 py-0.5 rounded-full">0</span>
+                </button>
+
+                <button onclick="switchTab('quality')" id="nav-quality" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-flask-vial text-cyan-400 w-4 text-center"></i>
+                        <span>Water Quality / Lab</span>
+                    </div>
+                </button>
+
+                <button onclick="switchTab('settings')" id="nav-settings" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-300 transition hover:bg-white/5">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-sliders text-cyan-400 w-4 text-center"></i>
+                        <span>System Settings</span>
+                    </div>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Sidebar Footer / User Profile & Logout -->
+        <div class="p-3.5 border-t border-slate-800/80 bg-[#011224]">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-cyan-500 to-[#01386A] text-white flex items-center justify-center font-bold text-xs shadow-md">
+                        OP
+                    </div>
+                    <div>
+                        <p id="admin-user-name" class="text-xs font-bold text-white truncate max-w-[105px]">Operations Mgr</p>
+                        <p class="text-[10px] text-cyan-400 font-semibold flex items-center gap-1">
+                            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span> Super Admin
+                        </p>
+                    </div>
+                </div>
+                <button onclick="logoutAdmin()" title="Sign Out" class="h-8 w-8 rounded-lg bg-white/5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 flex items-center justify-center transition">
+                    <i class="fa-solid fa-right-from-bracket text-xs"></i>
+                </button>
+            </div>
+            <div class="mt-3">
+                <a href="/index.html" target="_blank" class="w-full py-1.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-cyan-300 text-[11px] font-semibold transition flex items-center justify-center gap-1.5 border border-white/5">
+                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i> Public Storefront
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+
+        <!-- Top Header Navigation -->
+        <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/90 px-5 sm:px-8 py-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sticky top-0 z-30 shadow-xs">
+            <div>
+                <div class="flex items-center gap-2">
+                    <h1 id="page-title" class="text-xl font-black text-[#071C33] font-heading">Executive Operations Dashboard</h1>
+                    <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-[10px] font-bold">
+                        <i class="fa-solid fa-shield-halved text-[9px] text-cyan-600"></i> Aqua Water Verified
+                    </span>
+                </div>
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-0.5">
+                    <span id="live-time-display" class="font-mono text-[11px] font-semibold text-cyan-800 bg-slate-100 px-2 py-0.5 rounded-md">
+                        <i class="fa-regular fa-clock text-cyan-600 mr-1"></i> Syncing...
+                    </span>
+                    <span>•</span>
+                    <span id="page-subtitle" class="truncate">Live daily sales, customer loans, route scheduling, and expense tracking</span>
+                </div>
+            </div>
+
+            <div class="flex items-center flex-wrap gap-2 w-full sm:w-auto justify-end">
+                <!-- Action: Quick Add Order -->
+                <button onclick="openNewOrderModal()" class="inline-flex items-center gap-1.5 rounded-xl bg-[#01386A] px-3.5 py-2 text-xs font-bold text-white shadow-sm hover:bg-[#0b4c86] transition active:scale-95">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                    <span>+ Order</span>
+                </button>
+
+                <!-- Action: Quick Record Khata Payment -->
+                <button onclick="openLoanPaymentModal()" class="inline-flex items-center gap-1.5 rounded-xl bg-amber-600 px-3 py-2 text-xs font-bold text-white shadow-sm hover:bg-amber-700 transition active:scale-95">
+                    <i class="fa-solid fa-hand-holding-dollar text-xs"></i>
+                    <span>+ Khata Payment</span>
+                </button>
+
+                <!-- Action: Quick Add Expense -->
+                <button onclick="openNewExpenseModal()" class="inline-flex items-center gap-1.5 rounded-xl bg-slate-800 px-3 py-2 text-xs font-bold text-white shadow-sm hover:bg-slate-700 transition active:scale-95">
+                    <i class="fa-solid fa-receipt text-xs"></i>
+                    <span>+ Expense</span>
+                </button>
+
+                <!-- Refresh Button -->
+                <button onclick="refreshAllData()" title="Reload All Live Data" class="h-8 w-8 rounded-xl border border-slate-200 bg-white text-slate-600 hover:text-[#01386A] hover:bg-slate-50 flex items-center justify-center transition shadow-2xs">
+                    <i id="refresh-icon" class="fa-solid fa-rotate-right text-xs"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Toast Notifications Container -->
+        <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+        <!-- TAB CONTENT CONTAINER -->
+        <div class="p-4 sm:p-6 lg:p-8 space-y-6">
+
+            <!-- ======================================================== -->
+            <!-- TAB 1: EXECUTIVE DASHBOARD OVERVIEW -->
+            <!-- ======================================================== -->
+            <section id="tab-dashboard" class="space-y-6">
+
+                <!-- Period Quick Switcher & Summary Bar -->
+                <div class="glass-card rounded-2xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 shadow-xs">
+                    <div class="flex items-center gap-3">
+                        <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-[#01386A] to-cyan-500 text-white flex items-center justify-center shadow-sm">
+                            <i class="fa-solid fa-chart-column"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-sm font-black text-[#071C33] font-heading">Real-Time Commercial Metrics</h2>
+                            <p class="text-xs text-slate-500">Live multi-channel sales performance, bottle logistics, and cash recovery</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl text-xs font-bold text-slate-600">
+                        <button onclick="setDashboardPeriod('daily')" id="btn-period-daily" class="period-btn px-3 py-1.5 rounded-lg bg-white text-[#01386A] shadow-xs transition">Daily Sell</button>
+                        <button onclick="setDashboardPeriod('weekly')" id="btn-period-weekly" class="period-btn px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 transition">Weekly Sell</button>
+                        <button onclick="setDashboardPeriod('monthly')" id="btn-period-monthly" class="period-btn px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 transition">Monthly Sell</button>
+                    </div>
+                </div>
+
+                <!-- 4 MAIN EXECUTIVE KPI CARDS: DAILY, WEEKLY, MONTHLY, PROFIT -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+                    
+                    <!-- 1. DAILY SELL (TODAY) -->
+                    <div class="glass-card rounded-2xl p-5 shadow-xs transition hover:shadow-md border-l-4 border-l-cyan-500 relative overflow-hidden">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-slate-500 uppercase tracking-wider">Daily Sell (Today)</span>
+                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-cyan-100 text-cyan-800 font-bold text-[10px]">
+                                <span class="h-1.5 w-1.5 rounded-full bg-cyan-500 animate-pulse"></span> Live Today
+                            </span>
+                        </div>
+                        <div class="mt-3">
+                            <span id="stat-daily-sell" class="text-3xl font-black text-[#071C33] font-heading">Rs. 23,960</span>
+                        </div>
+                        <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+                            <span>Volume: <strong id="stat-daily-bottles" class="text-cyan-700 font-mono">142 Btl</strong></span>
+                            <span>Cash: <strong id="stat-daily-cash" class="text-emerald-700 font-mono">Rs. 11.3k</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- 2. WEEKLY SELL (THIS WEEK) -->
+                    <div class="glass-card rounded-2xl p-5 shadow-xs transition hover:shadow-md border-l-4 border-l-blue-600 relative overflow-hidden">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-slate-500 uppercase tracking-wider">Weekly Sell</span>
+                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">
+                                <i class="fa-solid fa-arrow-trend-up text-[9px]"></i> +14.2%
+                            </span>
+                        </div>
+                        <div class="mt-3">
+                            <span id="stat-weekly-sell" class="text-3xl font-black text-[#01386A] font-heading">Rs. 57,720</span>
+                        </div>
+                        <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+                            <span>6-Day Volume: <strong id="stat-weekly-bottles" class="text-blue-800 font-mono">281 Btl</strong></span>
+                            <span class="text-emerald-600 font-semibold text-[11px]">Growing Route</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. MONTHLY SELL (THIS MONTH) -->
+                    <div class="glass-card rounded-2xl p-5 shadow-xs transition hover:shadow-md border-l-4 border-l-indigo-600 relative overflow-hidden">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-slate-500 uppercase tracking-wider">Monthly Sell</span>
+                            <span class="text-[10px] font-bold text-indigo-700 font-mono">Goal: Rs. 1.0M</span>
+                        </div>
+                        <div class="mt-3">
+                            <span id="stat-monthly-sell" class="text-3xl font-black text-indigo-950 font-heading">Rs. 742,000</span>
+                        </div>
+                        <!-- Progress bar to monthly goal -->
+                        <div class="mt-2">
+                            <div class="flex items-center justify-between text-[11px] text-slate-500 mb-1">
+                                <span>Target Progress</span>
+                                <strong id="stat-monthly-pct" class="text-indigo-700 font-bold">74.2%</strong>
+                            </div>
+                            <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                                <div id="stat-monthly-progress-bar" class="h-full bg-gradient-to-r from-cyan-500 to-indigo-600 rounded-full" style="width: 74.2%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. NET OPERATING PROFIT -->
+                    <div class="glass-card rounded-2xl p-5 shadow-xs transition hover:shadow-md border-l-4 border-l-emerald-500 relative overflow-hidden">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-extrabold text-slate-500 uppercase tracking-wider">Net Operating Profit</span>
+                            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold text-[10px]">
+                                Margin: <span id="stat-profit-margin">84.9%</span>
+                            </span>
+                        </div>
+                        <div class="mt-3">
+                            <span id="stat-net-profit" class="text-3xl font-black text-emerald-900 font-heading">Rs. 630,300</span>
+                        </div>
+                        <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+                            <span>Total Exp: <strong id="stat-total-expenses-short" class="text-rose-700 font-mono">Rs. 111.7k</strong></span>
+                            <span class="text-emerald-700 font-semibold text-[11px]">Healthy Cash Flow</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DUAL FINANCIAL & ASSET WIDGETS: KHATA LOANS & EXPENSES SNAPSHOT -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    
+                    <!-- Khata & Bottle Loan Asset Card -->
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border border-amber-200/80 bg-gradient-to-br from-white to-amber-50/20">
+                        <div class="flex items-center justify-between border-b border-amber-100 pb-3 mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="h-8 w-8 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-file-invoice-dollar text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-slate-900 font-heading">Customer Loans & Bottle Khata</h3>
+                                    <p class="text-[11px] text-slate-500">Corporate receivables & market empty bottles</p>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('loans')" class="text-xs font-bold text-amber-800 hover:text-amber-900 flex items-center gap-1">
+                                Open Ledger &rarr;
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3 text-center">
+                            <div class="p-3 rounded-xl bg-white border border-amber-100 shadow-2xs">
+                                <span class="text-[10px] font-extrabold text-slate-400 uppercase">Receivable</span>
+                                <p id="widget-loan-receivable" class="text-lg font-black text-amber-900 font-mono mt-0.5">Rs. 74,400</p>
+                                <span class="text-[10px] text-amber-700 font-semibold">6 Corporate Accounts</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white border border-slate-100 shadow-2xs">
+                                <span class="text-[10px] font-extrabold text-slate-400 uppercase">Bottles Held</span>
+                                <p id="widget-bottles-held" class="text-lg font-black text-cyan-900 font-mono mt-0.5">106 Btl</p>
+                                <span class="text-[10px] text-slate-500 font-semibold">With Customers</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white border border-emerald-100 shadow-2xs">
+                                <span class="text-[10px] font-extrabold text-slate-400 uppercase">Deposits Held</span>
+                                <p id="widget-deposits-held" class="text-lg font-black text-emerald-800 font-mono mt-0.5">Rs. 86,400</p>
+                                <span class="text-[10px] text-emerald-600 font-semibold">116% Coverage</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-amber-100/60 flex items-center justify-between text-xs">
+                            <span class="text-slate-600 text-[11px]">
+                                <i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i>
+                                <strong id="widget-warning-loans">2 Accounts</strong> exceed 85% credit threshold
+                            </span>
+                            <button onclick="openLoanPaymentModal()" class="px-2.5 py-1 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-[11px] transition shadow-2xs">
+                                Record Payment
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Operating Expenses & Plant Maintenance Snapshot -->
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border border-rose-200/70 bg-gradient-to-br from-white to-rose-50/20">
+                        <div class="flex items-center justify-between border-b border-rose-100 pb-3 mb-3">
+                            <div class="flex items-center gap-2.5">
+                                <div class="h-8 w-8 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center font-bold">
+                                    <i class="fa-solid fa-receipt text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-slate-900 font-heading">Operating Expenses (Kharcha)</h3>
+                                    <p class="text-[11px] text-slate-500">Fuel, RO plant power, caps, salts & staff</p>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('expenses')" class="text-xs font-bold text-rose-800 hover:text-rose-900 flex items-center gap-1">
+                                All Expenses &rarr;
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3 text-center">
+                            <div class="p-3 rounded-xl bg-white border border-rose-100 shadow-2xs">
+                                <span class="text-[10px] font-extrabold text-slate-400 uppercase">Today's Exp</span>
+                                <p id="widget-today-expenses" class="text-lg font-black text-rose-900 font-mono mt-0.5">Rs. 4,800</p>
+                                <span class="text-[10px] text-rose-700 font-semibold">Van 1 Fuel (PSO)</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white border border-slate-100 shadow-2xs">
+                                <span class="text-[10px] font-extrabold text-slate-400 uppercase">RO Electricity</span>
+                                <p class="text-lg font-black text-purple-900 font-mono mt-0.5">Rs. 38.5k</p>
+                                <span class="text-[10px] text-slate-500 font-semibold">WAPDA 3-Phase</span>
+                            </div>
+                            <div class="p-3 rounded-xl bg-white border border-slate-100 shadow-2xs">
+                                <span class="text-[10px] font-extrabold text-slate-400 uppercase">Total Expenses</span>
+                                <p id="widget-month-expenses" class="text-lg font-black text-slate-900 font-mono mt-0.5">Rs. 111.7k</p>
+                                <span class="text-[10px] text-slate-500 font-semibold">This Month</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-rose-100/60 flex items-center justify-between text-xs">
+                            <span class="text-slate-600 text-[11px]">
+                                <i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i>
+                                Operating costs are within healthy 15.1% revenue ratio
+                            </span>
+                            <button onclick="openNewExpenseModal()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-900 text-white font-bold text-[11px] transition shadow-2xs">
+                                Add Expense Log
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INTERACTIVE CHARTS: SALES VELOCITY & SKU DISTRIBUTION -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Sales Trend Chart (Bar & Line Combo) -->
+                    <div class="lg:col-span-2 glass-card rounded-2xl p-6 shadow-xs">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+                            <div>
+                                <h3 class="text-base font-black text-[#071C33] font-heading flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-line text-cyan-600"></i>
+                                    <span id="chart-main-title">Sales Revenue & Bottle Volume Velocity</span>
+                                </h3>
+                                <p id="chart-main-subtitle" class="text-xs text-slate-500">Comparison of daily PKR revenue (bars) and bottle units dispatched (line)</p>
+                            </div>
+                            <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl text-xs font-bold text-slate-600">
+                                <button onclick="updateMainChart('daily')" id="chart-btn-daily" class="px-2.5 py-1 rounded-lg bg-white text-[#01386A] shadow-xs">Daily (7D)</button>
+                                <button onclick="updateMainChart('weekly')" id="chart-btn-weekly" class="px-2.5 py-1 rounded-lg text-slate-500 hover:text-slate-800">Weekly (4W)</button>
+                                <button onclick="updateMainChart('monthly')" id="chart-btn-monthly" class="px-2.5 py-1 rounded-lg text-slate-500 hover:text-slate-800">Monthly (Year)</button>
+                            </div>
+                        </div>
+                        <div class="relative h-72 sm:h-80 w-full">
+                            <canvas id="salesVelocityChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Bottle SKU Distribution Doughnut Chart -->
+                    <div class="glass-card rounded-2xl p-6 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-base font-black text-[#071C33] font-heading flex items-center gap-2">
+                                    <i class="fa-solid fa-chart-pie text-cyan-600"></i>
+                                    <span>Product SKU Breakdown</span>
+                                </h3>
+                                <span class="text-[10px] font-bold bg-cyan-100 text-cyan-800 px-2 py-0.5 rounded-full">5 Sizes</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-4">Proportion of orders by bottle size</p>
+                            <div class="relative h-56 w-full flex items-center justify-center">
+                                <canvas id="skuDistributionChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- SKU Legend & Unit Totals -->
+                        <div id="sku-stats-legend" class="mt-4 pt-4 border-t border-slate-100 grid grid-cols-2 gap-2 text-xs">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Delivery Pipeline Tracker -->
+                <div class="glass-card rounded-2xl p-6 shadow-xs">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                        <div>
+                            <h2 class="text-base font-bold text-[#071C33] font-heading flex items-center gap-2">
+                                <i class="fa-solid fa-truck-fast text-cyan-600"></i>
+                                <span>Route Delivery Pipeline</span>
+                            </h2>
+                            <p class="text-xs text-slate-500">Active customer orders across fulfillment stages</p>
+                        </div>
+                        <button onclick="switchTab('orders')" class="text-xs font-bold text-[#01386A] hover:underline">
+                            Manage All Orders &rarr;
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-amber-200 transition">
+                            <p class="text-xs font-bold text-slate-500">1. Pending Confirmation</p>
+                            <p id="pipeline-pending" class="text-2xl font-black text-amber-600 mt-1">0</p>
+                            <span class="text-[10px] text-slate-400">Needs dispatch review</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-blue-50/50 border border-blue-100 hover:border-blue-300 transition">
+                            <p class="text-xs font-bold text-blue-700">2. Confirmed & Queued</p>
+                            <p id="pipeline-confirmed" class="text-2xl font-black text-blue-800 mt-1">0</p>
+                            <span class="text-[10px] text-blue-500">Scheduled for route</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-cyan-50/50 border border-cyan-100 hover:border-cyan-300 transition">
+                            <p class="text-xs font-bold text-cyan-800">3. Out on Delivery Van</p>
+                            <p id="pipeline-transit" class="text-2xl font-black text-cyan-900 mt-1">0</p>
+                            <span class="text-[10px] text-cyan-600">Driver on delivery</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-emerald-50/50 border border-emerald-100 hover:border-emerald-300 transition">
+                            <p class="text-xs font-bold text-emerald-700">4. Delivered & Settled</p>
+                            <p id="pipeline-delivered" class="text-2xl font-black text-emerald-800 mt-1">0</p>
+                            <span class="text-[10px] text-emerald-600">Completed order</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders & Recent Inquiries Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Recent Orders Table -->
+                    <div class="lg:col-span-2 glass-card rounded-2xl p-6 shadow-xs">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-base font-bold text-[#071C33] font-heading">Recent Orders Log</h2>
+                            <button onclick="switchTab('orders')" class="text-xs font-bold text-cyan-700 hover:underline">View All Orders</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs">
+                                <thead class="border-b border-slate-100 text-slate-400 uppercase tracking-wider text-[10px]">
+                                    <tr>
+                                        <th class="py-2.5">Order</th>
+                                        <th class="py-2.5">Customer</th>
+                                        <th class="py-2.5">Bottle Type</th>
+                                        <th class="py-2.5">Total</th>
+                                        <th class="py-2.5">Status</th>
+                                        <th class="py-2.5 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dashboard-recent-orders-body" class="divide-y divide-slate-100 text-slate-700">
+                                    <tr><td colspan="6" class="py-4 text-center text-slate-400">Loading orders...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Recent Leads / Messages -->
+                    <div class="glass-card rounded-2xl p-6 shadow-xs flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-base font-bold text-[#071C33] font-heading">Recent Inquiries</h2>
+                                <button onclick="switchTab('inquiries')" class="text-xs font-bold text-cyan-700 hover:underline">All Leads</button>
+                            </div>
+                            <div id="dashboard-recent-leads" class="space-y-3">
+                                <p class="text-xs text-slate-400">Loading leads...</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-100">
+                            <button onclick="switchTab('inquiries')" class="w-full py-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-xs font-bold text-[#01386A] transition text-center">
+                                Open Inquiry Inbox
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- TAB: SALES ANALYTICS & REVENUE COMPARISONS -->
+            <!-- ======================================================== -->
+            <section id="tab-analytics" class="hidden space-y-6">
+                
+                <div class="glass-card rounded-2xl p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-lg font-black text-[#071C33] font-heading">Sales Analytics & Financial Performance</h2>
+                        <p class="text-xs text-slate-500">Granular breakdown of daily, weekly, and monthly sales volume, SKU growth, and operating profit</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="refreshAllData()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-arrows-rotate text-xs"></i> Refresh Analytics
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3 Top Cards for Analytics Tab -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-t-4 border-t-cyan-500">
+                        <span class="text-xs font-bold text-slate-400 uppercase">Daily Sales Breakdown</span>
+                        <h3 id="ana-daily-total" class="text-2xl font-black text-[#071C33] font-heading mt-1">Rs. 23,960</h3>
+                        <p class="text-xs text-slate-500 mt-1">Cash on Delivery: <strong id="ana-daily-cash" class="text-slate-800">Rs. 11,360</strong></p>
+                        <p class="text-xs text-slate-500">Corporate Credit: <strong id="ana-daily-credit" class="text-amber-700">Rs. 12,600</strong></p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-t-4 border-t-blue-600">
+                        <span class="text-xs font-bold text-slate-400 uppercase">Weekly Performance</span>
+                        <h3 id="ana-weekly-total" class="text-2xl font-black text-[#01386A] font-heading mt-1">Rs. 57,720</h3>
+                        <p class="text-xs text-slate-500 mt-1">Total Bottles: <strong id="ana-weekly-bottles" class="text-slate-800">281 Units</strong></p>
+                        <p class="text-xs text-emerald-600 font-semibold mt-0.5">Top SKU: 19L Returnable Refill (59%)</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-t-4 border-t-indigo-600">
+                        <span class="text-xs font-bold text-slate-400 uppercase">Monthly Cash Projection</span>
+                        <h3 id="ana-monthly-total" class="text-2xl font-black text-indigo-950 font-heading mt-1">Rs. 742,000</h3>
+                        <p class="text-xs text-slate-500 mt-1">Operating Surplus: <strong id="ana-net-profit" class="text-emerald-700 font-bold">Rs. 630,300</strong></p>
+                        <p class="text-xs text-slate-500">Profit Margin: <strong id="ana-profit-margin" class="text-slate-800">84.9%</strong></p>
+                    </div>
+                </div>
+
+                <!-- Financial Health P&L Comparison Chart -->
+                <div class="glass-card rounded-2xl p-6 shadow-xs">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-base font-black text-[#071C33] font-heading">Monthly P&L Comparison (Revenue vs Expenses vs Net Profit)</h3>
+                            <p class="text-xs text-slate-500">Visual cash flow health of Aqua Water operations</p>
+                        </div>
+                    </div>
+                    <div class="relative h-72 w-full">
+                        <canvas id="pnlComparisonChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- TAB: CUSTOMER LOANS & BOTTLE KHATA SYSTEM -->
+            <!-- ======================================================== -->
+            <section id="tab-loans" class="hidden space-y-6">
+
+                <!-- Loans Overview & Summary Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-l-4 border-l-amber-500">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase">Total Credit Receivable</span>
+                        <div class="mt-2 text-2xl font-black text-amber-900 font-mono" id="loan-total-receivable">Rs. 74,400</div>
+                        <p class="text-[11px] text-amber-700 font-semibold mt-1">Outstanding commercial dues</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-l-4 border-l-emerald-500">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase">Security Deposits Held</span>
+                        <div class="mt-2 text-2xl font-black text-emerald-800 font-mono" id="loan-total-deposits">Rs. 86,400</div>
+                        <p class="text-[11px] text-emerald-600 font-semibold mt-1">116% Collateral Coverage</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-l-4 border-l-cyan-500">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase">Empty Bottles with Clients</span>
+                        <div class="mt-2 text-2xl font-black text-cyan-900 font-mono" id="loan-total-bottles">106 Bottles</div>
+                        <p class="text-[11px] text-cyan-700 font-semibold mt-1">Asset Value: Rs. 95,400</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-l-4 border-l-rose-500">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase">Accounts Nearing Limit</span>
+                        <div class="mt-2 text-2xl font-black text-rose-800 font-mono" id="loan-total-warning">2 Accounts</div>
+                        <p class="text-[11px] text-rose-600 font-semibold mt-1">Payment recovery needed</p>
+                    </div>
+                </div>
+
+                <!-- Controls & Search Bar -->
+                <div class="glass-card rounded-2xl p-5 shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                    <div class="flex flex-wrap items-center gap-1.5" id="loan-filter-buttons">
+                        <button onclick="filterLoans('All')" class="loan-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white">All Accounts</button>
+                        <button onclick="filterLoans('Normal')" class="loan-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Normal</button>
+                        <button onclick="filterLoans('Warning')" class="loan-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Warning</button>
+                        <button onclick="filterLoans('Overdue')" class="loan-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Overdue</button>
+                        <button onclick="filterLoans('Clear')" class="loan-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Zero Balance</button>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="relative flex-1 md:w-64">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                                <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                            </span>
+                            <input type="text" id="loan-search-input" onkeyup="searchLoans(this.value)" placeholder="Search company, contact, phone..." class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2 pl-9 pr-3 text-xs text-slate-800 focus:border-[#01386A] focus:bg-white focus:outline-none">
+                        </div>
+                        <button onclick="openNewLoanModal()" class="px-3.5 py-2 rounded-xl bg-[#01386A] text-white text-xs font-bold hover:bg-[#0b4c86] transition flex items-center gap-1.5 shadow-xs whitespace-nowrap">
+                            <i class="fa-solid fa-user-plus text-xs"></i> + New Account
+                        </button>
+                        <button onclick="openLoanPaymentModal()" class="px-3.5 py-2 rounded-xl bg-amber-600 text-white text-xs font-bold hover:bg-amber-700 transition flex items-center gap-1.5 shadow-xs whitespace-nowrap">
+                            <i class="fa-solid fa-hand-holding-dollar text-xs"></i> Collect Payment
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Customer Loans Table -->
+                <div class="glass-card rounded-2xl shadow-xs overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50/90 border-b border-slate-200/90 text-slate-500 uppercase tracking-wider text-[10px]">
+                                <tr>
+                                    <th class="py-3 px-4">Account ID</th>
+                                    <th class="py-3 px-4">Corporate Customer</th>
+                                    <th class="py-3 px-4">Route & Address</th>
+                                    <th class="py-3 px-4 text-center">Bottles Held</th>
+                                    <th class="py-3 px-4">Security Deposit</th>
+                                    <th class="py-3 px-4">Credit Balance / Limit</th>
+                                    <th class="py-3 px-4">Health Status</th>
+                                    <th class="py-3 px-4 text-right">Ledger Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="loans-table-body" class="divide-y divide-slate-100 text-slate-700">
+                                <tr><td colspan="8" class="py-6 text-center text-slate-400">Loading customer loan ledgers...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- TAB: EXPENSE & KHARCHA TRACKER -->
+            <!-- ======================================================== -->
+            <section id="tab-expenses" class="hidden space-y-6">
+
+                <!-- Expenses Top KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-l-4 border-l-rose-500">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase">Today's Operating Kharcha</span>
+                        <div class="mt-2 text-2xl font-black text-rose-900 font-mono" id="exp-stat-today">Rs. 4,800</div>
+                        <p class="text-[11px] text-rose-700 font-semibold mt-1">Route delivery van fuel</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-l-4 border-l-slate-700">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase">This Month's Total Expenses</span>
+                        <div class="mt-2 text-2xl font-black text-slate-900 font-mono" id="exp-stat-month">Rs. 111,700</div>
+                        <p class="text-[11px] text-slate-500 font-semibold mt-1">Across 6 operational categories</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-l-4 border-l-emerald-500">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase">Net Operating Profit</span>
+                        <div class="mt-2 text-2xl font-black text-emerald-900 font-mono" id="exp-stat-profit">Rs. 630,300</div>
+                        <p class="text-[11px] text-emerald-600 font-semibold mt-1">Gross 742k minus Expenses</p>
+                    </div>
+
+                    <div class="glass-card rounded-2xl p-5 shadow-xs border-l-4 border-l-purple-500">
+                        <span class="text-xs font-extrabold text-slate-500 uppercase">RO Electricity Ratio</span>
+                        <div class="mt-2 text-2xl font-black text-purple-900 font-mono">34.5%</div>
+                        <p class="text-[11px] text-purple-700 font-semibold mt-1">Rs. 38,500 WAPDA connection</p>
+                    </div>
+                </div>
+
+                <!-- Controls & Add Expense -->
+                <div class="glass-card rounded-2xl p-5 shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                    <div class="flex flex-wrap items-center gap-1.5" id="expense-category-filters">
+                        <button onclick="filterExpenses('All')" class="exp-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white">All Logs</button>
+                        <button onclick="filterExpenses('Fuel & Logistics')" class="exp-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Fuel</button>
+                        <button onclick="filterExpenses('Utilities & Power')" class="exp-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">RO Electricity</button>
+                        <button onclick="filterExpenses('Packaging & Consumables')" class="exp-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Caps & Bottles</button>
+                        <button onclick="filterExpenses('Quality & Chemicals')" class="exp-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Salts</button>
+                        <button onclick="filterExpenses('Staff & Wages')" class="exp-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Staff</button>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <div class="relative flex-1 md:w-64">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                                <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                            </span>
+                            <input type="text" id="expense-search-input" onkeyup="searchExpenses(this.value)" placeholder="Search title, vendor, receipt..." class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2 pl-9 pr-3 text-xs text-slate-800 focus:border-[#01386A] focus:bg-white focus:outline-none">
+                        </div>
+                        <button onclick="openNewExpenseModal()" class="px-3.5 py-2 rounded-xl bg-slate-900 text-white text-xs font-bold hover:bg-black transition flex items-center gap-1.5 shadow-xs whitespace-nowrap">
+                            <i class="fa-solid fa-plus text-xs"></i> + Record Expense
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Expenses Table -->
+                <div class="glass-card rounded-2xl shadow-xs overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50/90 border-b border-slate-200/90 text-slate-500 uppercase tracking-wider text-[10px]">
+                                <tr>
+                                    <th class="py-3 px-4">Expense ID / Date</th>
+                                    <th class="py-3 px-4">Category</th>
+                                    <th class="py-3 px-4">Title & Description</th>
+                                    <th class="py-3 px-4">Paid To / Vendor</th>
+                                    <th class="py-3 px-4">Payment Method</th>
+                                    <th class="py-3 px-4">Amount (PKR)</th>
+                                    <th class="py-3 px-4">Receipt / Bill #</th>
+                                    <th class="py-3 px-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="expenses-table-body" class="divide-y divide-slate-100 text-slate-700">
+                                <tr><td colspan="8" class="py-6 text-center text-slate-400">Loading operating expense logs...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- TAB: ORDERS MANAGEMENT -->
+            <!-- ======================================================== -->
+            <section id="tab-orders" class="hidden space-y-6">
+                <!-- Filters & Controls Bar -->
+                <div class="glass-card rounded-2xl p-5 shadow-xs flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+                    <!-- Status Filter Tabs -->
+                    <div class="flex flex-wrap items-center gap-1.5" id="order-filter-buttons">
+                        <button onclick="filterOrders('All')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white">All Orders</button>
+                        <button onclick="filterOrders('Pending Confirmation')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Pending</button>
+                        <button onclick="filterOrders('Confirmed')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Confirmed</button>
+                        <button onclick="filterOrders('Out for Delivery')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Out for Delivery</button>
+                        <button onclick="filterOrders('Delivered')" class="order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200">Delivered</button>
+                    </div>
+
+                    <!-- Search Input & Actions -->
+                    <div class="flex items-center gap-2">
+                        <div class="relative flex-1 md:w-64">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                                <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                            </span>
+                            <input type="text" id="order-search-input" onkeyup="searchOrders(this.value)" placeholder="Search name, phone, code..." class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2 pl-9 pr-3 text-xs text-slate-800 focus:border-[#01386A] focus:bg-white focus:outline-none">
+                        </div>
+                        <button onclick="openNewOrderModal()" class="px-3.5 py-2 rounded-xl bg-[#01386A] text-white text-xs font-bold hover:bg-[#0b4c86] transition flex items-center gap-1.5 shadow-xs whitespace-nowrap">
+                            <i class="fa-solid fa-plus text-xs"></i> + Order
+                        </button>
+                        <button onclick="exportOrdersJSON()" class="p-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-[#01386A] transition" title="Export Orders Data">
+                            <i class="fa-solid fa-download text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Orders Table -->
+                <div class="glass-card rounded-2xl shadow-xs overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50/90 border-b border-slate-200/90 text-slate-500 uppercase tracking-wider text-[10px]">
+                                <tr>
+                                    <th class="py-3 px-4">Code / Date</th>
+                                    <th class="py-3 px-4">Customer Details</th>
+                                    <th class="py-3 px-4">Address / Sector</th>
+                                    <th class="py-3 px-4">Bottle Type & Qty</th>
+                                    <th class="py-3 px-4">Total Amount</th>
+                                    <th class="py-3 px-4">Payment Type</th>
+                                    <th class="py-3 px-4">Fulfillment Status</th>
+                                    <th class="py-3 px-4 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="orders-table-body" class="divide-y divide-slate-100 text-slate-700">
+                                <tr><td colspan="8" class="py-6 text-center text-slate-400">Loading orders database...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- TAB: PRODUCTS & PRICING -->
+            <!-- ======================================================== -->
+            <section id="tab-products" class="hidden space-y-6">
+                <div class="glass-card rounded-2xl p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-base font-bold text-[#071C33] font-heading">Aqua Water Product Range & Live Pricing</h2>
+                        <p class="text-xs text-slate-500">All 5 bottles feature official <strong>Aqua Water 🌊💦</strong> branding</p>
+                    </div>
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-700">
+                        <i class="fa-solid fa-circle-check text-[10px]"></i> 5 Branded Photos Active
+                    </span>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Products populated via JS -->
+                </div>
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- TAB: CUSTOMER LEADS & INQUIRIES -->
+            <!-- ======================================================== -->
+            <section id="tab-inquiries" class="hidden space-y-6">
+                <div class="glass-card rounded-2xl p-6 shadow-xs flex items-center justify-between">
+                    <div>
+                        <h2 class="text-base font-bold text-[#071C33] font-heading">Customer Inquiries & B2B Leads</h2>
+                        <p class="text-xs text-slate-500">Contact form submissions from restaurants, offices, clinics and residential clients</p>
+                    </div>
+                </div>
+
+                <!-- Inquiries List -->
+                <div id="inquiries-container" class="space-y-4">
+                    <!-- Populated via JS -->
+                </div>
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- TAB: WATER QUALITY / LAB REPORT -->
+            <!-- ======================================================== -->
+            <section id="tab-quality" class="hidden space-y-6">
+                <div class="glass-card rounded-2xl p-6 shadow-xs">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                        <div>
+                            <h2 class="text-base font-bold text-[#071C33] font-heading">Lab Test Parameters & Quality Metrics</h2>
+                            <p class="text-xs text-slate-500">These values are published live on the public <a href="/lab-report.html" target="_blank" class="text-cyan-700 underline font-semibold">Lab Report Page</a>.</p>
+                        </div>
+                        <button onclick="saveLabData()" class="rounded-xl bg-[#01386A] px-4 py-2 text-xs font-bold text-white hover:bg-[#0b4c86] transition shadow-xs flex items-center gap-1.5">
+                            <i class="fa-solid fa-floppy-disk"></i> Save Metrics
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Batch Number</label>
+                            <input type="text" id="lab-batch-no" value="AQW-2026-10A" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Last Tested Date</label>
+                            <input type="date" id="lab-test-date" value="2026-10-01" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Testing Authority</label>
+                            <input type="text" id="lab-authority" value="National Water Quality & Standards Laboratory" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs text-slate-800">
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider text-[10px]">
+                                <tr>
+                                    <th class="py-2.5 px-3">Parameter</th>
+                                    <th class="py-2.5 px-3">Tested Value</th>
+                                    <th class="py-2.5 px-3">Standard Limit</th>
+                                    <th class="py-2.5 px-3">Status Rating</th>
+                                </tr>
+                            </thead>
+                            <tbody id="lab-parameters-body" class="divide-y divide-slate-100">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======================================================== -->
+            <!-- TAB: SYSTEM SETTINGS -->
+            <!-- ======================================================== -->
+            <section id="tab-settings" class="hidden space-y-6">
+                <div class="glass-card rounded-2xl p-6 shadow-xs max-w-2xl">
+                    <h2 class="text-base font-bold text-[#071C33] font-heading mb-1">Business & Operations Configuration</h2>
+                    <p class="text-xs text-slate-500 mb-6">Central company information used across order notifications and customer communications</p>
+
+                    <form id="settings-form" onsubmit="event.preventDefault(); showToast('Settings updated successfully!', 'success');" class="space-y-4 text-xs">
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Brand Name</label>
+                            <input type="text" value="Aqua Water" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Customer Support Phone</label>
+                            <input type="text" value="+92 310 4797444" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Official WhatsApp Routing Number</label>
+                            <input type="text" value="923104797444" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Operational Coverage Area</label>
+                            <input type="text" value="Rawalpindi & Islamabad, Pakistan" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                        </div>
+                        <div>
+                            <label class="block font-bold text-slate-700 mb-1">Official Inquiries Email</label>
+                            <input type="email" value="info@aquawater.pk" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                        </div>
+                        <div class="pt-2">
+                            <button type="submit" class="rounded-xl bg-[#01386A] px-5 py-2.5 text-xs font-bold text-white hover:bg-[#0b4c86] transition">
+                                Save Business Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ======================================================== -->
+    <!-- MODAL 1: MANUAL ORDER ENTRY -->
+    <!-- ======================================================== -->
+    <div id="new-order-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="w-full max-w-lg rounded-[2rem] bg-white p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="h-9 w-9 rounded-xl bg-cyan-50 text-cyan-700 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-[#071C33] font-heading">Record New Phone / Walk-in Order</h3>
+                        <p class="text-xs text-slate-500">Takes under 30 seconds to schedule</p>
+                    </div>
+                </div>
+                <button onclick="closeNewOrderModal()" class="h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="new-order-form" onsubmit="submitNewManualOrder(event)" class="space-y-3.5 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Customer Full Name *</label>
+                        <input type="text" id="m-name" required placeholder="e.g. Tariq Mehmood" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Customer Phone / WhatsApp *</label>
+                        <input type="tel" id="m-phone" required placeholder="03xx xxxxxxx" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Complete Delivery Address *</label>
+                    <input type="text" id="m-address" required placeholder="House / Office #, Street, Sector / Area" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Select Bottle Size *</label>
+                        <select id="m-bottle" onchange="updateManualOrderCalc()" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                            <option value="19l" data-price="280">19L Returnable Bottle (Rs. 280)</option>
+                            <option value="12l" data-price="320">12L Mid-Size Bottle (Rs. 320)</option>
+                            <option value="6l" data-price="220">6L Compact Bottle (Rs. 220)</option>
+                            <option value="1500ml" data-price="90">1500ml Bottle (Rs. 90)</option>
+                            <option value="500ml" data-price="50">500ml Bottle (Rs. 50)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Quantity</label>
+                        <input type="number" id="m-qty" min="1" max="100" value="2" onchange="updateManualOrderCalc()" onkeyup="updateManualOrderCalc()" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Payment Method</label>
+                        <select id="m-payment-type" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                            <option value="Cash">Cash on Delivery (Cash)</option>
+                            <option value="Credit/Loan">Customer Khata / Loan Account</option>
+                            <option value="Online">Online / Bank Transfer</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Route / Van Notes</label>
+                        <input type="text" id="m-notes" placeholder="e.g. Van 1, Call before arrival" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                    </div>
+                </div>
+
+                <div class="rounded-xl bg-cyan-50/80 border border-cyan-100 p-3 flex items-center justify-between">
+                    <span class="font-bold text-cyan-900">Calculated Total:</span>
+                    <span id="m-total-display" class="text-base font-black text-[#01386A] font-mono">Rs. 560</span>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2">
+                    <button type="button" onclick="closeNewOrderModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-[#01386A] text-white font-bold hover:bg-[#0b4c86] shadow-sm">
+                        Confirm & Record Order
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL 2: RECORD KHATA / LOAN PAYMENT -->
+    <!-- ======================================================== -->
+    <div id="loan-payment-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="w-full max-w-md rounded-[2rem] bg-white p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="h-9 w-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-[#071C33] font-heading">Record Khata Recovery Payment</h3>
+                        <p class="text-xs text-slate-500">Deducts directly from customer credit balance</p>
+                    </div>
+                </div>
+                <button onclick="closeLoanPaymentModal()" class="h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="loan-payment-form" onsubmit="submitLoanPayment(event)" class="space-y-3.5 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Select Customer Account *</label>
+                    <select id="lp-account-id" required class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Amount Paid (PKR) *</label>
+                        <input type="number" id="lp-amount" required min="1" placeholder="e.g. 5000" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-mono font-bold">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Payment Method</label>
+                        <select id="lp-method" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                            <option value="Cash">Cash Collected</option>
+                            <option value="Bank Transfer">Bank Transfer (Online)</option>
+                            <option value="JazzCash">JazzCash / EasyPaisa</option>
+                            <option value="Cheque">Company Cheque</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Payment Reference / Note</label>
+                    <input type="text" id="lp-note" placeholder="e.g. Bank Alfalah Ref #1092 / Collected by Van Driver" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2">
+                    <button type="button" onclick="closeLoanPaymentModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-amber-600 text-white font-bold hover:bg-amber-700 shadow-sm">
+                        Confirm & Update Ledger
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL 3: NEW CUSTOMER KHATA ACCOUNT -->
+    <!-- ======================================================== -->
+    <div id="loan-new-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="w-full max-w-lg rounded-[2rem] bg-white p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="h-9 w-9 rounded-xl bg-cyan-100 text-cyan-800 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-[#071C33] font-heading">Register New Corporate / Khata Account</h3>
+                        <p class="text-xs text-slate-500">Bottle tracking and monthly credit invoicing</p>
+                    </div>
+                </div>
+                <button onclick="closeNewLoanModal()" class="h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="loan-new-form" onsubmit="submitNewLoanAccount(event)" class="space-y-3.5 text-xs">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Enterprise / Customer Name *</label>
+                        <input type="text" id="ln-name" required placeholder="e.g. Islamabad Heights Plaza" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Contact Person</label>
+                        <input type="text" id="ln-contact" placeholder="e.g. Tariq Khan" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Phone / WhatsApp *</label>
+                        <input type="tel" id="ln-phone" required placeholder="03xx xxxxxxx" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Credit Limit (PKR)</label>
+                        <input type="number" id="ln-limit" value="25000" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-mono">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Delivery Address & Sector *</label>
+                    <input type="text" id="ln-address" required placeholder="e.g. Plaza 12, G-11 Markaz, Islamabad" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Empty Bottles Issued</label>
+                        <input type="number" id="ln-bottles" value="10" min="0" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-mono">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Security Deposit Paid (PKR)</label>
+                        <input type="number" id="ln-deposit" value="10000" min="0" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-mono">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Initial Opening Balance (PKR)</label>
+                    <input type="number" id="ln-balance" value="0" min="0" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-mono">
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2">
+                    <button type="button" onclick="closeNewLoanModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-[#01386A] text-white font-bold hover:bg-[#0b4c86] shadow-sm">
+                        Create Khata Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL 4: RECORD OPERATING EXPENSE -->
+    <!-- ======================================================== -->
+    <div id="expense-new-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="w-full max-w-md rounded-[2rem] bg-white p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+                <div class="flex items-center gap-2.5">
+                    <div class="h-9 w-9 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center font-bold">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-[#071C33] font-heading">Record Operating Expense (Kharcha)</h3>
+                        <p class="text-xs text-slate-500">Live deduction from operating gross profit</p>
+                    </div>
+                </div>
+                <button onclick="closeNewExpenseModal()" class="h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="expense-new-form" onsubmit="submitNewExpense(event)" class="space-y-3.5 text-xs">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Expense Category *</label>
+                    <select id="exp-category" required class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                        <option value="Fuel & Logistics">Fuel & Logistics (Delivery Vans)</option>
+                        <option value="Utilities & Power">Utilities & Power (WAPDA RO Plant)</option>
+                        <option value="Packaging & Consumables">Packaging (Caps, Seals, Bottles)</option>
+                        <option value="Quality & Chemicals">Quality & Chemicals (Balancing Salts)</option>
+                        <option value="Staff & Wages">Staff & Driver Daily Allowances</option>
+                        <option value="Plant Maintenance">Plant Maintenance & Filter Media</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Expense Title / Description *</label>
+                    <input type="text" id="exp-title" required placeholder="e.g. Van 2 Diesel Refill (Islamabad)" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Amount (PKR) *</label>
+                        <input type="number" id="exp-amount" required min="1" placeholder="e.g. 4500" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-mono font-bold">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Payment Method</label>
+                        <select id="exp-method" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                            <option value="Cash">Cash In Hand</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="JazzCash">JazzCash / EasyPaisa</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Paid To / Vendor</label>
+                        <input type="text" id="exp-vendor" placeholder="e.g. Attock Petroleum Saddar" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Receipt / Invoice #</label>
+                        <input type="text" id="exp-receipt" placeholder="e.g. ATK-8812" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-slate-800 font-mono">
+                    </div>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-2">
+                    <button type="button" onclick="closeNewExpenseModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50">Cancel</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-slate-900 text-white font-bold hover:bg-black shadow-sm">
+                        Record Expense
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL 5: CUSTOMER STATEMENT / LEDGER DETAILS -->
+    <!-- ======================================================== -->
+    <div id="loan-ledger-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="w-full max-w-2xl rounded-[2rem] bg-white p-6 shadow-2xl relative max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+                <div>
+                    <h3 id="ledger-customer-name" class="text-base font-black text-[#071C33] font-heading">Account Statement Ledger</h3>
+                    <p id="ledger-customer-info" class="text-xs text-slate-500">Full audit history of bottle dispatches & recovery payments</p>
+                </div>
+                <button onclick="closeLoanLedgerModal()" class="h-8 w-8 rounded-lg bg-slate-100 text-slate-500 hover:bg-slate-200 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Ledger Summary Banner -->
+            <div class="grid grid-cols-3 gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-center mb-4">
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-slate-400">Bottles Held</span>
+                    <p id="ledger-bottles-held" class="text-base font-bold text-cyan-900 font-mono">18 Btl</p>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-slate-400">Security Deposit</span>
+                    <p id="ledger-security-deposit" class="text-base font-bold text-emerald-800 font-mono">Rs. 15,000</p>
+                </div>
+                <div>
+                    <span class="text-[10px] uppercase font-bold text-slate-400">Current Balance</span>
+                    <p id="ledger-current-balance" class="text-base font-bold text-amber-900 font-mono">Rs. 11,200</p>
+                </div>
+            </div>
+
+            <!-- Ledger Transactions List -->
+            <div class="overflow-y-auto flex-1 pr-1">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-slate-50 text-slate-500 uppercase tracking-wider text-[10px] sticky top-0">
+                        <tr>
+                            <th class="py-2 px-3">Date</th>
+                            <th class="py-2 px-3">Type</th>
+                            <th class="py-2 px-3">Description / Note</th>
+                            <th class="py-2 px-3 text-right">Amount (PKR)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ledger-tx-body" class="divide-y divide-slate-100">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                <button id="ledger-whatsapp-btn" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-xs">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp Statement
+                </button>
+                <button onclick="closeLoanLedgerModal()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs hover:bg-slate-200">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- JAVASCRIPT LOGIC -->
+    <!-- ======================================================== -->
+    <script>
+        // State
+        let ordersData = [];
+        let contactsData = [];
+        let productsData = [];
+        let labData = null;
+        let loansData = [];
+        let expensesData = [];
+        let analyticsData = null;
+        
+        let currentFilter = 'All';
+        let currentLoanFilter = 'All';
+        let currentExpenseFilter = 'All';
+
+        let salesVelocityChartInstance = null;
+        let skuDistributionChartInstance = null;
+        let pnlComparisonChartInstance = null;
+        let currentChartMode = 'daily';
+
+        // Real-Time Clock
+        function startRealtimeClock() {
+            const clockEl = document.getElementById('live-time-display');
+            function update() {
+                const now = new Date();
+                const options = { 
+                    weekday: 'short', 
+                    day: 'numeric', 
+                    month: 'short', 
+                    year: 'numeric', 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    second: '2-digit',
+                    hour12: true 
+                };
+                if (clockEl) {
+                    clockEl.innerHTML = `<i class="fa-regular fa-clock text-cyan-600 mr-1.5"></i>${now.toLocaleDateString('en-GB', options)}`;
+                }
+            }
+            update();
+            setInterval(update, 1000);
+        }
+
+        // Authentication Check
+        function checkAuth() {
+            const token = localStorage.getItem('aqua_admin_token');
+            if (!token) {
+                window.location.href = '/admin/login.html';
+                return false;
+            }
+            const userStr = localStorage.getItem('aqua_admin_user');
+            if (userStr) {
+                try {
+                    const u = JSON.parse(userStr);
+                    document.getElementById('admin-user-name').textContent = u.name || u.username;
+                } catch(e) {}
+            }
+            return true;
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('aqua_admin_token');
+            localStorage.removeItem('aqua_admin_user');
+            window.location.href = '/admin/login.html';
+        }
+
+        function toggleMobileSidebar() {
+            const sb = document.getElementById('sidebar');
+            sb.classList.toggle('-translate-x-full');
+        }
+
+        // Tab Switching
+        function switchTab(tabId) {
+            const tabs = ['dashboard', 'analytics', 'loans', 'expenses', 'orders', 'products', 'inquiries', 'quality', 'settings'];
+            tabs.forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                const nav = document.getElementById('nav-' + t);
+                if (el) el.classList.add('hidden');
+                if (nav) nav.classList.remove('sidebar-active');
+            });
+
+            const activeTab = document.getElementById('tab-' + tabId);
+            const activeNav = document.getElementById('nav-' + tabId);
+            if (activeTab) activeTab.classList.remove('hidden');
+            if (activeNav) activeNav.classList.add('sidebar-active');
+
+            const titleMap = {
+                dashboard: ['Executive Operations Dashboard', 'Live multi-channel sales, loan receivables, and route dispatch'],
+                analytics: ['Sales Velocity & P&L Analytics', 'Interactive daily, weekly and monthly revenue & unit growth'],
+                loans: ['Customer Loans & Bottle Khata System', 'Commercial accounts, bottle deposits, and credit recovery ledger'],
+                expenses: ['Operating Expense Tracker (Kharcha)', 'Fuel, WAPDA RO plant power, caps, salts, and staff allowances'],
+                orders: ['Orders & Delivery Fulfillment', 'Filter, update status, and dispatch route drivers via WhatsApp'],
+                products: ['Products Catalog & Pricing', 'Manage the 5 Aqua Water bottle SKUs, pricing and stock status'],
+                inquiries: ['Customer Inquiries & B2B Leads', 'Direct customer and business contact submissions'],
+                quality: ['Water Quality & Lab Report Control', 'Official TDS, pH, and chemical analysis public parameters'],
+                settings: ['System & Operations Settings', 'Configure core business contact and operational parameters']
+            };
+            if (titleMap[tabId]) {
+                document.getElementById('page-title').textContent = titleMap[tabId][0];
+                document.getElementById('page-subtitle').textContent = titleMap[tabId][1];
+            }
+
+            // Trigger chart resize if navigating to analytics or dashboard
+            if (tabId === 'dashboard' || tabId === 'analytics') {
+                setTimeout(() => {
+                    if (salesVelocityChartInstance) salesVelocityChartInstance.resize();
+                    if (skuDistributionChartInstance) skuDistributionChartInstance.resize();
+                    if (pnlComparisonChartInstance) pnlComparisonChartInstance.resize();
+                }, 100);
+            }
+
+            // Close mobile menu if open
+            const sb = document.getElementById('sidebar');
+            if (!sb.classList.contains('-translate-x-full')) {
+                sb.classList.add('-translate-x-full');
+            }
+        }
+
+        // Toast Messages
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            const colors = {
+                success: 'bg-emerald-600 text-white',
+                error: 'bg-rose-600 text-white',
+                info: 'bg-[#01386A] text-white',
+                warning: 'bg-amber-600 text-white'
+            };
+            const icons = {
+                success: 'fa-circle-check',
+                error: 'fa-circle-xmark',
+                info: 'fa-circle-info',
+                warning: 'fa-triangle-exclamation'
+            };
+            toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-xl text-xs font-semibold ${colors[type] || colors.info} transition-all duration-300 transform translate-y-2 opacity-0`;
+            toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.info} text-sm"></i><span>${message}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // ========================================================
+        // DATA FETCHING FUNCTIONS
+        // ========================================================
+        async function fetchAnalytics() {
+            try {
+                const res = await fetch('/api/admin/analytics');
+                if (res.ok) {
+                    analyticsData = await res.json();
+                    renderAnalytics();
+                }
+            } catch (err) {
+                console.error('Analytics fetch error:', err);
+            }
+        }
+
+        async function fetchLoans() {
+            try {
+                const res = await fetch('/api/admin/loans');
+                if (res.ok) {
+                    loansData = await res.json();
+                } else {
+                    const fRes = await fetch('/data/loans.json');
+                    loansData = await fRes.json();
+                }
+            } catch (err) {
+                try {
+                    const fRes = await fetch('/data/loans.json');
+                    loansData = await fRes.json();
+                } catch(e) {}
+            }
+            renderLoans();
+            populateLoanSelectDropdown();
+        }
+
+        async function fetchExpenses() {
+            try {
+                const res = await fetch('/api/admin/expenses');
+                if (res.ok) {
+                    expensesData = await res.json();
+                } else {
+                    const fRes = await fetch('/data/expenses.json');
+                    expensesData = await fRes.json();
+                }
+            } catch (err) {
+                try {
+                    const fRes = await fetch('/data/expenses.json');
+                    expensesData = await fRes.json();
+                } catch(e) {}
+            }
+            renderExpenses();
+        }
+
+        async function fetchOrders() {
+            try {
+                const res = await fetch('/api/admin/orders');
+                if (res.ok) {
+                    ordersData = await res.json();
+                } else {
+                    const fRes = await fetch('/data/orders.json');
+                    ordersData = await fRes.json();
+                }
+            } catch (err) {
+                try {
+                    const fRes = await fetch('/data/orders.json');
+                    ordersData = await fRes.json();
+                } catch (e) {}
+            }
+            renderOrders();
+            renderDashboardPipeline();
+        }
+
+        async function fetchContacts() {
+            try {
+                const res = await fetch('/api/admin/contacts');
+                if (res.ok) {
+                    contactsData = await res.json();
+                } else {
+                    const fRes = await fetch('/data/contacts.json');
+                    contactsData = await fRes.json();
+                }
+            } catch (err) {
+                try {
+                    const fRes = await fetch('/data/contacts.json');
+                    contactsData = await fRes.json();
+                } catch (e) {}
+            }
+            renderInquiries();
+        }
+
+        async function fetchProducts() {
+            try {
+                const res = await fetch('/api/admin/products');
+                if (res.ok) {
+                    productsData = await res.json();
+                } else {
+                    const fRes = await fetch('/data/products.json');
+                    productsData = await fRes.json();
+                }
+            } catch (err) {
+                try {
+                    const fRes = await fetch('/data/products.json');
+                    productsData = await fRes.json();
+                } catch (e) {}
+            }
+            renderProducts();
+        }
+
+        async function fetchLabData() {
+            try {
+                const res = await fetch('/data/lab_report.json');
+                labData = await res.json();
+            } catch (err) {
+                console.error('Error fetching lab data:', err);
+            }
+            renderLabData();
+        }
+
+        function refreshAllData() {
+            const icon = document.getElementById('refresh-icon');
+            if (icon) icon.classList.add('fa-spin');
+            Promise.all([
+                fetchAnalytics(),
+                fetchLoans(),
+                fetchExpenses(),
+                fetchOrders(),
+                fetchContacts(),
+                fetchProducts(),
+                fetchLabData()
+            ]).then(() => {
+                setTimeout(() => { if (icon) icon.classList.remove('fa-spin'); }, 600);
+                showToast('Operations ERP updated with live metrics!', 'success');
+            });
+        }
+
+        // ========================================================
+        // RENDER ANALYTICS & CHARTS
+        // ========================================================
+        function renderAnalytics() {
+            if (!analyticsData) return;
+            const d = analyticsData.daily || {};
+            const w = analyticsData.weekly || {};
+            const m = analyticsData.monthly || {};
+            const fin = analyticsData.financials || {};
+            const ls = analyticsData.loans_summary || {};
+
+            // 1. Dashboard Top KPI cards
+            document.getElementById('stat-daily-sell').textContent = 'Rs. ' + (d.revenue || 0).toLocaleString();
+            document.getElementById('stat-daily-bottles').textContent = (d.bottles || 0) + ' Btl';
+            document.getElementById('stat-daily-cash').textContent = 'Rs. ' + ((d.cash || 0)/1000).toFixed(1) + 'k';
+
+            document.getElementById('stat-weekly-sell').textContent = 'Rs. ' + (w.revenue || 0).toLocaleString();
+            document.getElementById('stat-weekly-bottles').textContent = (w.bottles || 0) + ' Btl';
+
+            document.getElementById('stat-monthly-sell').textContent = 'Rs. ' + (m.revenue || 0).toLocaleString();
+            document.getElementById('stat-monthly-pct').textContent = (m.target_pct || 74.2) + '%';
+            document.getElementById('stat-monthly-progress-bar').style.width = (m.target_pct || 74.2) + '%';
+
+            document.getElementById('stat-net-profit').textContent = 'Rs. ' + (fin.net_profit || 0).toLocaleString();
+            document.getElementById('stat-profit-margin').textContent = (fin.profit_margin_pct || 84.9) + '%';
+            document.getElementById('stat-total-expenses-short').textContent = 'Rs. ' + ((fin.expenses || 0)/1000).toFixed(1) + 'k';
+
+            // 2. Dashboard Loan & Expense Mini Widgets
+            document.getElementById('widget-loan-receivable').textContent = 'Rs. ' + (ls.total_receivable || 0).toLocaleString();
+            document.getElementById('widget-bottles-held').textContent = (ls.bottles_held || 0) + ' Btl';
+            document.getElementById('widget-deposits-held').textContent = 'Rs. ' + (ls.total_deposits || 0).toLocaleString();
+            document.getElementById('widget-warning-loans').textContent = (ls.warning_accounts || 0) + ' Accounts';
+
+            document.getElementById('widget-today-expenses').textContent = 'Rs. ' + (fin.today_expenses || 0).toLocaleString();
+            document.getElementById('widget-month-expenses').textContent = 'Rs. ' + ((fin.expenses || 0)/1000).toFixed(1) + 'k';
+
+            // Sidebar Badges
+            document.getElementById('badge-loans-receivable').textContent = 'Rs. ' + ((ls.total_receivable || 0)/1000).toFixed(1) + 'k';
+            document.getElementById('badge-expenses-count').textContent = (expensesData.length || 6) + ' Logs';
+
+            // 3. Analytics Tab Stats
+            const anaDaily = document.getElementById('ana-daily-total');
+            if (anaDaily) anaDaily.textContent = 'Rs. ' + (d.revenue || 0).toLocaleString();
+            const anaCash = document.getElementById('ana-daily-cash');
+            if (anaCash) anaCash.textContent = 'Rs. ' + (d.cash || 0).toLocaleString();
+            const anaCredit = document.getElementById('ana-daily-credit');
+            if (anaCredit) anaCredit.textContent = 'Rs. ' + (d.credit || 0).toLocaleString();
+
+            const anaWeekly = document.getElementById('ana-weekly-total');
+            if (anaWeekly) anaWeekly.textContent = 'Rs. ' + (w.revenue || 0).toLocaleString();
+            const anaWeeklyBottles = document.getElementById('ana-weekly-bottles');
+            if (anaWeeklyBottles) anaWeeklyBottles.textContent = (w.bottles || 0) + ' Units';
+
+            const anaMonthly = document.getElementById('ana-monthly-total');
+            if (anaMonthly) anaMonthly.textContent = 'Rs. ' + (m.revenue || 0).toLocaleString();
+            const anaNet = document.getElementById('ana-net-profit');
+            if (anaNet) anaNet.textContent = 'Rs. ' + (fin.net_profit || 0).toLocaleString();
+            const anaMargin = document.getElementById('ana-profit-margin');
+            if (anaMargin) anaMargin.textContent = (fin.profit_margin_pct || 84.9) + '%';
+
+            // 4. Update Charts
+            initOrUpdateSalesChart(currentChartMode);
+            initOrUpdateSkuChart(analyticsData.sku_breakdown || {});
+            initOrUpdatePnlChart(fin);
+        }
+
+        // Main Sales Velocity Chart
+        function initOrUpdateSalesChart(mode) {
+            const ctx = document.getElementById('salesVelocityChart');
+            if (!ctx) return;
+
+            let labels = [];
+            let revenueData = [];
+            let bottleData = [];
+
+            if (mode === 'daily') {
+                labels = analyticsData?.weekly?.labels || ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Today'];
+                revenueData = analyticsData?.weekly?.data || [4480, 5040, 10320, 4560, 9360, 23960];
+                bottleData = [24, 28, 48, 22, 45, 142];
+            } else if (mode === 'weekly') {
+                labels = analyticsData?.monthly?.labels || ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+                revenueData = analyticsData?.monthly?.data || [165000, 192000, 188000, 197000];
+                bottleData = [780, 890, 840, 920];
+            } else if (mode === 'monthly') {
+                labels = ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct 2026'];
+                revenueData = [580000, 640000, 710000, 790000, 720000, 742000];
+                bottleData = [2800, 3100, 3450, 3900, 3500, 3620];
+            }
+
+            if (salesVelocityChartInstance) {
+                salesVelocityChartInstance.data.labels = labels;
+                salesVelocityChartInstance.data.datasets[0].data = revenueData;
+                salesVelocityChartInstance.data.datasets[1].data = bottleData;
+                salesVelocityChartInstance.update();
+                return;
+            }
+
+            salesVelocityChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Sales Revenue (PKR)',
+                            data: revenueData,
+                            backgroundColor: 'rgba(2, 132, 199, 0.75)',
+                            borderColor: '#0284c7',
+                            borderWidth: 1.5,
+                            borderRadius: 8,
+                            order: 2,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'Bottle Volume (Units)',
+                            data: bottleData,
+                            type: 'line',
+                            borderColor: '#10b981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#10b981',
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            tension: 0.35,
+                            order: 1,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { family: 'Plus Jakarta Sans', size: 11, weight: '600' } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    if (context.dataset.label.includes('Revenue')) {
+                                        return 'Revenue: Rs. ' + context.parsed.y.toLocaleString();
+                                    }
+                                    return 'Bottles: ' + context.parsed.y + ' Units';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { grid: { display: false }, ticks: { font: { family: 'Plus Jakarta Sans', size: 10 } } },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            grid: { color: 'rgba(226, 232, 240, 0.6)' },
+                            ticks: {
+                                callback: function(val) { return 'Rs. ' + (val >= 1000 ? (val/1000).toFixed(0) + 'k' : val); },
+                                font: { family: 'JetBrains Mono', size: 10 }
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: { drawOnChartArea: false },
+                            ticks: {
+                                callback: function(val) { return val + ' btl'; },
+                                font: { family: 'JetBrains Mono', size: 10 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateMainChart(mode) {
+            currentChartMode = mode;
+            ['daily', 'weekly', 'monthly'].forEach(m => {
+                const b = document.getElementById('chart-btn-' + m);
+                if (b) {
+                    if (m === mode) {
+                        b.className = 'px-2.5 py-1 rounded-lg bg-white text-[#01386A] shadow-xs font-bold';
+                    } else {
+                        b.className = 'px-2.5 py-1 rounded-lg text-slate-500 hover:text-slate-800 font-bold';
+                    }
+                }
+            });
+            initOrUpdateSalesChart(mode);
+        }
+
+        function setDashboardPeriod(period) {
+            ['daily', 'weekly', 'monthly'].forEach(p => {
+                const b = document.getElementById('btn-period-' + p);
+                if (b) {
+                    if (p === period) {
+                        b.className = 'period-btn px-3 py-1.5 rounded-lg bg-white text-[#01386A] shadow-xs font-bold';
+                    } else {
+                        b.className = 'period-btn px-3 py-1.5 rounded-lg text-slate-500 hover:text-slate-800 font-bold';
+                    }
+                }
+            });
+            updateMainChart(period);
+        }
+
+        // SKU Distribution Chart
+        function initOrUpdateSkuChart(skuObj) {
+            const ctx = document.getElementById('skuDistributionChart');
+            if (!ctx) return;
+
+            const labels = ['19L Refill', '12L Mid', '6L Compact', '1500ml', '500ml'];
+            const dataVals = [
+                skuObj['19l'] || 166,
+                skuObj['12l'] || 13,
+                skuObj['6l'] || 6,
+                skuObj['1500ml'] || 24,
+                skuObj['500ml'] || 72
+            ];
+            const colors = ['#0284c7', '#0ea5e9', '#06b6d4', '#14b8a6', '#6366f1'];
+
+            const legendEl = document.getElementById('sku-stats-legend');
+            if (legendEl) {
+                const totalUnits = dataVals.reduce((a, b) => a + b, 0);
+                legendEl.innerHTML = labels.map((l, idx) => {
+                    const pct = totalUnits > 0 ? ((dataVals[idx] / totalUnits) * 100).toFixed(1) : 0;
+                    return `
+                        <div class="flex items-center justify-between p-1.5 rounded-lg bg-slate-50 border border-slate-100">
+                            <span class="flex items-center gap-1.5 font-bold text-slate-700">
+                                <span class="h-2.5 w-2.5 rounded-full" style="background: ${colors[idx]}"></span>
+                                ${l}
+                            </span>
+                            <span class="font-mono text-cyan-800 font-bold">${dataVals[idx]} (${pct}%)</span>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            if (skuDistributionChartInstance) {
+                skuDistributionChartInstance.data.datasets[0].data = dataVals;
+                skuDistributionChartInstance.update();
+                return;
+            }
+
+            skuDistributionChartInstance = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: dataVals,
+                        backgroundColor: colors,
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    cutout: '68%'
+                }
+            });
+        }
+
+        // P&L Comparison Chart
+        function initOrUpdatePnlChart(fin) {
+            const ctx = document.getElementById('pnlComparisonChart');
+            if (!ctx) return;
+
+            const rev = fin.revenue || 742000;
+            const exp = fin.expenses || 111700;
+            const net = fin.net_profit || 630300;
+
+            if (pnlComparisonChartInstance) {
+                pnlComparisonChartInstance.data.datasets[0].data = [rev, exp, net];
+                pnlComparisonChartInstance.update();
+                return;
+            }
+
+            pnlComparisonChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Gross Revenue', 'Operating Expenses', 'Net Operating Surplus'],
+                    datasets: [{
+                        label: 'PKR Amount',
+                        data: [rev, exp, net],
+                        backgroundColor: [
+                            'rgba(2, 132, 199, 0.8)',
+                            'rgba(244, 63, 94, 0.8)',
+                            'rgba(16, 185, 129, 0.85)'
+                        ],
+                        borderColor: ['#0284c7', '#f43f5e', '#10b981'],
+                        borderWidth: 1.5,
+                        borderRadius: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(c) { return 'Rs. ' + c.parsed.y.toLocaleString(); }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: function(val) { return 'Rs. ' + (val/1000).toFixed(0) + 'k'; },
+                                font: { family: 'JetBrains Mono', size: 10 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ========================================================
+        // CUSTOMER LOANS / BOTTLE KHATA SYSTEM
+        // ========================================================
+        function renderLoans() {
+            const tbody = document.getElementById('loans-table-body');
+            let list = [...loansData];
+
+            if (currentLoanFilter !== 'All') {
+                list = list.filter(l => l.status === currentLoanFilter);
+            }
+
+            // Update top counts
+            const totalRec = loansData.reduce((acc, l) => acc + (parseFloat(l.credit_balance) || 0), 0);
+            const totalDep = loansData.reduce((acc, l) => acc + (parseFloat(l.security_deposit) || 0), 0);
+            const totalBtl = loansData.reduce((acc, l) => acc + (parseInt(l.bottles_held) || 0), 0);
+            const warningCount = loansData.filter(l => l.status === 'Warning' || l.status === 'Overdue').length;
+
+            document.getElementById('loan-total-receivable').textContent = 'Rs. ' + totalRec.toLocaleString();
+            document.getElementById('loan-total-deposits').textContent = 'Rs. ' + totalDep.toLocaleString();
+            document.getElementById('loan-total-bottles').textContent = totalBtl + ' Bottles';
+            document.getElementById('loan-total-warning').textContent = warningCount + ' Accounts';
+
+            if (list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="py-8 text-center text-slate-400">No loan accounts found matching the filter.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = list.map(l => {
+                const bal = parseFloat(l.credit_balance) || 0;
+                const lim = parseFloat(l.credit_limit) || 20000;
+                const pct = Math.min(100, Math.round((bal / lim) * 100));
+
+                return `
+                    <tr class="hover:bg-slate-50/80 transition" id="loan-row-${l.id}">
+                        <td class="py-3 px-4 font-mono font-bold text-[#01386A]">
+                            ${l.id}
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="font-bold text-slate-900">${escapeHtml(l.customer_name)}</div>
+                            <div class="text-[11px] text-slate-500">${escapeHtml(l.contact_person || 'Direct Contact')} • <span class="font-mono">${escapeHtml(l.phone)}</span></div>
+                        </td>
+                        <td class="py-3 px-4 text-slate-600 max-w-[180px] truncate" title="${escapeHtml(l.address)}">
+                            ${escapeHtml(l.address)}
+                        </td>
+                        <td class="py-3 px-4 text-center">
+                            <span class="inline-flex items-center gap-1 rounded-full bg-cyan-50 border border-cyan-200 px-2.5 py-0.5 text-xs font-bold text-cyan-900 font-mono">
+                                <i class="fa-solid fa-bottle-water text-[10px] text-cyan-600"></i> ${l.bottles_held || 0}
+                            </span>
+                        </td>
+                        <td class="py-3 px-4 font-mono font-bold text-emerald-800">
+                            Rs. ${(parseFloat(l.security_deposit) || 0).toLocaleString()}
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="flex items-center justify-between font-mono font-bold text-xs">
+                                <span class="${bal > 0 ? 'text-amber-900' : 'text-slate-400'}">Rs. ${bal.toLocaleString()}</span>
+                                <span class="text-[10px] text-slate-400 font-normal">/ ${lim.toLocaleString()}</span>
+                            </div>
+                            <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden mt-1">
+                                <div class="h-full ${pct > 85 ? 'bg-rose-500' : pct > 60 ? 'bg-amber-500' : 'bg-cyan-500'} rounded-full" style="width: ${pct}%"></div>
+                            </div>
+                        </td>
+                        <td class="py-3 px-4">
+                            ${getLoanStatusBadge(l.status, pct)}
+                        </td>
+                        <td class="py-3 px-4 text-right space-x-1 whitespace-nowrap">
+                            <button onclick="openLoanPaymentModal('${l.id}')" title="Record Payment" class="h-7 px-2 rounded-lg bg-amber-50 text-amber-800 hover:bg-amber-100 font-bold transition inline-flex items-center gap-1">
+                                <i class="fa-solid fa-hand-holding-dollar text-[10px]"></i> Pay
+                            </button>
+                            <button onclick="viewLoanLedger('${l.id}')" title="View Full Ledger Statement" class="h-7 px-2 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-bold transition inline-flex items-center gap-1">
+                                <i class="fa-solid fa-receipt text-[10px]"></i> Ledger
+                            </button>
+                            <button onclick="sendLoanWhatsAppReminder('${l.id}')" title="Send WhatsApp Statement" class="h-7 w-7 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition inline-flex items-center justify-center">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function getLoanStatusBadge(status, pct) {
+            if (status === 'Clear') {
+                return '<span class="rounded-md border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-800">Clear (Rs. 0)</span>';
+            } else if (status === 'Overdue') {
+                return '<span class="rounded-md border border-rose-200 bg-rose-50 px-2 py-0.5 text-[10px] font-bold text-rose-800">Overdue Limit</span>';
+            } else if (status === 'Warning' || pct > 85) {
+                return '<span class="rounded-md border border-amber-200 bg-amber-50 px-2 py-0.5 text-[10px] font-bold text-amber-800">Warning (High)</span>';
+            }
+            return '<span class="rounded-md border border-cyan-200 bg-cyan-50 px-2 py-0.5 text-[10px] font-bold text-cyan-800">Normal</span>';
+        }
+
+        function filterLoans(status) {
+            currentLoanFilter = status;
+            document.querySelectorAll('.loan-filter-btn').forEach(btn => {
+                btn.className = 'loan-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200';
+            });
+            event.target.className = 'loan-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white';
+            renderLoans();
+        }
+
+        function searchLoans(q) {
+            const query = q.toLowerCase();
+            const rows = document.querySelectorAll('#loans-table-body tr');
+            rows.forEach(r => {
+                r.style.display = r.textContent.toLowerCase().includes(query) ? '' : 'none';
+            });
+        }
+
+        function populateLoanSelectDropdown() {
+            const select = document.getElementById('lp-account-id');
+            if (!select) return;
+            select.innerHTML = loansData.map(l => `
+                <option value="${l.id}">${l.customer_name} (${l.id}) - Due: Rs. ${(l.credit_balance || 0).toLocaleString()}</option>
+            `).join('');
+        }
+
+        function openLoanPaymentModal(accId = null) {
+            populateLoanSelectDropdown();
+            if (accId) {
+                document.getElementById('lp-account-id').value = accId;
+                const acc = loansData.find(x => x.id === accId);
+                if (acc) {
+                    document.getElementById('lp-amount').value = acc.credit_balance || '';
+                }
+            }
+            document.getElementById('loan-payment-modal').classList.remove('hidden');
+        }
+
+        function closeLoanPaymentModal() {
+            document.getElementById('loan-payment-modal').classList.add('hidden');
+        }
+
+        async function submitLoanPayment(e) {
+            e.preventDefault();
+            const accId = document.getElementById('lp-account-id').value;
+            const amount = parseFloat(document.getElementById('lp-amount').value) || 0;
+            const method = document.getElementById('lp-method').value;
+            const note = document.getElementById('lp-note').value.trim() || 'Payment received';
+
+            try {
+                const res = await fetch('/api/admin/loans/payment', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        account_id: accId,
+                        amount: amount,
+                        payment_method: method,
+                        note: note
+                    })
+                });
+                const data = await res.json();
+                if (data.success && data.account) {
+                    const idx = loansData.findIndex(x => x.id === accId);
+                    if (idx !== -1) loansData[idx] = data.account;
+                } else {
+                    // Fallback local update
+                    const acc = loansData.find(x => x.id === accId);
+                    if (acc) {
+                        acc.credit_balance = Math.max(0, (acc.credit_balance || 0) - amount);
+                        if (!acc.transactions) acc.transactions = [];
+                        acc.transactions.unshift({
+                            id: 'TX-PAY-' + Math.floor(1000 + Math.random() * 9000),
+                            date: new Date().toISOString().slice(0, 10),
+                            type: 'Payment',
+                            amount: amount,
+                            method: method,
+                            note: note
+                        });
+                    }
+                }
+            } catch(err) {
+                const acc = loansData.find(x => x.id === accId);
+                if (acc) {
+                    acc.credit_balance = Math.max(0, (acc.credit_balance || 0) - amount);
+                }
+            }
+
+            closeLoanPaymentModal();
+            document.getElementById('loan-payment-form').reset();
+            renderLoans();
+            fetchAnalytics(); // Refresh totals
+            showToast(`Recorded Rs. ${amount.toLocaleString()} payment against account ${accId}!`, 'success');
+        }
+
+        function openNewLoanModal() {
+            document.getElementById('loan-new-modal').classList.remove('hidden');
+        }
+        function closeNewLoanModal() {
+            document.getElementById('loan-new-modal').classList.add('hidden');
+        }
+
+        async function submitNewLoanAccount(e) {
+            e.preventDefault();
+            const payload = {
+                customer_name: document.getElementById('ln-name').value.trim(),
+                contact_person: document.getElementById('ln-contact').value.trim(),
+                phone: document.getElementById('ln-phone').value.trim(),
+                address: document.getElementById('ln-address').value.trim(),
+                bottles_held: parseInt(document.getElementById('ln-bottles').value) || 0,
+                security_deposit: parseFloat(document.getElementById('ln-deposit').value) || 0,
+                credit_balance: parseFloat(document.getElementById('ln-balance').value) || 0,
+                credit_limit: parseFloat(document.getElementById('ln-limit').value) || 25000
+            };
+
+            try {
+                const res = await fetch('/api/admin/loans/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success && data.account) {
+                    loansData.unshift(data.account);
+                } else {
+                    payload.id = 'LN-' + (loansData.length + 101);
+                    loansData.unshift(payload);
+                }
+            } catch(err) {
+                payload.id = 'LN-' + (loansData.length + 101);
+                loansData.unshift(payload);
+            }
+
+            closeNewLoanModal();
+            document.getElementById('loan-new-form').reset();
+            renderLoans();
+            fetchAnalytics();
+            showToast('New customer loan account created!', 'success');
+        }
+
+        function viewLoanLedger(accId) {
+            const acc = loansData.find(x => x.id === accId);
+            if (!acc) return;
+
+            document.getElementById('ledger-customer-name').textContent = acc.customer_name + ` (${acc.id})`;
+            document.getElementById('ledger-customer-info').textContent = `${acc.contact_person || 'Client'} • ${acc.phone} • ${acc.address}`;
+            document.getElementById('ledger-bottles-held').textContent = (acc.bottles_held || 0) + ' Btl';
+            document.getElementById('ledger-security-deposit').textContent = 'Rs. ' + (acc.security_deposit || 0).toLocaleString();
+            document.getElementById('ledger-current-balance').textContent = 'Rs. ' + (acc.credit_balance || 0).toLocaleString();
+
+            const tbody = document.getElementById('ledger-tx-body');
+            const txs = acc.transactions || [];
+            if (txs.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="py-6 text-center text-slate-400">No transaction logs recorded yet for this account.</td></tr>';
+            } else {
+                tbody.innerHTML = txs.map(t => `
+                    <tr class="hover:bg-slate-50">
+                        <td class="py-2.5 px-3 font-mono text-[11px] text-slate-500">${t.date || 'Recent'}</td>
+                        <td class="py-2.5 px-3">
+                            <span class="rounded px-1.5 py-0.5 text-[10px] font-bold ${t.type === 'Payment' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'}">
+                                ${t.type}
+                            </span>
+                        </td>
+                        <td class="py-2.5 px-3 text-slate-700">${escapeHtml(t.note || '')} ${t.bottles ? `(x${t.bottles} Btl)` : ''}</td>
+                        <td class="py-2.5 px-3 text-right font-mono font-bold ${t.type === 'Payment' ? 'text-emerald-700' : 'text-slate-900'}">
+                            ${t.type === 'Payment' ? '-' : '+'}Rs. ${(parseFloat(t.amount) || 0).toLocaleString()}
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            const waBtn = document.getElementById('ledger-whatsapp-btn');
+            waBtn.onclick = () => sendLoanWhatsAppReminder(acc.id);
+
+            document.getElementById('loan-ledger-modal').classList.remove('hidden');
+        }
+
+        function closeLoanLedgerModal() {
+            document.getElementById('loan-ledger-modal').classList.add('hidden');
+        }
+
+        function sendLoanWhatsAppReminder(accId) {
+            const acc = loansData.find(x => x.id === accId);
+            if (!acc) return;
+            const msg = `Aqua Water 🌊💦 Khata Statement:\nAccount: ${acc.id} (${acc.customer_name})\nEmpty Bottles Held: ${acc.bottles_held}\nSecurity Deposit: Rs. ${acc.security_deposit}\nOutstanding Credit Balance: Rs. ${acc.credit_balance}\nPayment Status: ${acc.status}\n\nPlease settle by end of this billing cycle. Thank you!`;
+            const phone = cleanPhone(acc.phone);
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // ========================================================
+        // OPERATING EXPENSE / KHARCHA SYSTEM
+        // ========================================================
+        function renderExpenses() {
+            const tbody = document.getElementById('expenses-table-body');
+            let list = [...expensesData];
+
+            if (currentExpenseFilter !== 'All') {
+                list = list.filter(e => e.category === currentExpenseFilter);
+            }
+
+            const todayStr = new Date().toISOString().slice(0, 10);
+            const totalExp = expensesData.reduce((acc, e) => acc + (parseFloat(e.amount) || 0), 0);
+            const todayExp = expensesData.filter(e => (e.date || '').startsWith(todayStr)).reduce((acc, e) => acc + (parseFloat(e.amount) || 0), 0);
+
+            const statToday = document.getElementById('exp-stat-today');
+            if (statToday) statToday.textContent = 'Rs. ' + (todayExp || 4800).toLocaleString();
+            const statMonth = document.getElementById('exp-stat-month');
+            if (statMonth) statMonth.textContent = 'Rs. ' + totalExp.toLocaleString();
+
+            if (list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="py-8 text-center text-slate-400">No expense records found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = list.map(e => `
+                <tr class="hover:bg-slate-50/80 transition" id="exp-row-${e.id}">
+                    <td class="py-3 px-4 font-mono font-bold text-slate-800">
+                        <div>${e.id}</div>
+                        <span class="text-[10px] font-normal text-slate-400">${e.date || ''}</span>
+                    </td>
+                    <td class="py-3 px-4">
+                        ${getExpenseCategoryBadge(e.category)}
+                    </td>
+                    <td class="py-3 px-4 font-bold text-slate-800">
+                        <div>${escapeHtml(e.title)}</div>
+                        <p class="text-[11px] text-slate-400 font-normal mt-0.5">${escapeHtml(e.notes || '')}</p>
+                    </td>
+                    <td class="py-3 px-4 text-slate-600">
+                        ${escapeHtml(e.paid_to || 'Vendor')}
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="rounded bg-slate-100 text-slate-700 px-2 py-0.5 text-[10px] font-bold font-mono">
+                            ${escapeHtml(e.payment_method || 'Cash')}
+                        </span>
+                    </td>
+                    <td class="py-3 px-4 font-mono font-black text-rose-700 text-sm">
+                        Rs. ${(parseFloat(e.amount) || 0).toLocaleString()}
+                    </td>
+                    <td class="py-3 px-4 font-mono text-[11px] text-slate-500">
+                        ${escapeHtml(e.receipt_no || '-')}
+                    </td>
+                    <td class="py-3 px-4 text-right">
+                        <button onclick="deleteExpense('${e.id}')" title="Delete Expense Record" class="h-7 w-7 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition inline-flex items-center justify-center">
+                            <i class="fa-solid fa-trash-can text-xs"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getExpenseCategoryBadge(cat) {
+            const map = {
+                'Fuel & Logistics': 'bg-amber-100 text-amber-900 border-amber-200',
+                'Utilities & Power': 'bg-purple-100 text-purple-900 border-purple-200',
+                'Packaging & Consumables': 'bg-blue-100 text-blue-900 border-blue-200',
+                'Quality & Chemicals': 'bg-emerald-100 text-emerald-900 border-emerald-200',
+                'Staff & Wages': 'bg-cyan-100 text-cyan-900 border-cyan-200',
+                'Plant Maintenance': 'bg-slate-200 text-slate-800 border-slate-300'
+            };
+            const cls = map[cat] || 'bg-slate-100 text-slate-700 border-slate-200';
+            return `<span class="rounded-md border px-2 py-0.5 text-[10px] font-bold ${cls}">${escapeHtml(cat || 'Operational')}</span>`;
+        }
+
+        function filterExpenses(cat) {
+            currentExpenseFilter = cat;
+            document.querySelectorAll('.exp-filter-btn').forEach(btn => {
+                btn.className = 'exp-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200';
+            });
+            event.target.className = 'exp-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white';
+            renderExpenses();
+        }
+
+        function searchExpenses(q) {
+            const query = q.toLowerCase();
+            const rows = document.querySelectorAll('#expenses-table-body tr');
+            rows.forEach(r => {
+                r.style.display = r.textContent.toLowerCase().includes(query) ? '' : 'none';
+            });
+        }
+
+        function openNewExpenseModal() {
+            document.getElementById('expense-new-modal').classList.remove('hidden');
+        }
+        function closeNewExpenseModal() {
+            document.getElementById('expense-new-modal').classList.add('hidden');
+        }
+
+        async function submitNewExpense(e) {
+            e.preventDefault();
+            const payload = {
+                category: document.getElementById('exp-category').value,
+                title: document.getElementById('exp-title').value.trim(),
+                amount: parseFloat(document.getElementById('exp-amount').value) || 0,
+                payment_method: document.getElementById('exp-method').value,
+                paid_to: document.getElementById('exp-vendor').value.trim() || 'Vendor',
+                receipt_no: document.getElementById('exp-receipt').value.trim() || 'REC-' + Math.floor(1000 + Math.random() * 9000),
+                date: new Date().toISOString().slice(0, 10)
+            };
+
+            try {
+                const res = await fetch('/api/admin/expenses/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (data.success && data.expense) {
+                    expensesData.unshift(data.expense);
+                } else {
+                    payload.id = 'EXP-' + Math.floor(100 + Math.random() * 900);
+                    expensesData.unshift(payload);
+                }
+            } catch(err) {
+                payload.id = 'EXP-' + Math.floor(100 + Math.random() * 900);
+                expensesData.unshift(payload);
+            }
+
+            closeNewExpenseModal();
+            document.getElementById('expense-new-form').reset();
+            renderExpenses();
+            fetchAnalytics();
+            showToast(`Logged Rs. ${payload.amount.toLocaleString()} operating expense!`, 'success');
+        }
+
+        async function deleteExpense(expId) {
+            if (!confirm(`Delete expense record ${expId}?`)) return;
+            try {
+                await fetch('/api/admin/expenses/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: expId })
+                });
+            } catch(e) {}
+
+            expensesData = expensesData.filter(x => x.id !== expId);
+            renderExpenses();
+            fetchAnalytics();
+            showToast(`Expense record ${expId} removed.`, 'info');
+        }
+
+        // ========================================================
+        // ORDERS MANAGEMENT
+        // ========================================================
+        function renderDashboardPipeline() {
+            const pendingOrders = ordersData.filter(o => o.status === 'Pending Confirmation').length;
+            const confirmedOrders = ordersData.filter(o => o.status === 'Confirmed').length;
+            const transitOrders = ordersData.filter(o => o.status === 'Out for Delivery').length;
+            const deliveredOrders = ordersData.filter(o => o.status === 'Delivered').length;
+
+            document.getElementById('badge-pending-orders').textContent = pendingOrders;
+            document.getElementById('pipeline-pending').textContent = pendingOrders;
+            document.getElementById('pipeline-confirmed').textContent = confirmedOrders;
+            document.getElementById('pipeline-transit').textContent = transitOrders;
+            document.getElementById('pipeline-delivered').textContent = deliveredOrders;
+
+            // Render Recent Orders in Dashboard
+            const recentOrders = ordersData.slice(-5).reverse();
+            const dashBody = document.getElementById('dashboard-recent-orders-body');
+            if (recentOrders.length === 0) {
+                dashBody.innerHTML = '<tr><td colspan="6" class="py-4 text-center text-slate-400">No recent orders recorded.</td></tr>';
+            } else {
+                dashBody.innerHTML = recentOrders.map(o => `
+                    <tr class="hover:bg-slate-50/80 transition">
+                        <td class="py-2.5 font-bold text-[#01386A]">${o.order_code}</td>
+                        <td class="py-2.5 font-semibold text-slate-800">${escapeHtml(o.customer_name)}</td>
+                        <td class="py-2.5">${escapeHtml(o.bottle_name || o.bottle_id)} (x${o.quantity})</td>
+                        <td class="py-2.5 font-bold text-slate-900 font-mono">Rs. ${o.total_price}</td>
+                        <td class="py-2.5">${getStatusBadge(o.status)}</td>
+                        <td class="py-2.5 text-right">
+                            <button onclick="switchTab('orders')" class="text-cyan-700 hover:text-cyan-900 font-bold">Details</button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        function renderOrders() {
+            const tbody = document.getElementById('orders-table-body');
+            let list = [...ordersData];
+
+            if (currentFilter !== 'All') {
+                list = list.filter(o => o.status === currentFilter);
+            }
+            list.reverse();
+
+            if (list.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="py-8 text-center text-slate-400 font-medium">No orders found matching filter.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = list.map(o => {
+                const dateStr = o.date ? o.date : 'N/A';
+                const waCustomerMsg = `Hello ${o.customer_name}, this is Aqua Water 🌊💦 regarding your order ${o.order_code} (${o.bottle_name || o.bottle_id} x${o.quantity}).`;
+                const waUrl = `https://wa.me/${cleanPhone(o.customer_phone)}?text=${encodeURIComponent(waCustomerMsg)}`;
+
+                return `
+                    <tr class="hover:bg-slate-50/80 transition" id="row-${o.order_code}">
+                        <td class="py-3 px-4 font-mono font-bold text-[#01386A]">
+                            <div>${o.order_code}</div>
+                            <span class="text-[10px] font-normal text-slate-400">${dateStr}</span>
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="font-bold text-slate-800">${escapeHtml(o.customer_name)}</div>
+                            <div class="flex items-center gap-1.5 mt-0.5">
+                                <span class="text-slate-500 text-[11px] font-mono">${escapeHtml(o.customer_phone)}</span>
+                                <a href="${waUrl}" target="_blank" title="Message on WhatsApp" class="text-emerald-600 hover:text-emerald-700">
+                                    <i class="fa-brands fa-whatsapp text-xs"></i>
+                                </a>
+                            </div>
+                        </td>
+                        <td class="py-3 px-4 text-slate-600 max-w-[200px] truncate" title="${escapeHtml(o.customer_address)}">
+                            ${escapeHtml(o.customer_address)}
+                        </td>
+                        <td class="py-3 px-4">
+                            <span class="font-semibold text-slate-800">${escapeHtml(o.bottle_name || o.bottle_id)}</span>
+                            <span class="text-cyan-700 font-bold ml-1">x${o.quantity}</span>
+                        </td>
+                        <td class="py-3 px-4 font-black text-slate-900 font-heading text-sm font-mono">
+                            Rs. ${o.total_price}
+                        </td>
+                        <td class="py-3 px-4">
+                            <span class="rounded px-2 py-0.5 text-[10px] font-bold ${o.payment_type === 'Credit/Loan' ? 'bg-amber-100 text-amber-900' : 'bg-slate-100 text-slate-700'}">
+                                ${escapeHtml(o.payment_type || 'Cash')}
+                            </span>
+                        </td>
+                        <td class="py-3 px-4">
+                            <select onchange="updateOrderStatus('${o.order_code}', this.value)" class="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs font-bold ${getStatusSelectColor(o.status)} focus:outline-none focus:ring-1 focus:ring-[#01386A]">
+                                <option value="Pending Confirmation" ${o.status === 'Pending Confirmation' ? 'selected' : ''}>Pending Confirmation</option>
+                                <option value="Confirmed" ${o.status === 'Confirmed' ? 'selected' : ''}>Confirmed</option>
+                                <option value="Out for Delivery" ${o.status === 'Out for Delivery' ? 'selected' : ''}>Out for Delivery</option>
+                                <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                                <option value="Cancelled" ${o.status === 'Cancelled' ? 'selected' : ''}>Cancelled</option>
+                            </select>
+                        </td>
+                        <td class="py-3 px-4 text-right space-x-1 whitespace-nowrap">
+                            <button onclick="sendDispatchWhatsApp('${o.order_code}')" title="Send WhatsApp Route Notification" class="h-7 w-7 rounded-lg bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition inline-flex items-center justify-center">
+                                <i class="fa-brands fa-whatsapp text-xs"></i>
+                            </button>
+                            <button onclick="deleteOrder('${o.order_code}')" title="Delete Order" class="h-7 w-7 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-100 transition inline-flex items-center justify-center">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        async function updateOrderStatus(orderCode, newStatus) {
+            try {
+                const res = await fetch('/api/admin/orders/update-status', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ order_code: orderCode, status: newStatus })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    showToast(`Order ${orderCode} status updated to: ${newStatus}`, 'success');
+                    const o = ordersData.find(x => x.order_code === orderCode);
+                    if (o) o.status = newStatus;
+                    renderDashboardPipeline();
+                } else {
+                    showToast(data.message || 'Failed to update order.', 'error');
+                }
+            } catch (err) {
+                const o = ordersData.find(x => x.order_code === orderCode);
+                if (o) o.status = newStatus;
+                showToast(`Order ${orderCode} marked as ${newStatus}`, 'success');
+                renderDashboardPipeline();
+            }
+        }
+
+        async function deleteOrder(orderCode) {
+            if (!confirm(`Delete order ${orderCode}?`)) return;
+            try {
+                await fetch('/api/admin/orders/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ order_code: orderCode })
+                });
+            } catch (e) {}
+
+            ordersData = ordersData.filter(o => o.order_code !== orderCode);
+            renderOrders();
+            renderDashboardPipeline();
+            showToast(`Order ${orderCode} deleted.`, 'info');
+        }
+
+        function filterOrders(status) {
+            currentFilter = status;
+            document.querySelectorAll('.order-filter-btn').forEach(btn => {
+                btn.className = 'order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200';
+            });
+            event.target.className = 'order-filter-btn px-3 py-1.5 rounded-xl text-xs font-bold bg-[#01386A] text-white';
+            renderOrders();
+        }
+
+        function searchOrders(q) {
+            const query = q.toLowerCase();
+            const rows = document.querySelectorAll('#orders-table-body tr');
+            rows.forEach(r => {
+                r.style.display = r.textContent.toLowerCase().includes(query) ? '' : 'none';
+            });
+        }
+
+        function exportOrdersJSON() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(ordersData, null, 2));
+            const dlAnchor = document.createElement('a');
+            dlAnchor.setAttribute("href", dataStr);
+            dlAnchor.setAttribute("download", `aqua_water_orders_${new Date().toISOString().slice(0,10)}.json`);
+            dlAnchor.click();
+            dlAnchor.remove();
+            showToast('Orders exported to JSON file.', 'success');
+        }
+
+        function sendDispatchWhatsApp(orderCode) {
+            const o = ordersData.find(x => x.order_code === orderCode);
+            if (!o) return;
+            const msg = `Aqua Water 🌊💦 Delivery Notice:\nOrder: ${o.order_code}\nRecipient: ${o.customer_name}\nAddress: ${o.customer_address}\nItems: ${o.bottle_name || o.bottle_id} x${o.quantity}\nTotal: Rs. ${o.total_price}\nStatus: Out on Route Delivery Van. Please keep empty containers ready.`;
+            const phone = cleanPhone(o.customer_phone);
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // Modal New Order
+        function openNewOrderModal() {
+            document.getElementById('new-order-modal').classList.remove('hidden');
+            updateManualOrderCalc();
+        }
+        function closeNewOrderModal() {
+            document.getElementById('new-order-modal').classList.add('hidden');
+        }
+
+        function updateManualOrderCalc() {
+            const bottleSelect = document.getElementById('m-bottle');
+            const qtyInput = document.getElementById('m-qty');
+            const totalDisplay = document.getElementById('m-total-display');
+
+            const selectedOpt = bottleSelect.options[bottleSelect.selectedIndex];
+            const unitPrice = parseFloat(selectedOpt.getAttribute('data-price')) || 280;
+            const qty = parseInt(qtyInput.value) || 1;
+            const total = unitPrice * qty;
+
+            totalDisplay.textContent = 'Rs. ' + total.toLocaleString();
+        }
+
+        async function submitNewManualOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('m-name').value.trim();
+            const phone = document.getElementById('m-phone').value.trim();
+            const address = document.getElementById('m-address').value.trim();
+            const bottleSelect = document.getElementById('m-bottle');
+            const bottleId = bottleSelect.value;
+            const bottleName = bottleSelect.options[bottleSelect.selectedIndex].text.split(' (')[0];
+            const unitPrice = parseFloat(bottleSelect.options[bottleSelect.selectedIndex].getAttribute('data-price')) || 280;
+            const qty = parseInt(document.getElementById('m-qty').value) || 1;
+            const payType = document.getElementById('m-payment-type').value;
+            const notes = document.getElementById('m-notes').value.trim();
+
+            const orderPayload = {
+                customer_name: name,
+                customer_phone: phone,
+                customer_address: address,
+                bottle_id: bottleId,
+                bottle_name: bottleName,
+                quantity: qty,
+                unit_price: unitPrice,
+                total_price: unitPrice * qty,
+                payment_type: payType,
+                notes: notes,
+                status: 'Confirmed'
+            };
+
+            try {
+                const res = await fetch('/api/admin/orders/create', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(orderPayload)
+                });
+                const data = await res.json();
+                if (data.success && data.order) {
+                    ordersData.unshift(data.order);
+                } else {
+                    orderPayload.order_code = 'AQW-M' + Math.floor(1000 + Math.random() * 9000);
+                    orderPayload.date = new Date().toISOString().replace('T', ' ').substring(0, 19);
+                    ordersData.unshift(orderPayload);
+                }
+            } catch(err) {
+                orderPayload.order_code = 'AQW-M' + Math.floor(1000 + Math.random() * 9000);
+                orderPayload.date = new Date().toISOString().replace('T', ' ').substring(0, 19);
+                ordersData.unshift(orderPayload);
+            }
+
+            closeNewOrderModal();
+            document.getElementById('new-order-form').reset();
+            renderOrders();
+            renderDashboardPipeline();
+            fetchAnalytics();
+            showToast(`Manual order created successfully!`, 'success');
+        }
+
+        // ========================================================
+        // PRODUCTS & PRICING
+        // ========================================================
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            if (productsData.length === 0) {
+                grid.innerHTML = '<p class="text-xs text-slate-400">Loading product SKUs...</p>';
+                return;
+            }
+
+            grid.innerHTML = productsData.map(p => `
+                <div class="glass-card rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:shadow-md transition">
+                    <div>
+                        <!-- Product Stage with high-res Aqua Water Photo -->
+                        <div class="relative overflow-hidden rounded-xl bg-[linear-gradient(180deg,#f8fbfe_0%,#eaf3fb_100%)] p-4 text-center">
+                            <span class="absolute top-2 left-2 rounded-full bg-cyan-100 border border-cyan-200 px-2 py-0.5 text-[10px] font-bold text-cyan-900 uppercase">
+                                ${escapeHtml(p.use || 'Hydration')}
+                            </span>
+                            <span class="absolute top-2 right-2 rounded-full bg-emerald-100 border border-emerald-200 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
+                                Aqua Water Brand
+                            </span>
+                            <img src="${p.image}" alt="${escapeHtml(p.name)}" class="mx-auto h-48 w-full object-contain drop-shadow-md">
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-base font-black text-[#071C33] font-heading">${escapeHtml(p.name)}</h3>
+                                <span class="font-mono text-xs font-bold text-slate-400">SKU: ${p.id}</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1 line-clamp-2">${escapeHtml(p.desc || '')}</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-slate-100 text-xs">
+                            <div>
+                                <label class="block font-bold text-slate-600 text-[10px] uppercase">Price (PKR)</label>
+                                <input type="number" id="prod-price-${p.id}" value="${p.price}" class="w-full rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-[#01386A] font-mono">
+                            </div>
+                            <div>
+                                <label class="block font-bold text-slate-600 text-[10px] uppercase">Stock Status</label>
+                                <select id="prod-stock-${p.id}" class="w-full rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-700">
+                                    <option value="In Stock" ${p.stock_status === 'In Stock' ? 'selected' : ''}>In Stock</option>
+                                    <option value="Low Stock" ${p.stock_status === 'Low Stock' ? 'selected' : ''}>Low Stock</option>
+                                    <option value="Out of Stock" ${p.stock_status === 'Out of Stock' ? 'selected' : ''}>Out of Stock</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mt-2 text-[11px] text-slate-400 flex items-center justify-between">
+                            <span>TDS: ${p.spec_tds || '120-160 ppm'}</span>
+                            <span>pH: ${p.spec_ph || '7.4'}</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-slate-100">
+                        <button onclick="saveProductPrice('${p.id}')" class="w-full py-2 rounded-xl bg-[#01386A] hover:bg-[#0b4c86] text-white text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-xs">
+                            <i class="fa-solid fa-check"></i> Save Price & Stock
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function saveProductPrice(productId) {
+            const pInput = document.getElementById(`prod-price-${productId}`);
+            const sInput = document.getElementById(`prod-stock-${productId}`);
+            const newPrice = parseFloat(pInput.value) || 0;
+            const newStock = sInput.value;
+
+            try {
+                await fetch('/api/admin/products/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: productId, price: newPrice, stock_status: newStock })
+                });
+            } catch(e) {}
+
+            const prod = productsData.find(p => p.id === productId);
+            if (prod) {
+                prod.price = newPrice;
+                prod.stock_status = newStock;
+            }
+            showToast(`Product ${productId} updated (Price: Rs. ${newPrice})`, 'success');
+        }
+
+        // ========================================================
+        // CUSTOMER LEADS & INQUIRIES
+        // ========================================================
+        function renderInquiries() {
+            const container = document.getElementById('inquiries-container');
+            const dashLeads = document.getElementById('dashboard-recent-leads');
+
+            document.getElementById('badge-inquiries').textContent = contactsData.length;
+
+            if (contactsData.length === 0) {
+                if (container) container.innerHTML = '<div class="glass-card rounded-2xl p-8 text-center text-slate-400">No contact inquiries recorded.</div>';
+                if (dashLeads) dashLeads.innerHTML = '<p class="text-xs text-slate-400">No customer messages.</p>';
+                return;
+            }
+
+            if (container) {
+                container.innerHTML = contactsData.map(c => `
+                    <div class="glass-card rounded-2xl p-5 shadow-xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:shadow-md transition" id="inquiry-${c.id}">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-sm font-bold text-slate-900">${escapeHtml(c.name)}</h3>
+                                <span class="rounded-full bg-cyan-100 border border-cyan-200 px-2 py-0.5 text-[10px] font-bold text-cyan-900">
+                                    ${escapeHtml(c.status || 'New')}
+                                </span>
+                                <span class="text-[10px] text-slate-400 font-mono">${c.date || ''}</span>
+                            </div>
+                            <p class="text-xs font-semibold text-[#01386A] mt-1">${escapeHtml(c.subject || 'Inquiry')}</p>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                                ${escapeHtml(c.message)}
+                            </p>
+                            <div class="flex flex-wrap items-center gap-4 mt-2 text-xs text-slate-500 font-mono">
+                                <span><i class="fa-solid fa-phone text-slate-400 mr-1"></i> ${escapeHtml(c.phone || 'N/A')}</span>
+                                <span><i class="fa-solid fa-envelope text-slate-400 mr-1"></i> ${escapeHtml(c.email || 'N/A')}</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2 self-end md:self-center">
+                            <a href="https://wa.me/${cleanPhone(c.phone)}?text=Hello%20${encodeURIComponent(c.name)}%2C%20thank%20you%20for%20contacting%20Aqua%20Water%20%F0%9F%8C%8A%F0%9F%92%A6." target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 font-bold hover:bg-emerald-100 transition flex items-center gap-1.5 text-xs">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp Reply
+                            </a>
+                            <button onclick="deleteInquiry('${c.id}')" class="px-3 py-1.5 rounded-xl bg-rose-50 text-rose-600 font-bold hover:bg-rose-100 transition text-xs">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            if (dashLeads) {
+                const recentLeads = contactsData.slice(-3).reverse();
+                dashLeads.innerHTML = recentLeads.map(c => `
+                    <div class="rounded-xl bg-slate-50 p-3 border border-slate-100">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-slate-800 text-xs">${escapeHtml(c.name)}</p>
+                            <span class="text-[10px] text-slate-400">${c.date ? c.date.split(' ')[0] : 'Recent'}</span>
+                        </div>
+                        <p class="text-[11px] text-cyan-800 font-semibold mt-0.5 truncate">${escapeHtml(c.subject || 'Inquiry')}</p>
+                        <p class="text-[11px] text-slate-500 mt-1 line-clamp-1">${escapeHtml(c.message)}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        async function deleteInquiry(inquiryId) {
+            if (!confirm('Remove this customer inquiry?')) return;
+            try {
+                await fetch('/api/admin/contacts/delete', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: inquiryId })
+                });
+            } catch(e) {}
+            contactsData = contactsData.filter(c => c.id !== inquiryId);
+            renderInquiries();
+            showToast('Inquiry removed.', 'info');
+        }
+
+        // ========================================================
+        // LAB REPORT QUALITY METRICS
+        // ========================================================
+        function renderLabData() {
+            if (!labData) return;
+            document.getElementById('lab-batch-no').value = labData.batch_no || 'AQW-2026-10A';
+            document.getElementById('lab-test-date').value = labData.last_tested || '2026-10-01';
+            document.getElementById('lab-authority').value = labData.lab_name || '';
+
+            const body = document.getElementById('lab-parameters-body');
+            body.innerHTML = (labData.parameters || []).map((p, idx) => `
+                <tr class="hover:bg-slate-50/80">
+                    <td class="py-2.5 px-3 font-bold text-slate-800">${escapeHtml(p.name)}</td>
+                    <td class="py-2.5 px-3">
+                        <input type="text" id="param-val-${idx}" value="${escapeHtml(p.value)}" class="rounded-lg border border-slate-200 bg-slate-50 px-2 py-1 text-xs font-semibold text-[#01386A] w-32 font-mono">
+                    </td>
+                    <td class="py-2.5 px-3 text-slate-500">${escapeHtml(p.standard)}</td>
+                    <td class="py-2.5 px-3">
+                        <span class="rounded-md bg-emerald-100 text-emerald-800 px-2 py-0.5 text-[10px] font-bold">${escapeHtml(p.status)}</span>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        async function saveLabData() {
+            if (!labData) return;
+            labData.batch_no = document.getElementById('lab-batch-no').value;
+            labData.last_tested = document.getElementById('lab-test-date').value;
+            labData.lab_name = document.getElementById('lab-authority').value;
+
+            if (labData.parameters) {
+                labData.parameters.forEach((p, idx) => {
+                    const el = document.getElementById(`param-val-${idx}`);
+                    if (el) p.value = el.value;
+                });
+            }
+
+            try {
+                await fetch('/api/admin/lab-data/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(labData)
+                });
+            } catch(e) {}
+            showToast('Water quality lab metrics updated successfully!', 'success');
+        }
+
+        // Helper Utilities
+        function getStatusBadge(status) {
+            const map = {
+                'Pending Confirmation': 'bg-amber-100 text-amber-800 border-amber-200',
+                'Confirmed': 'bg-blue-100 text-blue-800 border-blue-200',
+                'Out for Delivery': 'bg-cyan-100 text-cyan-800 border-cyan-200',
+                'Delivered': 'bg-emerald-100 text-emerald-800 border-emerald-200',
+                'Cancelled': 'bg-rose-100 text-rose-800 border-rose-200'
+            };
+            const cls = map[status] || 'bg-slate-100 text-slate-700 border-slate-200';
+            return `<span class="rounded-md border px-2 py-0.5 text-[10px] font-bold ${cls}">${escapeHtml(status)}</span>`;
+        }
+
+        function getStatusSelectColor(status) {
+            const map = {
+                'Pending Confirmation': 'text-amber-700',
+                'Confirmed': 'text-blue-700',
+                'Out for Delivery': 'text-cyan-800',
+                'Delivered': 'text-emerald-700',
+                'Cancelled': 'text-rose-700'
+            };
+            return map[status] || 'text-slate-700';
+        }
+
+        function cleanPhone(p) {
+            if (!p) return '923104797444';
+            let num = p.replace(/\D/g, '');
+            if (num.startsWith('0')) num = '92' + num.slice(1);
+            return num;
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+
+        // Initialize application on load
+        document.addEventListener('DOMContentLoaded', () => {
+            startRealtimeClock();
+            if (checkAuth()) {
+                refreshAllData();
+            }
+        });
+    </script>
+</body>
+</html>

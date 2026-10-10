@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" class="light scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Products & Bottle Range | Aqua Water 🌊💦</title>
+    <meta name="description" content="Aqua Water provides pure drinking water and premium route delivery for homes, offices, restaurants, and businesses.">
+    <link rel="icon" href="public/images/aqua_water_logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="public/css/style.css">
+    <style>
+        :root { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+        h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
+    </style>
+</head>
+<body class="font-sans antialiased bg-white text-slate-900 selection:bg-[#01386A] selection:text-white">
+
+<header class="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-6 lg:px-8">
+    <div class="mx-auto flex w-full max-w-7xl items-center justify-between rounded-[1.6rem] border border-white/12 bg-[rgba(3,31,56,0.92)] px-4 py-3 shadow-[0_24px_52px_-30px_rgba(0,0,0,0.45)] backdrop-blur-md sm:px-6">
+        <a href="index.html" class="flex shrink-0 items-center gap-2.5 sm:gap-3 group">
+            <img src="public/images/aqua_water_logo.svg" alt="Aqua Water" class="h-9 w-9 rounded-xl border border-white/25 bg-white/95 object-contain p-0.5 shadow-sm sm:h-10 sm:w-10 transition duration-300 group-hover:scale-105">
+            <div class="hidden sm:block text-left">
+                <p class="text-[11px] font-bold tracking-[0.22em] text-[#cfe4f5] uppercase flex items-center gap-1.5">
+                    Aqua Water <span class="text-xs">🌊</span>
+                </p>
+                <p class="text-sm font-semibold text-white">Premium Water Supply</p>
+            </div>
+            <div class="block sm:hidden text-left">
+                <p class="text-[13px] font-bold tracking-wide text-white flex items-center gap-1">Aqua Water <span>🌊</span></p>
+            </div>
+        </a>
+        <nav class="hidden items-center gap-1 rounded-full border border-white/10 bg-white/6 px-3 py-1.5 text-sm font-medium text-slate-200/90 lg:flex">
+            <a href="index.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Home</a>
+            <a href="index.html#products" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Products</a>
+            <a href="index.html#process" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Process</a>
+            <a href="purification-process.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Purification</a>
+            <a href="about-us.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">About Us</a>
+            <a href="lab-report.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Lab Reports</a>
+            <a href="contact-us.html" class="rounded-full px-3.5 py-1.5 transition hover:bg-white/10 hover:text-white">Contact</a>
+        </nav>
+        <div class="flex shrink-0 items-center gap-2 sm:gap-3">
+            <button onclick="openOrderModal()" class="hidden items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-[#0284c7] px-3.5 py-2 text-xs font-bold text-white shadow-md shadow-cyan-900/40 transition duration-200 hover:-translate-y-0.5 sm:inline-flex">
+                <i class="fa-solid fa-cart-shopping text-xs"></i><span>Quick Order</span>
+            </button>
+            <a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%2C%20I%20want%20to%20order" target="_blank" class="hidden items-center gap-1.5 rounded-xl border border-white/18 bg-white/8 px-3.5 py-2 text-xs font-semibold text-white transition hover:bg-white/14 md:inline-flex">
+                <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i><span>WhatsApp</span>
+            </a>
+            <a href="login.html" class="hidden rounded-xl bg-white px-3.5 py-2 text-xs font-bold text-[#01386A] shadow-[0_18px_38px_-24px_rgba(255,255,255,0.45)] transition hover:bg-[#e9f2f9] sm:inline-flex">
+                <span>Login</span>
+            </a>
+            <button type="button" onclick="toggleMobileMenu()" class="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white transition hover:bg-white/10 lg:hidden" aria-label="Toggle menu">
+                <i id="hamburger-icon" class="fa-solid fa-bars text-base"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="pt-28 pb-20 bg-[radial-gradient(circle_at_top,#f8fbfe_0%,#edf5fb_100%)]">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        <!-- Breadcrumb & Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="inline-flex items-center gap-2 rounded-full border border-[#d7ebf6] bg-white px-4 py-1.5 text-xs font-bold tracking-[0.24em] text-[#0a4e80] uppercase shadow-sm">
+                <i class="fa-solid fa-bottle-water text-cyan-600"></i> COMPLETE RANGE
+            </span>
+            <h1 class="mt-4 text-4xl font-black text-[#071C33] sm:text-5xl font-heading">
+                Bottled Water for Every Hydration Need
+            </h1>
+            <p class="mt-4 text-base text-[#5f7489] leading-relaxed">
+                From handheld bottles for meetings and active days to large-capacity bottles for homes and offices, choose the perfect size below.
+            </p>
+        </div>
+
+        <!-- Products Detailed Showcase -->
+        <div class="space-y-12">
+            
+            <!-- 500ml Bottle -->
+            <div id="500ml" class="scroll-mt-32 rounded-[2.2rem] border border-[#d4e4f2] bg-white p-6 shadow-xl transition-all duration-300 hover:shadow-2xl sm:p-10">
+                <div class="grid gap-8 lg:grid-cols-12 lg:items-center">
+                    <div class="lg:col-span-5">
+                        <div class="product-stage relative isolate overflow-hidden rounded-[1.8rem] bg-[linear-gradient(180deg,#f8fbff_0%,#e6f0f8_100%)] p-8">
+                            <div class="product-stage__shadow pointer-events-none absolute inset-x-8 bottom-4 h-20 rounded-full bg-[#01386A]/14 blur-xl"></div>
+                            <div class="product-stage__orb pointer-events-none absolute top-6 right-6 h-28 w-28 rounded-full bg-white/80 blur-2xl"></div>
+                            <img src="public/images/optimized/aqua-water-500ml.webp" alt="500ml Bottle Aqua Water Pure Drinking Water" class="product-stage__image relative z-10 mx-auto h-72 w-full object-contain object-bottom sm:h-80" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <span class="rounded-full bg-cyan-100/70 border border-cyan-200 px-3.5 py-1 text-xs font-bold text-cyan-900 uppercase tracking-widest">On-the-go</span>
+                            <span class="text-2xl font-black text-[#01386A]">Rs. 50</span>
+                        </div>
+                        <h2 class="text-3xl font-black text-[#071C33] font-heading">500ml Bottle</h2>
+                        <p class="text-sm leading-relaxed text-[#5f7489]">Compact hydration for counters, events, meetings and everyday retail use. Easy to carry and sealed for pristine freshness.</p>
+                        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 pt-2">
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Packaging</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Pack of 12 / 24</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Total TDS</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">120 - 160 ppm</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">pH Level</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">7.2 - 7.6</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Delivery</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Route & Direct</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl bg-[#edf5fc] p-3.5 text-xs text-slate-700 flex items-start gap-2.5">
+                            <i class="fa-solid fa-lightbulb text-cyan-700 mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-[#01386A]">Best Suited For:</span>
+                                <span>Meetings, Conferences, Car Travel, Retail Counters</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="openOrderModal('500ml')" class="rounded-xl bg-[#01386A] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#0b4c86] shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-cart-shopping"></i> Order This Bottle
+                            </button>
+                            <a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%20%F0%9F%8C%8A%F0%9F%92%A6%2C%20I%20want%20to%20order%20500ml%20Bottle." target="_blank" class="rounded-xl border border-emerald-500/30 bg-emerald-50 px-5 py-3 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 flex items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Order via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 1500ml Bottle -->
+            <div id="1500ml" class="scroll-mt-32 rounded-[2.2rem] border border-[#d4e4f2] bg-white p-6 shadow-xl transition-all duration-300 hover:shadow-2xl sm:p-10">
+                <div class="grid gap-8 lg:grid-cols-12 lg:items-center">
+                    <div class="lg:col-span-5 lg:order-2">
+                        <div class="product-stage relative isolate overflow-hidden rounded-[1.8rem] bg-[linear-gradient(180deg,#f8fbff_0%,#e6f0f8_100%)] p-8">
+                            <div class="product-stage__shadow pointer-events-none absolute inset-x-8 bottom-4 h-20 rounded-full bg-[#01386A]/14 blur-xl"></div>
+                            <div class="product-stage__orb pointer-events-none absolute top-6 right-6 h-28 w-28 rounded-full bg-white/80 blur-2xl"></div>
+                            <img src="public/images/optimized/aqua-water-1500ml.webp" alt="1500ml Bottle Aqua Water Pure Drinking Water" class="product-stage__image relative z-10 mx-auto h-72 w-full object-contain object-bottom sm:h-80" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 lg:order-1 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <span class="rounded-full bg-cyan-100/70 border border-cyan-200 px-3.5 py-1 text-xs font-bold text-cyan-900 uppercase tracking-widest">Daily hydration</span>
+                            <span class="text-2xl font-black text-[#01386A]">Rs. 90</span>
+                        </div>
+                        <h2 class="text-3xl font-black text-[#071C33] font-heading">1500ml Bottle</h2>
+                        <p class="text-sm leading-relaxed text-[#5f7489]">A larger bottle for desks, travel, gyms and retail shelves that need longer-use hydration throughout the day.</p>
+                        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 pt-2">
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Packaging</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Pack of 6 / 12</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Total TDS</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">120 - 160 ppm</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">pH Level</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">7.2 - 7.6</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Delivery</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Route & Direct</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl bg-[#edf5fc] p-3.5 text-xs text-slate-700 flex items-start gap-2.5">
+                            <i class="fa-solid fa-lightbulb text-cyan-700 mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-[#01386A]">Best Suited For:</span>
+                                <span>Desks, Workstations, Gym Workouts, Road Trips</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="openOrderModal('1500ml')" class="rounded-xl bg-[#01386A] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#0b4c86] shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-cart-shopping"></i> Order This Bottle
+                            </button>
+                            <a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%20%F0%9F%8C%8A%F0%9F%92%A6%2C%20I%20want%20to%20order%201500ml%20Bottle." target="_blank" class="rounded-xl border border-emerald-500/30 bg-emerald-50 px-5 py-3 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 flex items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Order via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6L Compact Bottle -->
+            <div id="6l" class="scroll-mt-32 rounded-[2.2rem] border border-[#d4e4f2] bg-white p-6 shadow-xl transition-all duration-300 hover:shadow-2xl sm:p-10">
+                <div class="grid gap-8 lg:grid-cols-12 lg:items-center">
+                    <div class="lg:col-span-5">
+                        <div class="product-stage relative isolate overflow-hidden rounded-[1.8rem] bg-[linear-gradient(180deg,#f8fbff_0%,#e6f0f8_100%)] p-8">
+                            <div class="product-stage__shadow pointer-events-none absolute inset-x-8 bottom-4 h-20 rounded-full bg-[#01386A]/14 blur-xl"></div>
+                            <div class="product-stage__orb pointer-events-none absolute top-6 right-6 h-28 w-28 rounded-full bg-white/80 blur-2xl"></div>
+                            <img src="public/images/optimized/aqua-water-6l.webp" alt="6L Compact Bottle Aqua Water Pure Drinking Water" class="product-stage__image relative z-10 mx-auto h-72 w-full object-contain object-bottom sm:h-80" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <span class="rounded-full bg-cyan-100/70 border border-cyan-200 px-3.5 py-1 text-xs font-bold text-cyan-900 uppercase tracking-widest">Light usage</span>
+                            <span class="text-2xl font-black text-[#01386A]">Rs. 220</span>
+                        </div>
+                        <h2 class="text-3xl font-black text-[#071C33] font-heading">6L Compact Bottle</h2>
+                        <p class="text-sm leading-relaxed text-[#5f7489]">Practical supply for smaller teams, travel, family use and short-cycle demand with integrated ergonomic handle.</p>
+                        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 pt-2">
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Packaging</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Single Handle Bottle</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Total TDS</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">120 - 160 ppm</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">pH Level</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">7.2 - 7.6</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Delivery</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Route & Direct</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl bg-[#edf5fc] p-3.5 text-xs text-slate-700 flex items-start gap-2.5">
+                            <i class="fa-solid fa-lightbulb text-cyan-700 mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-[#01386A]">Best Suited For:</span>
+                                <span>Small Offices, Family Kitchens, Weekend Outings</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="openOrderModal('6l')" class="rounded-xl bg-[#01386A] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#0b4c86] shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-cart-shopping"></i> Order This Bottle
+                            </button>
+                            <a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%20%F0%9F%8C%8A%F0%9F%92%A6%2C%20I%20want%20to%20order%206L%20Bottle." target="_blank" class="rounded-xl border border-emerald-500/30 bg-emerald-50 px-5 py-3 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 flex items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Order via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12L Mid-Size Bottle -->
+            <div id="12l" class="scroll-mt-32 rounded-[2.2rem] border border-[#d4e4f2] bg-white p-6 shadow-xl transition-all duration-300 hover:shadow-2xl sm:p-10">
+                <div class="grid gap-8 lg:grid-cols-12 lg:items-center">
+                    <div class="lg:col-span-5 lg:order-2">
+                        <div class="product-stage relative isolate overflow-hidden rounded-[1.8rem] bg-[linear-gradient(180deg,#f8fbff_0%,#e6f0f8_100%)] p-8">
+                            <div class="product-stage__shadow pointer-events-none absolute inset-x-8 bottom-4 h-20 rounded-full bg-[#01386A]/14 blur-xl"></div>
+                            <div class="product-stage__orb pointer-events-none absolute top-6 right-6 h-28 w-28 rounded-full bg-white/80 blur-2xl"></div>
+                            <img src="public/images/optimized/aqua-water-12l.webp" alt="12L Mid-Size Bottle Aqua Water Pure Drinking Water" class="product-stage__image relative z-10 mx-auto h-72 w-full object-contain object-bottom sm:h-80" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 lg:order-1 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <span class="rounded-full bg-cyan-100/70 border border-cyan-200 px-3.5 py-1 text-xs font-bold text-cyan-900 uppercase tracking-widest">Family scale</span>
+                            <span class="text-2xl font-black text-[#01386A]">Rs. 320</span>
+                        </div>
+                        <h2 class="text-3xl font-black text-[#071C33] font-heading">12L Mid-Size Bottle</h2>
+                        <p class="text-sm leading-relaxed text-[#5f7489]">Balanced capacity for homes, offices and medium-volume daily hydration needs. Compatible with water coolers and dispensers.</p>
+                        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 pt-2">
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Packaging</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Dispenser Compatible</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Total TDS</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">120 - 160 ppm</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">pH Level</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">7.2 - 7.6</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Delivery</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Route & Direct</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl bg-[#edf5fc] p-3.5 text-xs text-slate-700 flex items-start gap-2.5">
+                            <i class="fa-solid fa-lightbulb text-cyan-700 mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-[#01386A]">Best Suited For:</span>
+                                <span>Homes, Clinics, Mid-size Office Teams</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="openOrderModal('12l')" class="rounded-xl bg-[#01386A] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#0b4c86] shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-cart-shopping"></i> Order This Bottle
+                            </button>
+                            <a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%20%F0%9F%8C%8A%F0%9F%92%A6%2C%20I%20want%20to%20order%2012L%20Bottle." target="_blank" class="rounded-xl border border-emerald-500/30 bg-emerald-50 px-5 py-3 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 flex items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Order via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 19L Returnable Bottle -->
+            <div id="19l" class="scroll-mt-32 rounded-[2.2rem] border border-[#d4e4f2] bg-white p-6 shadow-xl transition-all duration-300 hover:shadow-2xl sm:p-10">
+                <div class="grid gap-8 lg:grid-cols-12 lg:items-center">
+                    <div class="lg:col-span-5">
+                        <div class="product-stage relative isolate overflow-hidden rounded-[1.8rem] bg-[linear-gradient(180deg,#f8fbff_0%,#e6f0f8_100%)] p-8">
+                            <div class="product-stage__shadow pointer-events-none absolute inset-x-8 bottom-4 h-20 rounded-full bg-[#01386A]/14 blur-xl"></div>
+                            <div class="product-stage__orb pointer-events-none absolute top-6 right-6 h-28 w-28 rounded-full bg-white/80 blur-2xl"></div>
+                            <img src="public/images/optimized/aqua-water-19l.webp" alt="19L Returnable Bottle Aqua Water Pure Drinking Water" class="product-stage__image relative z-10 mx-auto h-72 w-full object-contain object-bottom sm:h-80" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="flex items-center justify-between">
+                            <span class="rounded-full bg-cyan-100/70 border border-cyan-200 px-3.5 py-1 text-xs font-bold text-cyan-900 uppercase tracking-widest">High volume</span>
+                            <span class="text-2xl font-black text-[#01386A]">Rs. 280</span>
+                        </div>
+                        <h2 class="text-3xl font-black text-[#071C33] font-heading">19L Returnable Bottle</h2>
+                        <p class="text-sm leading-relaxed text-[#5f7489]">Primary supply for homes, workplaces and recurring route delivery plans. Heavy-duty dispenser jar with automated sanitization.</p>
+                        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 pt-2">
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Packaging</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">19L Cooler Bottle</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Total TDS</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">120 - 160 ppm</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">pH Level</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">7.2 - 7.6</p>
+                            </div>
+                            <div class="rounded-xl bg-slate-50 border border-slate-100 p-3">
+                                <span class="text-[10px] uppercase font-bold text-slate-400">Delivery</span>
+                                <p class="text-xs font-bold text-slate-800 mt-0.5">Route & Direct</p>
+                            </div>
+                        </div>
+                        <div class="rounded-xl bg-[#edf5fc] p-3.5 text-xs text-slate-700 flex items-start gap-2.5">
+                            <i class="fa-solid fa-lightbulb text-cyan-700 mt-0.5"></i>
+                            <div>
+                                <span class="font-bold text-[#01386A]">Best Suited For:</span>
+                                <span>Corporate Offices, Residences, Industrial Sites, Schools</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <button onclick="openOrderModal('19l')" class="rounded-xl bg-[#01386A] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#0b4c86] shadow-md flex items-center gap-2">
+                                <i class="fa-solid fa-cart-shopping"></i> Order This Bottle
+                            </button>
+                            <a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%20%F0%9F%8C%8A%F0%9F%92%A6%2C%20I%20want%20to%20order%2019L%20Bottle." target="_blank" class="rounded-xl border border-emerald-500/30 bg-emerald-50 px-5 py-3 text-xs font-bold text-emerald-700 transition hover:bg-emerald-100 flex items-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Order via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</main>
+
+<footer class="relative overflow-hidden bg-[linear-gradient(180deg,#012b50_0%,#01172e_100%)] text-white pt-16 pb-12 border-t border-white/10">
+    <div class="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl"></div>
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+            <div class="lg:col-span-2 text-left">
+                <div class="flex items-center gap-3">
+                    <img src="public/images/aqua_water_logo.svg" alt="Aqua Water" class="h-10 w-10 rounded-xl bg-white/95 p-1 shadow-sm">
+                    <div>
+                        <p class="text-[11px] font-bold tracking-[0.28em] text-[#cfe4f5] uppercase">Aqua Water 🌊💦</p>
+                        <span class="text-xs text-cyan-300 font-semibold">Premium Bottled Water Delivery</span>
+                    </div>
+                </div>
+                <h3 class="mt-4 text-2xl font-black text-white max-w-md font-heading leading-snug">Pure drinking water, delivered with care.</h3>
+                <p class="mt-3.5 max-w-md text-sm leading-relaxed text-slate-300">We provide reliable bottled water delivery for homes, offices, restaurants, clinics and businesses across Rawalpindi and Islamabad with scheduled route fulfillment.</p>
+                <div class="mt-6 flex flex-wrap gap-2">
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"><i class="fa-solid fa-check text-cyan-400 text-xs"></i> 9-Stage RO & UV</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"><i class="fa-solid fa-truck-fast text-cyan-400 text-xs"></i> Daily Delivery Routes</span>
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-200"><i class="fa-solid fa-stamp text-cyan-400 text-xs"></i> B2B Custom Labeling</span>
+                </div>
+            </div>
+            <div class="text-left">
+                <p class="text-[11px] font-bold tracking-[0.22em] text-[#cfe4f5] uppercase">Quick Navigation</p>
+                <ul class="mt-4 space-y-2.5 text-sm text-slate-300 font-medium">
+                    <li><a href="index.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> Home</a></li>
+                    <li><a href="index.html#products" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> Products & Range</a></li>
+                    <li><a href="purification-process.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> 9-Step Purification</a></li>
+                    <li><a href="index.html#process" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> How We Work</a></li>
+                    <li><a href="about-us.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> About Our Company</a></li>
+                    <li><a href="lab-report.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> Water Quality Reports</a></li>
+                    <li><a href="contact-us.html" class="transition hover:text-white inline-flex items-center gap-2"><i class="fa-solid fa-chevron-right text-[10px] text-cyan-400"></i> Contact & Support</a></li>
+                </ul>
+            </div>
+            <div class="text-left">
+                <p class="text-[11px] font-bold tracking-[0.22em] text-[#cfe4f5] uppercase">Direct Contact</p>
+                <div class="mt-4 space-y-3.5 text-sm text-slate-300">
+                    <p class="flex items-center gap-2.5">
+                        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 text-cyan-300"><i class="fa-solid fa-phone text-xs"></i></span>
+                        <span>+92 310 4797444</span>
+                    </p>
+                    <p class="flex items-center gap-2.5">
+                        <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500/20 text-emerald-400"><i class="fa-brands fa-whatsapp text-sm"></i></span>
+                        <a href="https://wa.me/923104797444" target="_blank" class="hover:text-emerald-300 underline underline-offset-4">WhatsApp Orders</a>
+                    </p>
+                    <p class="flex items-start gap-2.5">
+                        <span class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/10 text-cyan-300"><i class="fa-solid fa-location-dot text-xs"></i></span>
+                        <span>Rawalpindi & Islamabad, Pakistan</span>
+                    </p>
+                    <div class="pt-3">
+                        <a href="login.html" class="inline-flex items-center gap-2 rounded-xl border border-white/14 bg-white/6 px-4 py-2.5 text-xs font-semibold text-white transition hover:bg-white/12">
+                            <i class="fa-solid fa-lock text-cyan-300"></i><span>Customer Portal Login</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-12 border-t border-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+            <p>© 2026 Aqua Water 🌊💦. Premium hydration solutions for homes and businesses.</p>
+            <p class="flex items-center gap-4">
+                <span>Rawalpindi & Islamabad Supply</span><span>•</span><a href="contact-us.html" class="hover:text-slate-200">Privacy & Terms</a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<a href="https://wa.me/923104797444?text=Hello%20Aqua%20Water%2C%20I%20want%20to%20order" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg transition duration-300 hover:scale-110 hover:bg-emerald-600 animate-bounce" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+</a>
+
+<!-- Quick Order Modal -->
+<div id="order-modal-backdrop" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300" style="opacity: 0; pointer-events: none;" onclick="closeOrderModal()"></div></div>
+<div id="order-modal" class="fixed inset-x-4 top-[50%] z-50 mx-auto max-w-lg -translate-y-[50%] scale-95 opacity-0 pointer-events-none rounded-[2rem] border border-white/20 bg-white p-6 shadow-2xl transition-all duration-300 sm:p-8" style="opacity: 0; pointer-events: none; transform: translate(-50%, -50%) scale(0.92);" aria-hidden="true">
+    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+        <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-50 text-cyan-600"><i class="fa-solid fa-droplet text-lg"></i></div>
+            <div>
+                <h3 class="text-xl font-black text-[#071C33] font-heading">Place Bottle Order</h3>
+                <p class="text-xs text-slate-500">Fast delivery across Rawalpindi & Islamabad</p>
+            </div>
+        </div>
+        <button onclick="closeOrderModal()" class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100" aria-label="Close modal"><i class="fa-solid fa-xmark text-lg"></i></button>
+    </div>
+    <form id="quick-order-form" onsubmit="handleOrderSubmit(event)" class="mt-5 space-y-4">
+        <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Select Bottle Size</label>
+            <select id="order-bottle-select" onchange="calculateOrderTotal()" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-800 focus:border-[#01386A] focus:bg-white focus:outline-none">
+                <option value="500ml" data-price="50" data-name="500ml Bottle">500ml Bottle - On-the-go (Rs. 50)</option>
+                <option value="1500ml" data-price="90" data-name="1500ml Bottle">1500ml Bottle - Daily hydration (Rs. 90)</option>
+                <option value="6l" data-price="220" data-name="6L Compact Bottle">6L Compact Bottle - Light usage (Rs. 220)</option>
+                <option value="12l" data-price="320" data-name="12L Mid-Size Bottle">12L Mid-Size Bottle - Family scale (Rs. 320)</option>
+                <option value="19l" data-price="280" data-name="19L Returnable Bottle">19L Returnable Bottle - High volume dispenser (Rs. 280)</option>
+            </select>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Quantity</label>
+                <div class="flex items-center rounded-xl border border-slate-200 bg-slate-50 overflow-hidden">
+                    <button type="button" onclick="stepQuantity(-1)" class="px-3 py-2 text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-minus text-xs"></i></button>
+                    <input type="number" id="order-quantity" value="1" min="1" max="100" onchange="calculateOrderTotal()" class="w-full text-center bg-transparent py-2 text-sm font-bold text-slate-800 focus:outline-none">
+                    <button type="button" onclick="stepQuantity(1)" class="px-3 py-2 text-slate-600 hover:bg-slate-200"><i class="fa-solid fa-plus text-xs"></i></button>
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Estimated Total</label>
+                <div class="flex h-10 items-center justify-center rounded-xl bg-cyan-50 px-3 text-sm font-black text-[#01386A]" id="order-total-display">Rs. 50</div>
+            </div>
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Full Name</label>
+            <input type="text" id="order-name" required placeholder="Your Name or Business" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Phone / WhatsApp Number</label>
+            <input type="tel" id="order-phone" required placeholder="03xx xxxxxxx" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+        </div>
+        <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Delivery Address & Area</label>
+            <input type="text" id="order-address" required placeholder="Street / Sector, Rawalpindi / Islamabad" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-800 focus:border-[#01386A] focus:outline-none">
+        </div>
+        <div class="pt-2 flex flex-col sm:flex-row gap-2.5">
+            <button type="submit" class="flex-1 rounded-xl bg-[#01386A] py-3 text-sm font-bold text-white shadow-lg hover:bg-[#0b4c86]"><i class="fa-solid fa-truck-ramp-box mr-1.5"></i> Confirm Order</button>
+            <button type="button" onclick="sendOrderViaWhatsApp()" class="rounded-xl border border-emerald-500/30 bg-emerald-50 py-3 px-4 text-sm font-bold text-emerald-700 hover:bg-emerald-100 flex items-center justify-center gap-1.5"><i class="fa-brands fa-whatsapp text-emerald-600"></i> WhatsApp</button>
+        </div>
+    </form>
+</div>
+<div id="toast-container" class="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+<script src="public/js/main.js"></script>
+
+</body>
+</html>
